@@ -1,13 +1,21 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("homepage", () => {
-  test("primary CTA leads to the assessment pathway", async ({ page }) => {
+  test("hero never dead-ends: booking leads while no assessment is live", async ({
+    page,
+  }) => {
+    // No assessment env vars in CI → the hero must lead with booking and
+    // offer the assessment hub as secondary (never a disabled dead end).
     await page.goto("/");
-    const primary = page
-      .getByRole("link", { name: "Start the Growth Stage Assessment" })
-      .first();
-    await expect(primary).toBeVisible();
-    await expect(primary).toHaveAttribute("href", "/assessments");
+    const hero = page.locator("section", {
+      has: page.getByRole("heading", { level: 1 }),
+    });
+    await expect(
+      hero.getByRole("link", { name: "Book a Discovery Call" }),
+    ).toHaveAttribute("href", "/book");
+    await expect(
+      hero.getByRole("link", { name: "Explore our assessments" }),
+    ).toHaveAttribute("href", "/assessments");
   });
 
   test("booking CTAs lead to /book", async ({ page, isMobile }) => {
@@ -77,17 +85,17 @@ test.describe("homepage", () => {
     }
   });
 
-  test("every client logo image has alt text", async ({ page }) => {
+  test("client logo wall stays hidden until records are approved", async ({
+    page,
+  }) => {
+    // Seed records are unapproved placeholders — no logo (real or fake)
+    // may reach visitors. Alt-text enforcement for approved records is
+    // covered by the content contract unit tests.
     await page.goto("/");
-    const logos = page.locator(
-      "section[aria-labelledby='clients-heading'] img:not([aria-hidden] img)",
-    );
-    const count = await logos.count();
-    expect(count).toBeGreaterThanOrEqual(4);
-    for (let i = 0; i < count; i++) {
-      const alt = await logos.nth(i).getAttribute("alt");
-      expect(alt?.trim().length ?? 0).toBeGreaterThan(0);
-    }
+    await expect(
+      page.locator("section[aria-labelledby='clients-heading']"),
+    ).toHaveCount(0);
+    await expect(page.getByText(/placeholder client logo/i)).toHaveCount(0);
   });
 
   test("one h1, sections labelled", async ({ page }) => {

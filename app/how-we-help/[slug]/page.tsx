@@ -13,7 +13,7 @@ import {
   getPracticeArea,
   getPracticeAreas,
 } from "@/lib/cms";
-import { jsonLdString, serviceJsonLd } from "@/lib/seo/jsonld";
+import { breadcrumbJsonLd, jsonLdString, serviceJsonLd } from "@/lib/seo/jsonld";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: practice.name,
     description: practice.seoDescription,
+    alternates: { canonical: `/how-we-help/${practice.slug}` },
   };
 }
 
@@ -91,45 +92,54 @@ export default async function PracticePage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdString(serviceJsonLd(practice)) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLdString(
+            breadcrumbJsonLd([
+              { name: "How We Help", path: "/how-we-help" },
+              { name: practice.name, path: `/how-we-help/${practice.slug}` },
+            ]),
+          ),
+        }}
+      />
 
-      {/* Hero: business-problem headline */}
+      {/* Hero: business-problem headline (CSS entrances — LCP-safe) */}
       <Section aria-labelledby="practice-heading">
         <Container className="flex max-w-4xl flex-col gap-6">
-          <Reveal>
-            <nav aria-label="Breadcrumb" className="text-sm">
-              <Link
-                href="/how-we-help"
-                className="text-meadow-deep hover:underline"
-              >
-                How We Help
-              </Link>
-              <span aria-hidden="true" className="mx-2 text-slate">
-                /
-              </span>
-              <span className="text-slate">{practice.name}</span>
-            </nav>
-          </Reveal>
-          <Reveal delay={0.05}>
+          <nav aria-label="Breadcrumb" className="anim-rise text-sm">
+            <Link
+              href="/how-we-help"
+              className="text-meadow-deep underline decoration-meadow-deep/40 underline-offset-4 hover:decoration-meadow-deep"
+            >
+              How We Help
+            </Link>
+            <span aria-hidden="true" className="mx-2 text-slate">
+              /
+            </span>
+            <span className="text-slate">{practice.name}</span>
+          </nav>
+          <div className="anim-rise">
             <Eyebrow>{practice.name}</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.1}>
+          </div>
+          <div className="anim-fade" style={{ animationDuration: "400ms" }}>
             <Heading level={1} id="practice-heading">
               {practice.headline}
             </Heading>
-          </Reveal>
-          <Reveal delay={0.2}>
+          </div>
+          <div className="anim-rise" style={{ animationDelay: "120ms" }}>
             <Text size="lg" muted className="max-w-2xl">
               {practice.summary}
             </Text>
-          </Reveal>
-          <Reveal delay={0.25}>
+          </div>
+          <div className="anim-rise" style={{ animationDelay: "220ms" }}>
             <CTAButton
               label="Discuss Your Needs"
               href="/book"
               location={`practice-${practice.slug}-hero`}
               variant="accent"
             />
-          </Reveal>
+          </div>
         </Container>
       </Section>
 

@@ -130,14 +130,16 @@ function ScrollStage({
   count: number;
 }) {
   // Each stage activates across its slice of the scroll range.
+  // Text stays fully opaque at every scroll position — motion may carry
+  // the metaphor but must never reduce readability (WCAG contrast holds
+  // in every state). Activation shows via translate + ring growth only.
   const start = index / (count + 1);
   const end = (index + 1) / count;
-  const opacity = useTransform(progress, [start, end], [0.35, 1]);
   const y = useTransform(progress, [start, end], [24, 0]);
   const ringScale = useTransform(progress, [start, end], [0.6, 1]);
 
   return (
-    <motion.li style={{ opacity, y }} className="h-full">
+    <motion.li style={{ y }} className="h-full">
       <StageCard
         stage={stage}
         index={index}

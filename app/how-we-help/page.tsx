@@ -6,6 +6,7 @@ import { Eyebrow, Heading, Text } from "@/components/ui/Text";
 import { TextLink } from "@/components/ui/TextLink";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { Reveal } from "@/components/motion/Reveal";
+import { PageHero } from "@/components/sections/PageHero";
 import { GrowthRings } from "@/components/brand/GrowthRings";
 import {
   getEngagements,
@@ -46,21 +47,12 @@ export default async function HowWeHelpPage() {
       />
 
       <Section aria-labelledby="hwh-heading">
-        <Container className="flex max-w-4xl flex-col gap-6">
-          <Reveal>
-            <Eyebrow>{content.eyebrow}</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <Heading level={1} id="hwh-heading">
-              {content.headline}
-            </Heading>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <Text size="lg" muted className="max-w-2xl">
-              {content.copy}
-            </Text>
-          </Reveal>
-        </Container>
+        <PageHero
+          eyebrow={content.eyebrow}
+          headline={content.headline}
+          copy={content.copy}
+          headingId="hwh-heading"
+        />
       </Section>
 
       <Section tone="surface" aria-labelledby="hwh-system-heading">

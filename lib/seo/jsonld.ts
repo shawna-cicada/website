@@ -80,6 +80,71 @@ export function aboutJsonLd(
   };
 }
 
+/** BreadcrumbList for nested pages. */
+export function breadcrumbJsonLd(
+  crumbs: Array<{ name: string; path: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: `${SITE_URL}${crumb.path}`,
+    })),
+  };
+}
+
+/**
+ * Article schema for insight pages (consumed in Phase 6 when
+ * /insights/[slug] renders CMS content; tested now).
+ */
+export function articleJsonLd(article: {
+  title: string;
+  description: string;
+  slug: string;
+  authorName: string;
+  publishedAt: string;
+  updatedAt?: string;
+  imageUrl?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    url: `${SITE_URL}/insights/${article.slug}`,
+    mainEntityOfPage: `${SITE_URL}/insights/${article.slug}`,
+    author: { "@type": "Person", name: article.authorName },
+    publisher: organizationJsonLd,
+    datePublished: article.publishedAt,
+    ...(article.updatedAt ? { dateModified: article.updatedAt } : {}),
+    ...(article.imageUrl ? { image: [article.imageUrl] } : {}),
+  };
+}
+
+/** VideoObject schema for video insights (Phase 6; tested now). */
+export function videoObjectJsonLd(video: {
+  title: string;
+  description: string;
+  slug: string;
+  videoUrl: string;
+  publishedAt: string;
+  thumbnailUrl?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: video.title,
+    description: video.description,
+    url: `${SITE_URL}/insights/${video.slug}`,
+    embedUrl: video.videoUrl,
+    uploadDate: video.publishedAt,
+    ...(video.thumbnailUrl ? { thumbnailUrl: [video.thumbnailUrl] } : {}),
+  };
+}
+
 /** Serialize for a <script type="application/ld+json"> tag. */
 export function jsonLdString(data: object): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");

@@ -8,6 +8,7 @@ import { Eyebrow, Heading, Text } from "@/components/ui/Text";
 import { TextLink } from "@/components/ui/TextLink";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { Reveal } from "@/components/motion/Reveal";
+import { PageHero } from "@/components/sections/PageHero";
 import { CicadaMark } from "@/components/brand/CicadaMark";
 import { GrowthRings } from "@/components/brand/GrowthRings";
 import { getAboutContent, getFounders } from "@/lib/cms";
@@ -53,21 +54,14 @@ export default async function AboutPage() {
         className="relative overflow-hidden bg-paper py-section"
       >
         <CicadaMark className="pointer-events-none absolute -right-20 top-4 hidden w-[34rem] text-meadow/10 lg:block" />
-        <Container className="relative flex max-w-4xl flex-col gap-6">
-          <Reveal>
-            <Eyebrow>About Cicada Agility</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <Heading level={1} id="about-heading">
-              {content.hero.headline}
-            </Heading>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <Text size="lg" muted className="max-w-2xl">
-              {content.hero.copy}
-            </Text>
-          </Reveal>
-        </Container>
+        <div className="relative">
+          <PageHero
+            eyebrow="About Cicada Agility"
+            headline={content.hero.headline}
+            copy={content.hero.copy}
+            headingId="about-heading"
+          />
+        </div>
       </section>
 
       {/* 2 — Origin story & metaphor */}
@@ -150,7 +144,7 @@ export default async function AboutPage() {
               <Reveal key={founder.name} delay={index * 0.1} className="h-full">
                 <Card tone="surface" className="h-full">
                   <div className="flex flex-col gap-5">
-                    <div className="flex items-start gap-5">
+                    <div className="flex flex-wrap items-start gap-5">
                       <ImageFrame
                         ratio="3/4"
                         treatment={index % 2 === 0 ? "wing" : "plain"}
@@ -164,7 +158,7 @@ export default async function AboutPage() {
                           unoptimized
                         />
                       </ImageFrame>
-                      <div>
+                      <div className="min-w-0">
                         <Heading level={3} visualLevel={4}>
                           {founder.name}
                         </Heading>
