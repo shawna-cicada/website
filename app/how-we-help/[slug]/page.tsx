@@ -214,10 +214,10 @@ export default async function PracticePage({ params }: PageProps) {
                     <Heading level={3} visualLevel={4}>
                       {engagement.name}
                     </Heading>
-                    <Text muted size="sm">
+                    <Text muted>
                       {engagement.summary}
                     </Text>
-                    <p className="mt-auto pt-1 text-xs text-slate">
+                    <p className="mt-auto pt-1 text-sm text-slate">
                       {engagement.format}
                     </p>
                   </div>
