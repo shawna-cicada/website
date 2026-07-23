@@ -17,6 +17,7 @@ import {
   PreviewDraftAction,
   PublishWithChecklist,
   ScheduleAction,
+  SendForReviewAction,
   UnpublishToDraft,
   ViewLiveAction,
 } from "@/sanity/actions";
@@ -67,6 +68,7 @@ export default defineConfig({
       );
       return [
         PublishWithChecklist,
+        SendForReviewAction,
         ScheduleAction,
         PreviewDraftAction,
         CopyLinkedInPostAction,

@@ -2,9 +2,11 @@ import { describe, expect, it } from "vitest";
 import {
   applyAutomaticFields,
   archiveDoc,
+  backToDraft,
   publishDoc,
   restoreVersion,
   scheduleDoc,
+  sendForReview,
   unpublishDoc,
   withReadingTime,
 } from "@/lib/editorial/workflow";
@@ -153,6 +155,40 @@ describe("publish and schedule transitions", () => {
       expect(result.doc.status).toBe("draft");
       expect(result.notes[0]).toContain("nothing was deleted");
     }
+  });
+});
+
+describe("send for review / back to draft", () => {
+  it("any editor can hand a draft to review — no publish rights needed", () => {
+    const result = sendForReview({ ...completeDoc, status: "draft" }, "editor");
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.doc.status).toBe("needs-review");
+  });
+
+  it("works even when the piece is incomplete — review is where gaps get found", () => {
+    const result = sendForReview({ contentType: "article", title: "Hi" }, "editor");
+    expect(result.ok).toBe(true);
+  });
+
+  it("clears any schedule so a re-reviewed piece cannot silently go live", () => {
+    const result = sendForReview(
+      { ...completeDoc, status: "scheduled", scheduledAt: "2027-01-01T00:00:00.000Z" },
+      "editor",
+    );
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.doc.scheduledAt).toBeUndefined();
+  });
+
+  it("refuses on a live piece — unpublish or edit-and-republish instead", () => {
+    const result = sendForReview({ ...completeDoc, status: "published" }, "editor");
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.problems[0]).toMatch(/already live/i);
+  });
+
+  it("back to draft reverses the handoff", () => {
+    const result = backToDraft({ ...completeDoc, status: "needs-review" }, "editor");
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.doc.status).toBe("draft");
   });
 });
 
