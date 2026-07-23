@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
-import { Eyebrow, Heading, Text } from "@/components/ui/Text";
+import { Heading, Text } from "@/components/ui/Text";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { PageHero } from "@/components/sections/PageHero";
@@ -15,9 +16,9 @@ import { INSIGHT_KIND_LABELS, formatInsightDate } from "@/lib/cms/format";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Insights",
+  title: "Articles and Insights",
   description:
-    "Ideas for companies in motion — articles, videos, and conversations on leadership, organizational effectiveness, and the stages of company growth.",
+    "Articles, videos, and conversations from our work with founders and leadership teams — what each stage of growth demands, what companies outgrow, and how leadership evolves through it.",
   alternates: { canonical: "/insights" },
 };
 
@@ -33,9 +34,9 @@ export default async function InsightsPage() {
     <>
       <Section aria-labelledby="insights-heading">
         <PageHero
-          eyebrow="Insights"
-          headline="Ideas for companies in motion."
-          copy="Articles, videos, and conversations on leadership, organizational effectiveness, and what each stage of growth asks a company to evolve."
+          eyebrow="From our work"
+          headline="Articles and Insights"
+          copy="Articles, videos, and conversations from our work with founders and leadership teams — what each stage of growth demands, what companies outgrow, and how leadership evolves through it."
           headingId="insights-heading"
         />
       </Section>
@@ -75,8 +76,25 @@ export default async function InsightsPage() {
                     <Reveal delay={(index % 3) * 0.06} className="h-full">
                       <Card interactive tone="paper" className="h-full">
                         <article className="flex h-full flex-col gap-3">
+                          {insight.imageUrl ? (
+                            // Flush thumbnail: cancel the card padding so
+                            // the image bleeds to the card edges.
+                            <div className="relative -mx-6 -mt-6 mb-1 aspect-[16/9] overflow-hidden rounded-t-sm sm:-mx-8 sm:-mt-8">
+                              <Image
+                                src={insight.imageUrl}
+                                alt={insight.imageAlt ?? ""}
+                                fill
+                                sizes="(min-width: 1024px) 384px, (min-width: 768px) 50vw, 100vw"
+                                className="object-cover"
+                              />
+                            </div>
+                          ) : null}
                           {insight.category ? (
-                            <Eyebrow>{insight.category}</Eyebrow>
+                            <p>
+                              <span className="inline-flex rounded-full bg-lilac px-3 py-1 font-label text-xs font-semibold uppercase tracking-[0.08em] text-ink">
+                                {insight.category}
+                              </span>
+                            </p>
                           ) : null}
                           <Heading level={2} visualLevel={4}>
                             <Link
