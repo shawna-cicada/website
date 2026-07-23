@@ -6,9 +6,15 @@ it." Work top to bottom; nothing in "Cutover" happens until every
 
 ## Before cutover — content & services
 
-- [ ] Sanity project created; `NEXT_PUBLIC_SANITY_PROJECT_ID` set (D-018).
-- [ ] **Phase 6 (/insights) built and wired to the CMS** — articles are a
-      launch requirement (migration preserves existing article URLs).
+- [x] Sanity project created (`66n8qkam`, committed per D-020 — no env
+      var needed).
+- [x] **Phase 6 (/insights) built and wired to the CMS** — public index +
+      article pages render published documents; empty state until content
+      exists.
+- [ ] Sanity CORS origins include the deployed site URL(s) so /admin can
+      sign in (manage.sanity.io → API → CORS origins).
+- [ ] Article migration from Wix into Sanity (preserves existing article
+      URLs; see Wix export item below).
 - [ ] Wix content export complete: articles, images, full URL inventory
       (sitemap.xml + Search Console). Replace the *(verify)* sources in
       docs/MIGRATION_MAP.md and extend `lib/seo/redirects.ts` if the
@@ -68,8 +74,8 @@ it." Work top to bottom; nothing in "Cutover" happens until every
 - **Analytics consent banner intentionally absent**: Vercel Analytics is
   cookieless and stores no personal identifiers, so consent is not
   required for it. Revisit if any cookie-setting tool is ever added.
-- **Insights index is a stub** until Phase 6; the migration checklist
-  above gates launch on completing it.
+- **Insights pages are live but empty** until articles are migrated or
+  written; the index shows an honest empty state, never sample content.
 - **Lighthouse perf 84–90 measured in the dev container** (simulated
   throttling against localhost, no CDN). Verify ≥90 on the real Vercel
   URL — edge caching and HTTP/2 push typically add several points.

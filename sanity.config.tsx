@@ -21,6 +21,7 @@ import {
   ViewLiveAction,
 } from "@/sanity/actions";
 import { CicadaDashboard } from "@/sanity/dashboard/CicadaDashboard";
+import { sanityDataset, sanityProjectId } from "@/lib/sanity/config";
 
 /**
  * The Cicada Agility Studio.
@@ -36,8 +37,8 @@ import { CicadaDashboard } from "@/sanity/dashboard/CicadaDashboard";
 export default defineConfig({
   name: "cicada-agility",
   title: "Cicada Agility",
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "placeholder",
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+  projectId: sanityProjectId,
+  dataset: sanityDataset,
   basePath: "/admin",
   plugins: [structureTool({ structure })],
   tools: (prev) => [
