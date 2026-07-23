@@ -25,8 +25,11 @@ function LogoImage({ logo }: { logo: ClientLogo }) {
  */
 export function ClientLogos({
   content,
+  demoNote,
 }: {
   content: HomepageContent["clients"];
+  /** Shown when placeholder logos render for layout preview only. */
+  demoNote?: string;
 }) {
   return (
     <section
@@ -34,14 +37,19 @@ export function ClientLogos({
       className="border-y border-ink/10 bg-paper py-14"
     >
       <Container className="flex flex-col gap-8">
-        <Heading
-          level={2}
-          visualLevel={4}
-          id="clients-heading"
-          className="text-slate"
-        >
-          {content.headline}
-        </Heading>
+        <div>
+          <Heading
+            level={2}
+            visualLevel={4}
+            id="clients-heading"
+            className="text-slate"
+          >
+            {content.headline}
+          </Heading>
+          {demoNote ? (
+            <p className="mt-2 text-xs italic text-slate">{demoNote}</p>
+          ) : null}
+        </div>
 
         {/* Small screens: static grid, no motion */}
         <ul className="grid grid-cols-2 items-center gap-8 sm:grid-cols-3 md:hidden">

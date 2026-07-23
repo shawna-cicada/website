@@ -20,6 +20,9 @@ it." Work top to bottom; nothing in "Cutover" happens until every
       one-line change in `content/seed/homepage.ts` / CMS).
 - [ ] Founder bios approved (clear `draftBio`), final photography in.
 - [ ] Client logo permissions gathered; approved records entered.
+      (Until then the homepage marquee shows SAMPLE logos with a visible
+      "layout preview" caption — real approved records replace them and
+      remove the caption automatically. Do not launch with samples.)
 - [ ] Privacy policy and terms written (replace the /privacy and /terms
       stubs — legal review).
 - [ ] Editor usability test passed (docs/ADMIN_USABILITY_TEST.md).
