@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useClient } from "sanity";
+import { useClient, useWorkspace } from "sanity";
 import { useRouter } from "sanity/router";
 import { badgeFor } from "@/lib/editorial/statuses";
 import { publishGate } from "@/lib/editorial/checklist";
@@ -75,6 +75,9 @@ function toEditorial(doc: RecentDoc): EditorialDoc {
 export function CicadaDashboard() {
   const client = useClient({ apiVersion: "2025-01-01" });
   const router = useRouter();
+  // The Studio lives under /admin — navigation must carry its basePath
+  // or Sanity's router answers "Workspace not found".
+  const { basePath } = useWorkspace();
   const [docs, setDocs] = useState<RecentDoc[] | null>(null);
   const [error, setError] = useState(false);
 
@@ -117,7 +120,7 @@ export function CicadaDashboard() {
       return;
     }
     if (action.type) {
-      router.navigateUrl({ path: `/structure/${action.type}` });
+      router.navigateUrl({ path: `${basePath}/structure/${action.type}` });
     }
   }
 
@@ -239,7 +242,9 @@ function RecentList({
                 </button>
                 {showLive && doc.slug ? (
                   <a
-                    href={`https://www.cicadaagility.com/insights/${doc.slug}`}
+                    // Same-origin link: correct on the Vercel URL today
+                    // and on the real domain after cutover.
+                    href={`/insights/${doc.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ fontSize: 12, color: "#0d7263" }}
