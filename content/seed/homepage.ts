@@ -186,7 +186,7 @@ export const homepageContent: HomepageContent = {
   },
   insight: {
     eyebrow: "Featured insight",
-    headline: "Ideas for companies in motion",
+    headline: "Articles and Insights",
     featured: {
       category: "Leadership",
       title: "The habits that built your company may be the ones holding it back",

@@ -46,6 +46,33 @@ test.describe("homepage", () => {
     await expect(
       menu.getByRole("link", { name: "Book a Conversation" }),
     ).toHaveAttribute("href", "/book");
+    // Practice pages are listed directly under How We Help.
+    await expect(
+      menu.getByRole("link", { name: "Organizational Effectiveness" }),
+    ).toHaveAttribute("href", "/how-we-help/organizational-effectiveness");
+  });
+
+  test("desktop nav: How We Help dropdown lists the practice pages", async ({
+    page,
+    isMobile,
+  }) => {
+    test.skip(isMobile, "desktop project only");
+    await page.goto("/");
+    const toggle = page.getByRole("button", { name: /show how we help pages/i });
+    await toggle.click();
+    for (const name of [
+      "Leadership & Team Effectiveness",
+      "Organizational Effectiveness",
+      "AI Enablement & Working Norms",
+      "Founder Challenges: Seed to Scale",
+    ]) {
+      await expect(page.getByRole("link", { name })).toBeVisible();
+    }
+    // Escape closes the disclosure.
+    await page.keyboard.press("Escape");
+    await expect(
+      page.getByRole("link", { name: "Leadership & Team Effectiveness" }),
+    ).toBeHidden();
   });
 
   test("framework presents all three stages", async ({ page }) => {

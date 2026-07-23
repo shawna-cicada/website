@@ -11,7 +11,7 @@ test.describe("/insights", () => {
   }) => {
     await page.goto("/insights");
     await expect(
-      page.getByRole("heading", { name: /ideas for companies in motion/i }),
+      page.getByRole("heading", { name: /articles and insights/i }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", { name: /first pieces are on their way/i }),

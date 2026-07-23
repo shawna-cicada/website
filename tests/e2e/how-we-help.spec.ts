@@ -18,8 +18,10 @@ test.describe("/how-we-help", () => {
       "ai-enablement",
       "founder-growth",
     ]) {
+      // Scoped to main: the header's nav dropdown also holds these
+      // links, hidden until opened.
       await expect(
-        page.locator(`a[href="/how-we-help/${slug}"]`).first(),
+        page.locator(`main a[href="/how-we-help/${slug}"]`).first(),
       ).toBeVisible();
     }
   });
