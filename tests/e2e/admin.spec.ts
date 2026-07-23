@@ -20,4 +20,18 @@ test.describe("/admin", () => {
     const html = await page.content();
     expect(html).toContain("data-sanity-core");
   });
+
+  test("renders without the marketing header/footer, so the Studio's action bar fits on screen", async ({
+    page,
+  }) => {
+    await page.goto("/admin");
+    // The site nav stacking above the full-viewport Studio pushed the
+    // Publish bar below the fold — the chrome must never render here.
+    await expect(
+      page.getByRole("link", { name: /how we help/i }),
+    ).toHaveCount(0);
+    await expect(
+      page.getByRole("contentinfo"),
+    ).toHaveCount(0);
+  });
 });
