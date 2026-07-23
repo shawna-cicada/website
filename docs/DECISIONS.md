@@ -112,5 +112,14 @@ Practices, About, and the remaining homepage sections stay seed-managed
 until schemas for them are deliberately designed (they encode layout
 constraints an unstructured text field would break).
 
+## D-022 — Assessments are proprietary; responses are collected for follow-up — Accepted (2026-07-23)
+Founder correction, superseding the earlier "third-party assessments"
+framing: the assessments are Cicada Agility's own instruments, hosted on
+an external survey platform, and respondents' answers and contact
+details ARE collected — used to deliver results, follow up, and build
+the CRM. The /assessments disclosure and per-assessment privacy notes
+now say this plainly. The launch-gated privacy policy must cover this
+collection before cutover (see LAUNCH_CHECKLIST).
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

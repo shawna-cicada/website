@@ -40,13 +40,17 @@ test.describe("/assessments", () => {
     ).toBeVisible();
   });
 
-  test("third-party privacy language is present", async ({ page }) => {
+  test("honest data-use language is present (proprietary assessments, D-022)", async ({
+    page,
+  }) => {
     await page.goto("/assessments");
     await expect(
-      page.getByRole("heading", { name: /about third-party assessments/i }),
+      page.getByRole("heading", { name: /about our assessments/i }),
     ).toBeVisible();
+    // The disclosure must say plainly that responses and contact details
+    // come to Cicada and are used for follow-up.
     await expect(
-      page.getByText(/does not collect your answers or any personal data/i),
+      page.getByText(/your answers and contact details come to us/i),
     ).toBeVisible();
   });
 });

@@ -30,7 +30,10 @@ it." Work top to bottom; nothing in "Cutover" happens until every
       "layout preview" caption — real approved records replace them and
       remove the caption automatically. Do not launch with samples.)
 - [ ] Privacy policy and terms written (replace the /privacy and /terms
-      stubs — legal review).
+      stubs — legal review). MUST cover assessment data: assessments are
+      proprietary to Cicada and respondents' answers + contact details
+      are collected for results delivery, follow-up, and the CRM (the
+      /assessments page discloses this; the policy has to back it).
 - [ ] Editor usability test passed (docs/ADMIN_USABILITY_TEST.md).
 - [ ] `BOOKING_CONTACT_EMAIL` set; email address live.
 
