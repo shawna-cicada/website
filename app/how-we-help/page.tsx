@@ -33,10 +33,6 @@ export default async function HowWeHelpPage() {
     getPracticeAreas(),
     getEngagements(),
   ]);
-  const practiceNames = new Map(
-    practices.map((practice) => [practice.slug, practice.name]),
-  );
-
   return (
     <>
       <script
@@ -57,56 +53,48 @@ export default async function HowWeHelpPage() {
 
       <Section tone="surface" aria-labelledby="hwh-system-heading">
         <Container className="flex flex-col gap-stack">
-          <Reveal className="max-w-3xl">
-            <Eyebrow>Our practices</Eyebrow>
-            <Heading level={2} id="hwh-system-heading" visualLevel={3} className="mt-2">
-              Four practices, one connected system
-            </Heading>
-            <Text muted className="mt-3">
-              {content.systemNote}
-            </Text>
-            <div className="mt-4">
-              <TextLink href="/about" arrow>
-                More about how we work
-              </TextLink>
-            </div>
-          </Reveal>
+          {/* The connected-system narrative, told here in full — the
+              About page continues it, but this page must stand alone. */}
+          <div className="grid items-center gap-10 lg:grid-cols-[auto_minmax(0,1fr)]">
+            <Reveal className="hidden justify-center lg:flex">
+              <GrowthRings size={260} className="text-ink/25" />
+            </Reveal>
+            <Reveal>
+              <Eyebrow>One connected system</Eyebrow>
+              <Heading level={2} id="hwh-system-heading" visualLevel={3} className="mt-2 max-w-2xl">
+                Growth friction shows up in one place — and starts in another.
+              </Heading>
+              <div className="mt-4 flex max-w-2xl flex-col gap-4">
+                {content.systemNarrative.map((paragraph) => (
+                  <Text muted key={paragraph.slice(0, 32)}>
+                    {paragraph}
+                  </Text>
+                ))}
+              </div>
+            </Reveal>
+          </div>
 
-          <div className="relative">
-            {/* Connective motif: shared growth rings behind the grid */}
-            <GrowthRings
-              size={340}
-              className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 text-ink/15 lg:block"
-            />
-            <div className="relative grid gap-6 md:grid-cols-2">
-              {practices.map((practice, index) => (
-                <Reveal key={practice.slug} delay={index * 0.07} className="h-full">
-                  <Card interactive tone="paper" className="h-full">
-                    <div className="flex h-full flex-col gap-3">
-                      <Heading level={3} visualLevel={4}>
-                        {practice.name}
-                      </Heading>
-                      <p className="font-medium text-slate">{practice.headline}</p>
-                      <Text muted>
-                        {practice.summary}
-                      </Text>
-                      <p className="mt-2 text-sm text-slate">
-                        Connects with:{" "}
-                        {practice.relatedPractices
-                          .map((slug) => practiceNames.get(slug))
-                          .filter(Boolean)
-                          .join(" · ")}
-                      </p>
-                      <div className="mt-auto pt-2">
-                        <TextLink href={`/how-we-help/${practice.slug}`} arrow>
-                          Explore this practice
-                        </TextLink>
-                      </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {practices.map((practice, index) => (
+              <Reveal key={practice.slug} delay={index * 0.07} className="h-full">
+                <Card interactive tone="paper" className="h-full">
+                  <div className="flex h-full flex-col gap-3">
+                    <Heading level={3} visualLevel={4}>
+                      {practice.name}
+                    </Heading>
+                    <p className="font-medium text-slate">{practice.headline}</p>
+                    <Text muted>
+                      {practice.summary}
+                    </Text>
+                    <div className="mt-auto pt-2">
+                      <TextLink href={`/how-we-help/${practice.slug}`} arrow>
+                        Explore this practice
+                      </TextLink>
                     </div>
-                  </Card>
-                </Reveal>
-              ))}
-            </div>
+                  </div>
+                </Card>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </Section>

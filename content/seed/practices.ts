@@ -18,8 +18,10 @@ export const howWeHelpContent: HowWeHelpContent = {
   eyebrow: "How we help",
   headline: "The challenge is rarely just leadership, process, or culture.",
   copy: "As companies grow, these systems affect one another. Cicada Agility works across leadership, operations, product, people, and ways of working to solve the underlying conditions that create friction.",
-  systemNote:
-    "Growth friction moves. A delivery problem turns out to be a decision-rights problem; a leadership problem turns out to be structure. That is why these four practices are built to work together — most engagements draw on more than one.",
+  systemNarrative: [
+    "Companies don't outgrow everything at once. Strategy stays clear at the top while delivery stalls. The leadership team holds together while the structure underneath it strains. Friction shows up in one place — and starts in another.",
+    "That is why we work as one connected system across leadership, operations, product, people, and ways of working. Each practice below is a different doorway into the same work: helping the company evolve how it leads and operates for the stage it is entering — not the one it just left. Most engagements draw on more than one.",
+  ],
   engagementsHeadline: "Focused engagements",
   engagementsCopy:
     "Every engagement is designed around the company's current stage and need — these are the shapes the work most often takes.",
@@ -32,7 +34,7 @@ export const practiceAreas: PracticeArea[] = [
     name: "Leadership & Team Effectiveness",
     headline: "Your leadership team is working harder — and agreeing less.",
     summary:
-      "Build trust, clarity, and shared accountability as the leadership team evolves.",
+      "Build trust, clarity, and shared accountability at the top. We work with executive teams on how they decide, disagree, and commit — so the team leading the company works as well as the people in it.",
     whoFor: [
       "CEOs and their executive teams",
       "Leadership teams that are new, newly combined, or newly stretched",
@@ -81,7 +83,7 @@ export const practiceAreas: PracticeArea[] = [
     name: "Organizational Effectiveness",
     headline: "Strategy is clear at the top — and blurry everywhere else.",
     summary:
-      "Build operating systems that help strategy move through the organization.",
+      "Build the operating system your strategy moves through. Structure, priorities, governance, and delivery — matched to the stage the company is actually in, not the one it just left.",
     whoFor: [
       "Executive and operations leaders in growing companies",
       "Product and delivery organizations that have outgrown their structure",
@@ -134,7 +136,8 @@ export const practiceAreas: PracticeArea[] = [
     slug: "ai-enablement",
     name: "AI Enablement & Working Norms",
     headline: "AI adoption is happening — inconsistently, and without shared norms.",
-    summary: "Help teams adopt AI practically, responsibly, and consistently.",
+    summary:
+      "Turn scattered AI experimentation into a shared organizational capability. Practical norms, workable guardrails, and hands-on enablement — grounded in your teams' real work, not demos.",
     whoFor: [
       "Leadership teams deciding what AI should mean for their organization",
       "Operations and people leaders responsible for how work changes",
@@ -182,7 +185,8 @@ export const practiceAreas: PracticeArea[] = [
     slug: "founder-growth",
     name: "Founder Challenges: Seed to Scale",
     headline: "The company scaled. The founder's role has to change with it.",
-    summary: "Help founders evolve their role as the business grows.",
+    summary:
+      "Evolve the founder's role as the company scales. Delegation with the systems to make it safe, a leadership team that exists in practice, and decision-making that no longer routes through one person.",
     whoFor: [
       "Founders and co-founders of growing companies",
       "Founder-CEOs building their first real leadership team",
