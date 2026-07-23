@@ -123,7 +123,7 @@ export default async function PracticePage({ params }: PageProps) {
             <Eyebrow>{practice.name}</Eyebrow>
           </div>
           <div className="anim-fade" style={{ animationDuration: "400ms" }}>
-            <Heading level={1} id="practice-heading">
+            <Heading level={1} visualLevel={2} id="practice-heading">
               {practice.headline}
             </Heading>
           </div>
@@ -279,7 +279,7 @@ export default async function PracticePage({ params }: PageProps) {
         <Container className="flex max-w-3xl flex-col items-start gap-6">
           <Reveal>
             <Heading level={2} id="practice-cta-heading">
-              Sound familiar?
+              Let&rsquo;s talk it through.
             </Heading>
           </Reveal>
           <Reveal delay={0.1}>

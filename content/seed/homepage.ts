@@ -28,7 +28,7 @@ export const homepageContent: HomepageContent = {
   },
   framework: {
     eyebrow: "The Cicada Framework",
-    headline: "Every stage of growth asks for a different company.",
+    headline: "Every stage of growth asks the company to evolve.",
     // Stage order confirmed by the founder (D-019): Emerge → Shed → Expand.
     stages: [
       {
