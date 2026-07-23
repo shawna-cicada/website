@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 
 /**
  * Brand fonts, self-hosted from the Fontsource packages via next/font:
@@ -52,11 +53,15 @@ export default function RootLayout({
         <noscript>
           <style>{`.reveal-item{opacity:1!important;transform:none!important;animation:none!important}`}</style>
         </noscript>
-        <Header />
+        <SiteChrome>
+          <Header />
+        </SiteChrome>
         <main id="main" className="flex-1">
           {children}
         </main>
-        <Footer />
+        <SiteChrome>
+          <Footer />
+        </SiteChrome>
         <Analytics />
       </body>
     </html>
