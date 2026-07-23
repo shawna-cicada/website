@@ -15,7 +15,7 @@ export function Recognition({
   content: HomepageContent["recognition"];
 }) {
   return (
-    <Section tone="ink" aria-labelledby="recognition-heading">
+    <Section tone="surface" aria-labelledby="recognition-heading">
       <Container className="flex flex-col gap-stack">
         <Reveal>
           <Heading level={2} id="recognition-heading" className="max-w-3xl">
@@ -26,7 +26,7 @@ export function Recognition({
           {content.statements.map((statement, index) => (
             <li key={statement}>
               <Reveal delay={index * 0.08}>
-                <p className="border-l-2 border-meadow pl-5 text-lg text-paper/85">
+                <p className="border-l-2 border-meadow-deep pl-5 text-lg text-ink/85">
                   {statement}
                 </p>
               </Reveal>

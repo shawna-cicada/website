@@ -31,11 +31,11 @@
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.125rem;
-  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
-  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
-  --text-3xl: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
-  --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
-  --text-5xl: clamp(2.75rem, 2rem + 3.75vw, 4.75rem);
+  --text-xl: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --text-2xl: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --text-3xl: clamp(1.375rem, 1.25rem + 0.7vw, 1.75rem);
+  --text-4xl: clamp(1.625rem, 1.4rem + 1.2vw, 2.375rem);
+  --text-5xl: clamp(1.875rem, 1.55rem + 1.6vw, 2.875rem);
 
   /* --- Spacing rhythm --- */
   --space-section: clamp(4rem, 3rem + 5vw, 7.5rem); /* between page sections */
@@ -164,6 +164,77 @@ body {
   animation: fade-in var(--duration-slow) var(--ease-out-soft) both;
 }
 
+/* Header drop-in on page load */
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-drop {
+  animation: drop-in var(--duration-slow) var(--ease-out-soft) both;
+}
+
+/* Hero brand mark: emerges on load, then drifts gently (ambient life).
+   The infinite drift is stopped by the reduced-motion clamp below
+   (iteration-count forced to 1). */
+@keyframes mark-emerge {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-12px);
+  }
+}
+
+.anim-mark {
+  animation:
+    mark-emerge 1.4s var(--ease-emergence) both,
+    drift 9s ease-in-out 1.6s infinite alternate;
+}
+
+/* Underline sweep for the emphasized word in the hero headline */
+@keyframes sweep-in {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.evolve-em {
+  position: relative;
+}
+
+.evolve-em::after {
+  content: "";
+  position: absolute;
+  left: 0.02em;
+  right: 0.06em;
+  bottom: 0.03em;
+  height: 0.07em;
+  border-radius: 2px;
+  background: var(--color-meadow);
+  opacity: 0.45;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: sweep-in var(--duration-slow) var(--ease-emergence) 1s both;
+}
+
 /* Client logo marquee: slow, linear, CSS-only. Paused via
    animation-play-state on hover/focus (see ClientLogos); the reduced-motion
    clamp below stops it entirely for users who prefer reduced motion. */
@@ -192,6 +263,7 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }

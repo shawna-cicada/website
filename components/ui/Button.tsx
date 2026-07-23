@@ -25,8 +25,9 @@ export type ButtonProps = AsButton | AsLink;
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-label font-semibold " +
-  "tracking-wide transition-colors duration-[var(--duration-quick)] " +
-  "disabled:opacity-45 disabled:cursor-not-allowed select-none";
+  "tracking-wide transition-all duration-[var(--duration-quick)] " +
+  "hover:-translate-y-0.5 active:translate-y-0 " +
+  "disabled:opacity-45 disabled:cursor-not-allowed disabled:hover:translate-y-0 select-none";
 
 export const buttonVariants: Record<ButtonVariant, string> = {
   primary:

@@ -17,7 +17,9 @@ function EmphasizedHeadline({ headline }: { headline: string }) {
   return (
     <>
       {headline.slice(0, start)}
-      <em className="italic text-meadow-deep">{headline.slice(start, end)}</em>
+      <em className="evolve-em italic text-meadow-deep">
+        {headline.slice(start, end)}
+      </em>
       {headline.slice(end)}
     </>
   );
@@ -37,24 +39,24 @@ export function Hero({ content }: { content: HomepageContent["hero"] }) {
       aria-labelledby="hero-heading"
       className="relative overflow-hidden bg-paper py-section"
     >
-      <CicadaMark className="pointer-events-none absolute -right-24 -top-10 hidden w-[42rem] text-meadow/10 lg:block" />
+      <CicadaMark className="anim-mark pointer-events-none absolute -right-24 -top-10 hidden w-[42rem] text-meadow/10 lg:block" />
       <Container className="relative flex max-w-4xl flex-col items-start gap-6">
         <div className="anim-rise">
           <Eyebrow>{content.eyebrow}</Eyebrow>
         </div>
-        <div className="anim-fade" style={{ animationDuration: "400ms" }}>
+        <div className="anim-rise" style={{ animationDuration: "550ms" }}>
           <Heading level={1} id="hero-heading">
             <EmphasizedHeadline headline={content.headline} />
           </Heading>
         </div>
-        <div className="anim-rise" style={{ animationDelay: "120ms" }}>
+        <div className="anim-rise" style={{ animationDelay: "200ms" }}>
           <Text size="lg" muted className="max-w-2xl">
             {content.copy}
           </Text>
         </div>
         <div
           className="anim-rise flex flex-wrap gap-4"
-          style={{ animationDelay: "220ms" }}
+          style={{ animationDelay: "350ms" }}
         >
           <CTAButton
             label={content.primaryCta.label}

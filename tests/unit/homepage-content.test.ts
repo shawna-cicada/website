@@ -21,11 +21,11 @@ describe("homepage content contract", () => {
     expect(content.finalCta.primaryCta.href).toBe("/book");
   });
 
-  it("framework presents Shed, Emerge, Expand in order", async () => {
+  it("framework presents Emerge, Shed, Expand in order (D-019)", async () => {
     const content = await getHomepageContent();
     expect(content.framework.stages.map((stage) => stage.name)).toEqual([
-      "Shed",
       "Emerge",
+      "Shed",
       "Expand",
     ]);
     for (const stage of content.framework.stages) {

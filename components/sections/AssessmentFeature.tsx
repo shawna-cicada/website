@@ -19,7 +19,7 @@ export function AssessmentFeature({
   const rest = content.items.filter((item) => !item.featured);
 
   return (
-    <Section tone="surface" aria-labelledby="assessments-heading">
+    <Section aria-labelledby="assessments-heading">
       <Container className="flex flex-col gap-stack">
         <Reveal className="max-w-3xl">
           <Eyebrow>{content.eyebrow}</Eyebrow>
