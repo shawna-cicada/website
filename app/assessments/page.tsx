@@ -4,6 +4,7 @@ import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Eyebrow, Heading, Text } from "@/components/ui/Text";
 import { Reveal } from "@/components/motion/Reveal";
+import { PageHero } from "@/components/sections/PageHero";
 import { AssessmentCta } from "@/components/sections/AssessmentCta";
 import { PageViewTracker } from "@/components/sections/PageViewTracker";
 import { getActiveAssessments } from "@/lib/cms";
@@ -30,23 +31,12 @@ export default async function AssessmentsPage() {
       <PageViewTracker event="assessment_view" props={{ path: "/assessments" }} />
 
       <Section aria-labelledby="assessments-heading">
-        <Container className="flex max-w-4xl flex-col gap-6">
-          <Reveal>
-            <Eyebrow>Assessments</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <Heading level={1} id="assessments-heading">
-              Start by understanding what your company has outgrown.
-            </Heading>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <Text size="lg" muted className="max-w-2xl">
-              Our assessments help founders and leadership teams name the stage
-              they are in, identify the friction beneath the symptoms, and
-              focus on the capability that needs to evolve next.
-            </Text>
-          </Reveal>
-        </Container>
+        <PageHero
+          eyebrow="Assessments"
+          headline="Find out what your company has outgrown."
+          copy="Ten minutes to name your stage, the friction beneath it, and what needs to evolve next. Your answers stay with the assessment provider unless you choose to share them."
+          headingId="assessments-heading"
+        />
       </Section>
 
       {featured ? (

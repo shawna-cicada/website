@@ -4,7 +4,10 @@ import { Eyebrow, Heading, Text } from "@/components/ui/Text";
 import { Reveal } from "@/components/motion/Reveal";
 import type { HomepageContent } from "@/lib/cms/types";
 
-/** Discover → Diagnose → Evolve, with the engagement menu beneath. */
+/**
+ * Discover → Diagnose → Evolve as a numbered, rule-separated list, with
+ * the engagement menu on a rounded ink card (per the approved design).
+ */
 export function EngagementPath({
   content,
 }: {
@@ -20,41 +23,56 @@ export function EngagementPath({
           </Heading>
         </Reveal>
 
-        <ol className="grid gap-6 md:grid-cols-3">
-          {content.steps.map((step, index) => (
-            <li key={step.title} className="h-full">
-              <Reveal delay={index * 0.1} className="h-full">
-                <div className="flex h-full flex-col gap-3 border-t-2 border-meadow pt-5">
-                  <span className="font-display text-3xl font-medium text-meadow-deep">
-                    {step.step}
-                  </span>
-                  <Heading level={3} visualLevel={4}>
-                    {step.title}
-                  </Heading>
-                  <Text muted>{step.copy}</Text>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+          <ol>
+            {content.steps.map((step, index) => (
+              <li key={step.title} className="border-t border-ink/10">
+                <Reveal delay={index * 0.08}>
+                  <div className="grid grid-cols-[4rem_1fr] items-start gap-6 py-10 sm:grid-cols-[6rem_1fr]">
+                    <span
+                      aria-hidden="true"
+                      className="font-label text-5xl font-extralight leading-none text-meadow-deep"
+                    >
+                      {step.step}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-2xl font-bold leading-snug">
+                        {step.title}
+                      </h3>
+                      <Text muted size="lg" className="mt-3">
+                        {step.copy}
+                      </Text>
+                    </div>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
 
-        <Reveal>
-          <div className="rounded-sm bg-lilac p-6 sm:p-8">
-            <h3 className="font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow-deep">
-              Focused engagements include
-            </h3>
-            <ul className="mt-4 grid gap-x-10 gap-y-2 text-slate sm:grid-cols-2 lg:grid-cols-3">
-              {content.engagements.map((engagement) => (
-                <li key={engagement} className="flex gap-2">
-                  <span aria-hidden="true" className="text-meadow-deep">
-                    —
-                  </span>
-                  {engagement}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
+          <Reveal className="self-start">
+            <aside
+              aria-labelledby="engagements-list-heading"
+              className="on-ink rounded-2xl bg-ink p-8 text-paper sm:p-10"
+            >
+              <h3
+                id="engagements-list-heading"
+                className="font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow"
+              >
+                Focused engagements
+              </h3>
+              <ul className="mt-6 flex flex-col gap-4">
+                {content.engagements.map((engagement) => (
+                  <li key={engagement} className="flex gap-3 text-paper/85">
+                    <span aria-hidden="true" className="text-meadow">
+                      —
+                    </span>
+                    {engagement}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </Reveal>
+        </div>
       </Container>
     </Section>
   );

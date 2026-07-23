@@ -1,14 +1,35 @@
 import { Container } from "@/components/ui/Container";
 import { Eyebrow, Heading, Text } from "@/components/ui/Text";
 import { CTAButton } from "@/components/ui/CTAButton";
-import { Reveal } from "@/components/motion/Reveal";
 import { CicadaMark } from "@/components/brand/CicadaMark";
 import type { HomepageContent } from "@/lib/cms/types";
 
 /**
+ * Set the word "evolve" in italic brand green (meadow-deep — the
+ * text-safe green, AA on paper where plain meadow is not). Purely
+ * visual: the accessible name of the heading is unchanged.
+ */
+function EmphasizedHeadline({ headline }: { headline: string }) {
+  const match = headline.match(/evolve/i);
+  if (!match || match.index === undefined) return <>{headline}</>;
+  const start = match.index;
+  const end = start + match[0].length;
+  return (
+    <>
+      {headline.slice(0, start)}
+      <em className="italic text-meadow-deep">{headline.slice(start, end)}</em>
+      {headline.slice(end)}
+    </>
+  );
+}
+
+/**
  * Homepage hero: slow reveal, one primary and one secondary action.
- * The oversized translucent mark supplies the emergence visual without
- * literal photography; it is decorative and clipped, never shifting layout.
+ * Entrances are CSS-only (anim-fade/anim-rise) so the headline — the
+ * page's LCP element — paints immediately without waiting for
+ * hydration, works without JavaScript, and stops under reduced motion
+ * via the global clamp. The oversized translucent mark supplies the
+ * emergence visual without literal photography; decorative and clipped.
  */
 export function Hero({ content }: { content: HomepageContent["hero"] }) {
   return (
@@ -18,20 +39,23 @@ export function Hero({ content }: { content: HomepageContent["hero"] }) {
     >
       <CicadaMark className="pointer-events-none absolute -right-24 -top-10 hidden w-[42rem] text-meadow/10 lg:block" />
       <Container className="relative flex max-w-4xl flex-col items-start gap-6">
-        <Reveal>
+        <div className="anim-rise">
           <Eyebrow>{content.eyebrow}</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.1}>
+        </div>
+        <div className="anim-fade" style={{ animationDuration: "400ms" }}>
           <Heading level={1} id="hero-heading">
-            {content.headline}
+            <EmphasizedHeadline headline={content.headline} />
           </Heading>
-        </Reveal>
-        <Reveal delay={0.2}>
+        </div>
+        <div className="anim-rise" style={{ animationDelay: "120ms" }}>
           <Text size="lg" muted className="max-w-2xl">
             {content.copy}
           </Text>
-        </Reveal>
-        <Reveal delay={0.3} className="flex flex-wrap gap-4">
+        </div>
+        <div
+          className="anim-rise flex flex-wrap gap-4"
+          style={{ animationDelay: "220ms" }}
+        >
           <CTAButton
             label={content.primaryCta.label}
             href={content.primaryCta.href}
@@ -46,7 +70,7 @@ export function Hero({ content }: { content: HomepageContent["hero"] }) {
             variant="outline"
             size="lg"
           />
-        </Reveal>
+        </div>
       </Container>
     </section>
   );

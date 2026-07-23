@@ -140,10 +140,10 @@ export default function DesignSystemPage() {
             <Eyebrow>Tokens</Eyebrow>
             <Heading level={2} id="ds-type">Typography</Heading>
             <Text muted className="mt-2 max-w-2xl">
-              Fraunces (variable) carries the editorial voice in headings;
-              Open Sans (variable, brand) carries body text; Montserrat
-              (variable, brand) carries labels, eyebrows, and buttons. Display
-              sizes are fluid — resize the window to see the clamp.
+              Montserrat (variable, brand) carries headings, labels, eyebrows,
+              and buttons; Open Sans (variable, brand) carries body text —
+              the pairing from the Cicada brand guidelines. Display sizes are
+              fluid — resize the window to see the clamp.
             </Text>
           </div>
           <div className="flex flex-col gap-8">

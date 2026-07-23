@@ -9,8 +9,8 @@ import type { HomepageContent } from "@/lib/cms/types";
 export const homepageContent: HomepageContent = {
   hero: {
     eyebrow: "Leadership evolution for growing companies",
-    headline: "Growth Happens in Stages. Leadership Must Evolve With It.",
-    copy: "Cicada Agility helps founders and leadership teams recognize what their company has outgrown, align around what comes next, and build the leadership and operating systems needed to grow with confidence.",
+    headline: "Growth happens in stages. Leadership must evolve with it.",
+    copy: "We help founders and leadership teams see what the company has outgrown — and build what comes next.",
     primaryCta: { label: "Start the Growth Stage Assessment", href: "/assessments" },
     secondaryCta: { label: "Book a Discovery Call", href: "/book" },
   },
@@ -33,17 +33,17 @@ export const homepageContent: HomepageContent = {
       {
         name: "Shed",
         title: "Recognize what no longer serves the company.",
-        copy: "The leadership habits, structures, roles, or ways of working that helped build the organization may now be limiting it.",
+        copy: "Name the habits, structures, and roles the company has outgrown.",
       },
       {
         name: "Emerge",
         title: "Create alignment for the next stage.",
-        copy: "Clarify what is changing, how leadership must evolve, and what the organization now requires from its people and systems.",
+        copy: "Align leadership around what is changing and what comes next.",
       },
       {
         name: "Expand",
         title: "Build the capacity for what comes next.",
-        copy: "Strengthen leadership, decision-making, operating rhythms, accountability, and ways of working so growth becomes sustainable.",
+        copy: "Build the leadership and operating systems that make growth sustainable.",
       },
     ],
   },
@@ -53,7 +53,7 @@ export const homepageContent: HomepageContent = {
     items: [
       {
         title: "Leadership & Team Effectiveness",
-        copy: "Build trust, clarity, and shared accountability as the leadership team evolves.",
+        copy: "Trust, clarity, and accountability as your team evolves.",
         examples: [
           "Executive team alignment",
           "Leadership intensives",
@@ -64,7 +64,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "Organizational Effectiveness",
-        copy: "Build operating systems that help strategy move through the organization.",
+        copy: "Operating systems that let strategy actually move.",
         examples: [
           "Operating model design",
           "Product and delivery effectiveness",
@@ -75,7 +75,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "AI Enablement & Working Norms",
-        copy: "Help teams adopt AI practically, responsibly, and consistently.",
+        copy: "Adopt AI practically, responsibly, consistently.",
         examples: [
           "AI readiness and opportunity assessment",
           "Team working agreements",
@@ -86,7 +86,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "Founder Challenges: Seed to Scale",
-        copy: "Help founders evolve their role as the business grows.",
+        copy: "Evolve your role as the business grows.",
         examples: [
           "Founder transition and delegation",
           "Leadership team formation",
@@ -96,16 +96,16 @@ export const homepageContent: HomepageContent = {
         href: "/how-we-help/founder-growth",
       },
     ],
-    cta: { label: "Explore How We Help", href: "/how-we-help" },
+    cta: { label: "Explore how we help", href: "/how-we-help" },
   },
   assessments: {
     eyebrow: "Assessments",
-    headline: "Start by understanding what your company has outgrown.",
-    copy: "Our assessments help founders and leadership teams name the stage they are in, identify the friction beneath the symptoms, and focus on the capability that needs to evolve next.",
+    headline: "Find out what your company has outgrown.",
+    copy: "Ten minutes to name your stage, the friction beneath it, and what needs to evolve next.",
     items: [
       {
         title: "Growth Stage Assessment",
-        summary: "Name the stage your company is in and what it is asking of leadership.",
+        summary: "Name your stage — and what it's asking of you.",
         audience: "Founders and CEOs",
         duration: "About 10 minutes",
         href: "/assessments",
@@ -114,7 +114,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "Founder Growth Assessment",
-        summary: "See where your role must evolve as the company scales.",
+        summary: "Where your role must evolve next.",
         audience: "Founders",
         duration: "About 10 minutes",
         href: "/assessments",
@@ -123,7 +123,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "Leadership Team Alignment Check",
-        summary: "Find out whether your team is aligned in practice, not just in principle.",
+        summary: "Aligned in principle — but in practice?",
         audience: "Executive teams",
         duration: "About 15 minutes",
         href: "/assessments",
@@ -132,7 +132,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "AI Readiness Assessment",
-        summary: "Understand how ready your teams are to adopt AI consistently and responsibly.",
+        summary: "How ready are your teams, really?",
         audience: "Leadership teams",
         duration: "About 10 minutes",
         href: "/assessments",
@@ -149,17 +149,17 @@ export const homepageContent: HomepageContent = {
       {
         step: "1",
         title: "Discover",
-        copy: "Start with an assessment or a short conversation.",
+        copy: "An assessment or a short call.",
       },
       {
         step: "2",
         title: "Diagnose",
-        copy: "Identify the stage, friction, and capabilities that need to evolve.",
+        copy: "Name the stage and the friction beneath it.",
       },
       {
         step: "3",
         title: "Evolve",
-        copy: "Choose a focused engagement designed around the company's current needs.",
+        copy: "A focused engagement, built for right now.",
       },
     ],
     engagements: [
@@ -197,7 +197,7 @@ export const homepageContent: HomepageContent = {
   founders: {
     eyebrow: "Who we are",
     headline: "Two perspectives. One connected system.",
-    copy: "Cicada Agility brings together deep experience in leadership, coaching, product development, delivery, operations, organizational design, and transformation. Shawna and Julia work across the full system because company growth is rarely limited by only one team or one process.",
+    copy: "Leadership, coaching, product, delivery, operations, organizational design — we work across the whole system, because growth is rarely limited by one team or one process.",
     people: [
       {
         name: "Shawna Cullinan",

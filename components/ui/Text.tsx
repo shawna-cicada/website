@@ -26,10 +26,10 @@ export function Eyebrow({
 type HeadingLevel = 1 | 2 | 3 | 4;
 
 const headingStyles: Record<HeadingLevel, string> = {
-  1: "font-display text-5xl font-medium leading-[1.05] tracking-tight",
-  2: "font-display text-4xl font-medium leading-[1.1] tracking-tight",
-  3: "font-display text-3xl font-medium leading-[1.15]",
-  4: "font-display text-2xl font-medium leading-snug",
+  1: "font-display text-5xl font-bold leading-[1.08] tracking-tight",
+  2: "font-display text-4xl font-bold leading-[1.12] tracking-tight",
+  3: "font-display text-3xl font-bold leading-[1.15]",
+  4: "font-display text-2xl font-semibold leading-snug",
 };
 
 export function Heading({

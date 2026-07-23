@@ -73,9 +73,9 @@
   --color-malibu: var(--color-malibu);
   --color-silver: var(--color-silver);
 
-  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
-  --font-sans: "Open Sans Variable", system-ui, -apple-system, sans-serif;
-  --font-label: "Montserrat Variable", "Open Sans Variable", system-ui, sans-serif;
+  --font-display: var(--font-montserrat), var(--font-open-sans), system-ui, sans-serif;
+  --font-sans: var(--font-open-sans), system-ui, -apple-system, sans-serif;
+  --font-label: var(--font-montserrat), var(--font-open-sans), system-ui, sans-serif;
 
   --text-xs: var(--text-xs);
   --text-sm: var(--text-sm);
