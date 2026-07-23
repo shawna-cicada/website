@@ -37,7 +37,7 @@ Each shows when it was last edited and its status badge.
 | Badge | Means |
 | --- | --- |
 | **Draft** | Work in progress. Only you and other editors can see it. |
-| **Needs Review** | Ready for a second pair of eyes. |
+| **Needs Review** | Ready for a second pair of eyes. Use **Send for Review** in the actions menu (the ⋮ next to Publish) — it moves the piece to the Waiting-for-review list without publishing anything. The same menu offers **Back to Draft** to reverse it. |
 | **Scheduled** | Will go live automatically at the chosen time. |
 | **Published** | Live on the website. |
 | **Archived** | Off the website, kept safely — restorable any time. |

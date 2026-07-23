@@ -104,6 +104,30 @@ export const PublishWithChecklist: DocumentActionComponent = (
   };
 };
 
+/**
+ * One-click handoff between Draft and Waiting for review. Works on the
+ * draft only — nothing is published — so Editor accounts can use it as
+ * their finish line. Mirrors sendForReview/backToDraft in
+ * lib/editorial/workflow.ts, where the logic is tested.
+ */
+export const SendForReviewAction: DocumentActionComponent = (props) => {
+  const { patch } = useDocumentOperation(props.id, props.type);
+  const doc = (props.draft ?? props.published) as SanityInsight | null;
+  const status = (doc?.workflowStatus as string | undefined) ?? "draft";
+  const inReview = status === "needs-review";
+  return {
+    label: inReview ? "Back to Draft" : "Send for Review",
+    disabled: !doc || status === "published",
+    onHandle: () => {
+      patch.execute([
+        { set: { workflowStatus: inReview ? "draft" : "needs-review" } },
+        { unset: ["scheduledAt"] },
+      ]);
+      props.onComplete();
+    },
+  };
+};
+
 /** Schedule — pick a future time; publishing itself is finished by the checklist gate. */
 export const ScheduleAction: DocumentActionComponent = (props) => {
   const { patch } = useDocumentOperation(props.id, props.type);

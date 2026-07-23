@@ -107,6 +107,56 @@ export function scheduleDoc(
   };
 }
 
+/**
+ * Hand a piece to a Publisher without publishing anything. Any editor
+ * can do it — it's the everyday finish line for Editor accounts, and
+ * the reverse (back to draft) uses the same permission.
+ */
+export function sendForReview(
+  doc: EditorialDoc,
+  role: EditorialRole,
+): TransitionResult {
+  if (!can(role, "edit-draft")) {
+    return {
+      ok: false,
+      problems: ["Sending for review needs an editor account."],
+    };
+  }
+  if (doc.status === "published") {
+    return {
+      ok: false,
+      problems: [
+        "This piece is already live. Edit it and publish the changes, or unpublish it first.",
+      ],
+    };
+  }
+  return {
+    ok: true,
+    doc: { ...doc, status: "needs-review", scheduledAt: undefined },
+    notes: [
+      "Moved to Waiting for review — Publishers see it on the dashboard and in the review list.",
+    ],
+  };
+}
+
+/** The counterpart: pull a piece out of review back to plain draft. */
+export function backToDraft(
+  doc: EditorialDoc,
+  role: EditorialRole,
+): TransitionResult {
+  if (!can(role, "edit-draft")) {
+    return {
+      ok: false,
+      problems: ["Editing needs an editor account."],
+    };
+  }
+  return {
+    ok: true,
+    doc: { ...doc, status: "draft", scheduledAt: undefined },
+    notes: ["Back to draft — keep writing and send it for review when ready."],
+  };
+}
+
 export function unpublishDoc(
   doc: EditorialDoc,
   role: EditorialRole,
