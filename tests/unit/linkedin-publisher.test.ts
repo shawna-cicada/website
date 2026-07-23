@@ -1,6 +1,32 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { manualLinkedInPublisher } from "@/lib/linkedin/manual";
 import { getSocialPublisher } from "@/lib/linkedin";
+import { generateLinkedInPost } from "@/lib/editorial/linkedin";
+
+describe("generateLinkedInPost link origin", () => {
+  const base = {
+    title: "A title",
+    summary: "A summary of the piece.",
+    slug: "a-title",
+  };
+
+  it("defaults to the canonical production domain", () => {
+    expect(generateLinkedInPost(base)).toContain(
+      "https://www.cicadaagility.com/insights/a-title",
+    );
+  });
+
+  it("uses the Studio's origin when provided, so links work pre-cutover", () => {
+    const post = generateLinkedInPost({
+      ...base,
+      baseUrl: "https://website-new-two-gamma.vercel.app/",
+    });
+    expect(post).toContain(
+      "https://website-new-two-gamma.vercel.app/insights/a-title",
+    );
+    expect(post).not.toContain("vercel.app//insights");
+  });
+});
 
 const input = {
   title: "The habits that built your company",

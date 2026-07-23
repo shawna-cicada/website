@@ -76,6 +76,19 @@ export const PublishWithChecklist: DocumentActionComponent = (
             publishedAt: new Date().toISOString(),
             seoTitle: filled.seoTitle,
             seoDescription: filled.seoDescription,
+            // The Promotion tab's "generated for you" promise: publishing
+            // leaves a ready-to-edit LinkedIn suggestion with no extra
+            // clicks. Never overwrites text an editor already wrote.
+            ...(doc.linkedInPostText?.trim() || !filled.slug
+              ? {}
+              : {
+                  linkedInPostText: generateLinkedInPost({
+                    title: filled.title ?? "",
+                    summary: filled.summary ?? "",
+                    slug: filled.slug,
+                    baseUrl: window.location.origin,
+                  }),
+                }),
           },
         },
       ]);
@@ -292,18 +305,21 @@ export const CopyLinkedInPostAction: DocumentActionComponent = (props) => {
           title: doc.title,
           summary: doc.summary,
           slug: doc.slug.current,
+          baseUrl: window.location.origin,
         });
+      // Save FIRST: the Promotion tab must hold the text even when the
+      // browser refuses programmatic clipboard access.
+      patch.execute([
+        { set: { linkedInPostText: text, linkedInPostStatus: "ready" } },
+      ]);
       try {
         await navigator.clipboard.writeText(text);
-        patch.execute([
-          { set: { linkedInPostText: text, linkedInPostStatus: "ready" } },
-        ]);
         setMessage(
           "Copied. Paste it into a new post on the Cicada Agility LinkedIn page, then paste the post's URL into the Promotion tab and mark it as posted.",
         );
       } catch {
         setMessage(
-          "Your browser blocked automatic copying — open the Promotion tab and copy the text there.",
+          "Your browser blocked automatic copying — the text is saved in the Promotion tab, select and copy it from there.",
         );
       }
     },

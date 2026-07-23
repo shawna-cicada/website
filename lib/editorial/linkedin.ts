@@ -10,6 +10,13 @@ export function generateLinkedInPost(input: {
   summary: string;
   takeaway?: string;
   slug: string;
+  /**
+   * Origin for the article link. The Studio passes its own origin so
+   * the link works on whatever domain the site is actually serving
+   * from (Vercel URL today, cicadaagility.com after cutover);
+   * defaults to the canonical production domain.
+   */
+  baseUrl?: string;
 }): string {
   const lines = [
     input.title,
@@ -19,7 +26,10 @@ export function generateLinkedInPost(input: {
   if (input.takeaway?.trim()) {
     lines.push("", `The short version: ${input.takeaway.trim()}`);
   }
-  lines.push("", `Read the full piece: ${canonicalUrl(input.slug)}`);
+  const articleUrl = input.baseUrl
+    ? `${input.baseUrl.replace(/\/$/, "")}/insights/${input.slug}`
+    : canonicalUrl(input.slug);
+  lines.push("", `Read the full piece: ${articleUrl}`);
   const post = lines.join("\n");
   // LinkedIn's hard limit is 3000 characters; stay well inside it.
   return post.length <= 2900 ? post : `${post.slice(0, 2897)}…`;
