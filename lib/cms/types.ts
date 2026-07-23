@@ -187,6 +187,11 @@ export type Engagement = {
   format: string;
   /** Practice slugs this engagement serves. */
   practices: string[];
+  /**
+   * Who the engagement centers on. "individual" engagements (coaching)
+   * get a quiet visual accent to stand apart from the team/org work.
+   */
+  audience?: "individual" | "team";
 };
 
 /** Full founder profile for /about (superset of the homepage card). */

@@ -266,6 +266,7 @@ export const engagements: Engagement[] = [
       "Individual leaders growing into a bigger role, a stage change, or hard feedback",
     format: "3–6 month arcs · recurring 1:1 sessions · 360° feedback with debrief",
     practices: ["leadership-team-effectiveness", "founder-growth"],
+    audience: "individual",
   },
   {
     name: "Operating Model and Product Effectiveness Assessment",
