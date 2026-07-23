@@ -83,17 +83,25 @@ test.describe("homepage", () => {
     }
   });
 
-  test("client logo wall stays hidden until records are approved", async ({
+  test("logo marquee renders with visible sample labeling until approved", async ({
     page,
   }) => {
-    // Seed records are unapproved placeholders — no logo (real or fake)
-    // may reach visitors. Alt-text enforcement for approved records is
-    // covered by the content contract unit tests.
+    // Demo mode (founder request): placeholder logos may show pre-launch,
+    // but ONLY with the explicit sample caption — and every image must
+    // carry alt text.
     await page.goto("/");
+    const section = page.locator("section[aria-labelledby='clients-heading']");
+    await expect(section).toHaveCount(1);
     await expect(
-      page.locator("section[aria-labelledby='clients-heading']"),
-    ).toHaveCount(0);
-    await expect(page.getByText(/placeholder client logo/i)).toHaveCount(0);
+      section.getByText(/sample logos shown for layout preview/i),
+    ).toBeVisible();
+    const logos = section.locator("img");
+    const count = await logos.count();
+    expect(count).toBeGreaterThanOrEqual(4);
+    for (let i = 0; i < count; i++) {
+      const alt = await logos.nth(i).getAttribute("alt");
+      expect(alt?.trim().length ?? 0).toBeGreaterThan(0);
+    }
   });
 
   test("one h1, sections labelled", async ({ page }) => {

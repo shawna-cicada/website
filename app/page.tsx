@@ -52,20 +52,28 @@ export default async function HomePage() {
       {/* Path first, then the concrete entry point (the assessment). */}
       <EngagementPath content={content.engagement} />
       <AssessmentFeature content={content.assessments} />
-      {approvedClients.length > 0 ? (
-        <ClientLogos
-          content={{
-            headline: content.clients.headline,
-            logos: approvedClients.map((client) => ({
-              name: client.name,
-              alt: client.alt,
-              src: client.src,
-              width: client.width,
-              height: client.height,
-            })),
-          }}
-        />
-      ) : null}
+      <ClientLogos
+        content={{
+          headline: content.clients.headline,
+          logos:
+            approvedClients.length > 0
+              ? approvedClients.map((client) => ({
+                  name: client.name,
+                  alt: client.alt,
+                  src: client.src,
+                  width: client.width,
+                  height: client.height,
+                }))
+              : content.clients.logos,
+        }}
+        // Placeholder logos may render pre-launch for layout preview only,
+        // always visibly labeled as samples (founder request, 2026-07-23).
+        demoNote={
+          approvedClients.length === 0
+            ? "Sample logos shown for layout preview — real client logos appear here with written permission."
+            : undefined
+        }
+      />
       <FeaturedInsightSection content={content.insight} />
       <Founders content={content.founders} />
       <FinalCta content={content.finalCta} />
