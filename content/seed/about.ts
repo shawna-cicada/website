@@ -15,7 +15,7 @@ export const aboutContent: AboutContent = {
   origin: {
     headline: "Why a cicada?",
     paragraphs: [
-      "Cicadas do not grow in one smooth, continuous line. They live in stages — long periods of steady work underground, then a shedding of the shell that carried them there, an emergence, and a new capacity they did not have before.",
+      "Cicadas do not grow in one smooth, continuous line. They live in stages — long seasons of steady growth underground, then an emergence into daylight, the shedding of the shell that carried them there, and wings expanding into a capacity they did not have before.",
       "Companies grow the same way. Each stage asks something new to emerge, something to be shed, and greater capacity to expand. The habits, structures, and ways of working that built the last stage are often the very things limiting the next one.",
       "That is the work we do: helping leadership teams notice which stage they are in, let go of what no longer serves them, and build what the next stage asks of them.",
     ],

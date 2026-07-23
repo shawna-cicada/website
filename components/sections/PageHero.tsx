@@ -26,7 +26,8 @@ export function PageHero({
         <Eyebrow>{eyebrow}</Eyebrow>
       </div>
       <div className="anim-fade" style={{ animationDuration: "400ms" }}>
-        <Heading level={1} id={headingId}>
+        {/* Interior pages step one size below the homepage hero. */}
+        <Heading level={1} visualLevel={2} id={headingId}>
           {headline}
         </Heading>
       </div>

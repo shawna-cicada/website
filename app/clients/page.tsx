@@ -77,7 +77,7 @@ export default async function ClientsPage() {
             <Eyebrow>Clients</Eyebrow>
           </Reveal>
           <Reveal delay={0.1}>
-            <Heading level={1} id="clients-heading">
+            <Heading level={1} visualLevel={2} id="clients-heading">
               Experience supporting teams from startup to enterprise
             </Heading>
           </Reveal>
