@@ -16,7 +16,7 @@ export const aboutContent: AboutContent = {
     headline: "Why a cicada?",
     paragraphs: [
       "Cicadas do not grow in one smooth, continuous line. They live in stages — long periods of steady work underground, then a shedding of the shell that carried them there, an emergence, and a new capacity they did not have before.",
-      "Companies grow the same way. Each stage requires something to be shed, something new to emerge, and greater capacity to expand. The habits, structures, and ways of working that built the last stage are often the very things limiting the next one.",
+      "Companies grow the same way. Each stage asks something new to emerge, something to be shed, and greater capacity to expand. The habits, structures, and ways of working that built the last stage are often the very things limiting the next one.",
       "That is the work we do: helping leadership teams notice which stage they are in, let go of what no longer serves them, and build what the next stage asks of them.",
     ],
   },
@@ -61,32 +61,7 @@ export const founders: FounderProfileFull[] = [
     name: "Shawna Cullinan",
     role: "Co-founder",
     // PLACEHOLDER bio — drafted from the brief; awaiting editorial review.
-    bio: "Shawna works with founders and leadership teams on the human side of growth: leadership evolution, executive coaching, team effectiveness, and the trust and accountability that make scale possible. Her work centers on helping leaders evolve their own role as deliberately as they evolve their organization.",
-    draftBio: true,
-    expertise: [
-      "Leadership and executive coaching",
-      "Team effectiveness and alignment",
-      "Founder transition and delegation",
-      "Organizational culture through change",
-    ],
-    selectedExperience: [
-      "Coaching founders and executives from seed stage through scale",
-      "Leadership team formation and reset engagements",
-      "Facilitating executive off-sites and working sessions",
-    ],
-    linkedInUrl: undefined, // To be supplied before launch.
-    speakingTopics: [
-      "Growth happens in stages — leadership must evolve with it",
-      "From founder-led to leadership-team-led",
-    ],
-    imageSrc: "/founders/placeholder-shawna.svg",
-    imageAlt: "Placeholder portrait of Shawna Cullinan — final photography pending",
-  },
-  {
-    name: "Julia Kaissling",
-    role: "Co-founder",
-    // PLACEHOLDER bio — drafted from the brief; awaiting editorial review.
-    bio: "Julia works with organizations on the systems growth runs on: product development, delivery, operations, operating model design, and ways of working. Her work helps strategy actually move through an organization — connecting what leadership intends with what teams experience day to day.",
+    bio: "Shawna works with organizations on the systems growth runs on: product development, delivery, operations, operating model design, and ways of working. Her work helps strategy actually move through an organization — connecting what leadership intends with what teams experience day to day.",
     draftBio: true,
     expertise: [
       "Operating model and organizational design",
@@ -103,6 +78,31 @@ export const founders: FounderProfileFull[] = [
     speakingTopics: [
       "Building operating systems that let strategy move",
       "Practical AI working norms for real teams",
+    ],
+    imageSrc: "/founders/placeholder-shawna.svg",
+    imageAlt: "Placeholder portrait of Shawna Cullinan — final photography pending",
+  },
+  {
+    name: "Julia Kaissling",
+    role: "Co-founder",
+    // PLACEHOLDER bio — drafted from the brief; awaiting editorial review.
+    bio: "Julia works with founders and leadership teams on the human side of growth: leadership evolution, executive coaching, team effectiveness, and the trust and accountability that make scale possible. Her work centers on helping leaders evolve their own role as deliberately as they evolve their organization.",
+    draftBio: true,
+    expertise: [
+      "Leadership and executive coaching",
+      "Team effectiveness and alignment",
+      "Founder transition and delegation",
+      "Organizational culture through change",
+    ],
+    selectedExperience: [
+      "Coaching founders and executives from seed stage through scale",
+      "Leadership team formation and reset engagements",
+      "Facilitating executive off-sites and working sessions",
+    ],
+    linkedInUrl: undefined, // To be supplied before launch.
+    speakingTopics: [
+      "Growth happens in stages — leadership must evolve with it",
+      "From founder-led to leadership-team-led",
     ],
     imageSrc: "/founders/placeholder-julia.svg",
     imageAlt: "Placeholder portrait of Julia Kaissling — final photography pending",

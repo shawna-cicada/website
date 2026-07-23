@@ -10,7 +10,7 @@ export const homepageContent: HomepageContent = {
   hero: {
     eyebrow: "Leadership evolution for growing companies",
     headline: "Growth happens in stages. Leadership must evolve with it.",
-    copy: "We help founders and leadership teams see what the company has outgrown — and build what comes next.",
+    copy: "We help founders and leadership teams evolve how the company leads and operates as it grows.",
     primaryCta: { label: "Start the Growth Stage Assessment", href: "/assessments" },
     secondaryCta: { label: "Book a Discovery Call", href: "/book" },
   },
@@ -29,21 +29,22 @@ export const homepageContent: HomepageContent = {
   framework: {
     eyebrow: "The Cicada Framework",
     headline: "Every stage of growth asks for a different company.",
+    // Stage order confirmed by the founder (D-019): Emerge → Shed → Expand.
     stages: [
+      {
+        name: "Emerge",
+        title: "Create alignment for the next stage.",
+        copy: "Align leadership around what is changing and what it requires.",
+      },
       {
         name: "Shed",
         title: "Recognize what no longer serves the company.",
         copy: "Name the habits, structures, and roles the company has outgrown.",
       },
       {
-        name: "Emerge",
-        title: "Create alignment for the next stage.",
-        copy: "Align leadership around what is changing and what comes next.",
-      },
-      {
         name: "Expand",
         title: "Build the capacity for what comes next.",
-        copy: "Build the leadership and operating systems that make growth sustainable.",
+        copy: "Strengthen the leadership and operating systems that make growth sustainable.",
       },
     ],
   },
@@ -154,7 +155,7 @@ export const homepageContent: HomepageContent = {
       {
         step: "2",
         title: "Diagnose",
-        copy: "Name the stage and the friction beneath it.",
+        copy: "Find the real constraint beneath the symptoms.",
       },
       {
         step: "3",
@@ -202,14 +203,14 @@ export const homepageContent: HomepageContent = {
       {
         name: "Shawna Cullinan",
         role: "Co-founder",
-        bio: "Works with founders and leadership teams on leadership evolution, coaching, and the human side of organizational change.",
+        bio: "Works with organizations on product development, delivery, operations, and the operating systems that let strategy move.",
         imageSrc: "/founders/placeholder-shawna.svg",
         imageAlt: "Placeholder portrait of Shawna Cullinan — final photography pending",
       },
       {
         name: "Julia Kaissling",
         role: "Co-founder",
-        bio: "Works with organizations on product development, delivery, operations, and the operating systems that let strategy move.",
+        bio: "Works with founders and leadership teams on leadership evolution, coaching, and the human side of organizational change.",
         imageSrc: "/founders/placeholder-julia.svg",
         imageAlt: "Placeholder portrait of Julia Kaissling — final photography pending",
       },

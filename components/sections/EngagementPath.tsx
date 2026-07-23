@@ -14,7 +14,7 @@ export function EngagementPath({
   content: HomepageContent["engagement"];
 }) {
   return (
-    <Section aria-labelledby="engagement-heading">
+    <Section tone="surface" aria-labelledby="engagement-heading">
       <Container className="flex flex-col gap-stack">
         <Reveal className="max-w-3xl">
           <Eyebrow>{content.eyebrow}</Eyebrow>

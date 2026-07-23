@@ -73,5 +73,12 @@ Next 16 (with `next-sanity` 13) — all suites pass unchanged. Social
 syndication is provider-neutral behind `lib/linkedin/` with a manual-only
 default and a tested no-network guarantee (docs/LINKEDIN_WORKFLOW.md).
 
+## D-019 — Framework stage order is Emerge → Shed → Expand — Accepted (2026-07-23)
+Confirmed directly by the founder, twice, superseding the order printed in
+WEBSITE_REDESIGN.md ("Shed → Emerge → Expand") and the earlier mockup. Do
+NOT "fix" the order back to match the brief — the brief is outdated on
+this point. Applied to the homepage framework, the About-page metaphor
+copy, the design-system sample, and the content contract test.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

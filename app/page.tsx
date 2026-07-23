@@ -49,8 +49,9 @@ export default async function HomePage() {
       <Recognition content={content.recognition} />
       <Framework content={content.framework} />
       <HowWeHelp content={content.services} />
-      <AssessmentFeature content={content.assessments} />
+      {/* Path first, then the concrete entry point (the assessment). */}
       <EngagementPath content={content.engagement} />
+      <AssessmentFeature content={content.assessments} />
       {approvedClients.length > 0 ? (
         <ClientLogos
           content={{

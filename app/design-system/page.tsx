@@ -33,7 +33,7 @@ const COLORS = [
 const TYPE_SCALE = [
   { label: "text-5xl / display", className: "font-display text-5xl font-medium leading-[1.05] tracking-tight", sample: "Growth happens in stages" },
   { label: "text-4xl / h2", className: "font-display text-4xl font-medium leading-[1.1] tracking-tight", sample: "Leadership must evolve" },
-  { label: "text-3xl / h3", className: "font-display text-3xl font-medium leading-[1.15]", sample: "Shed. Emerge. Expand." },
+  { label: "text-3xl / h3", className: "font-display text-3xl font-medium leading-[1.15]", sample: "Emerge. Shed. Expand." },
   { label: "text-2xl / h4", className: "font-display text-2xl font-medium leading-snug", sample: "The next stage of growth" },
   { label: "text-lg / lead", className: "text-lg", sample: "Your company is not broken. It may have simply outgrown the ways of working that brought it here." },
   { label: "text-base / body", className: "text-base", sample: "Cicada Agility helps founders and leadership teams recognize what their company has outgrown." },
