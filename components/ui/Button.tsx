@@ -24,7 +24,7 @@ type AsLink = CommonProps & {
 export type ButtonProps = AsButton | AsLink;
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-xs font-label font-semibold " +
+  "inline-flex items-center justify-center gap-2 rounded-full font-label font-semibold " +
   "tracking-wide transition-colors duration-[var(--duration-quick)] " +
   "disabled:opacity-45 disabled:cursor-not-allowed select-none";
 

@@ -49,12 +49,11 @@ how the website's design tokens map onto them. The tokens themselves live in
 
 - **Open Sans** Light / Regular / Bold, character tracking +10 → website body
   and UI text (`--font-sans`, Open Sans Variable, self-hosted via Fontsource).
-- **Montserrat** Bold, character tracking +10 → website labels, eyebrows, and
-  buttons (`--font-label`, Montserrat Variable).
-- **Fraunces** (website addition, not in the deck): editorial display serif
-  for major headings, per the redesign brief's direction. If Cicada prefers a
-  strictly brand-faithful all-sans system, swapping `--font-display` to
-  Montserrat is a one-line change in `globals.css`.
+- **Montserrat** Bold, character tracking +10 → website headings
+  (`--font-display`) as well as labels, eyebrows, and buttons
+  (`--font-label`) — the all-sans system from the deck, confirmed by the
+  founder on 2026-07-23. (Fraunces, an earlier editorial-serif experiment
+  from the redesign brief's direction, was retired at the same time.)
 
 ## Notes
 

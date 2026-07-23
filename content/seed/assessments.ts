@@ -10,8 +10,7 @@ export const assessments: Assessment[] = [
   {
     title: "Growth Stage Assessment",
     slug: "growth-stage",
-    summary:
-      "Name the stage your company is in, the friction beneath the symptoms, and what leadership must evolve next.",
+    summary: "Name your stage — and what it's asking of you.",
     audience: "Founders and CEOs",
     duration: "About 10 minutes",
     externalUrlEnv: "ASSESSMENT_URL_GROWTH_STAGE",
@@ -26,8 +25,7 @@ export const assessments: Assessment[] = [
   {
     title: "Founder Growth Assessment",
     slug: "founder-growth",
-    summary:
-      "See where your role must evolve as the company scales — and what to hand off next.",
+    summary: "Where your role must evolve next — and what to hand off.",
     audience: "Founders",
     duration: "About 10 minutes",
     externalUrlEnv: "ASSESSMENT_URL_FOUNDER_GROWTH",
@@ -42,8 +40,7 @@ export const assessments: Assessment[] = [
   {
     title: "Leadership Team Alignment Check",
     slug: "leadership-alignment",
-    summary:
-      "Find out whether your leadership team is aligned in practice, not just in principle.",
+    summary: "Aligned in principle — but in practice?",
     audience: "Executive teams",
     duration: "About 15 minutes",
     externalUrlEnv: "ASSESSMENT_URL_LEADERSHIP_ALIGNMENT",
@@ -58,8 +55,7 @@ export const assessments: Assessment[] = [
   {
     title: "AI Readiness Assessment",
     slug: "ai-readiness",
-    summary:
-      "Understand how ready your teams are to adopt AI consistently, responsibly, and to real effect.",
+    summary: "How ready are your teams, really?",
     audience: "Leadership teams",
     duration: "About 10 minutes",
     externalUrlEnv: "ASSESSMENT_URL_AI_READINESS",

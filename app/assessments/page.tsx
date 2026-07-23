@@ -33,8 +33,8 @@ export default async function AssessmentsPage() {
       <Section aria-labelledby="assessments-heading">
         <PageHero
           eyebrow="Assessments"
-          headline="Start by understanding what your company has outgrown."
-          copy="Our assessments help founders and leadership teams name the stage they are in, identify the friction beneath the symptoms, and focus on the capability that needs to evolve next."
+          headline="Find out what your company has outgrown."
+          copy="Ten minutes to name your stage, the friction beneath it, and what needs to evolve next. Your answers stay with the assessment provider unless you choose to share them."
           headingId="assessments-heading"
         />
       </Section>

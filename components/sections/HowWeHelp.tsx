@@ -1,13 +1,15 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { Card } from "@/components/ui/Card";
 import { Eyebrow, Heading, Text } from "@/components/ui/Text";
 import { TextLink } from "@/components/ui/TextLink";
-import { CTAButton } from "@/components/ui/CTAButton";
+import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import type { HomepageContent } from "@/lib/cms/types";
 
-/** Four service cards tied to business needs, each linking to its page. */
+/**
+ * Four practices as numbered entries (per the approved design):
+ * meadow index, title, rule, one explicit line, and a Learn more pill.
+ */
 export function HowWeHelp({
   content,
 }: {
@@ -21,44 +23,42 @@ export function HowWeHelp({
           <Heading level={2} id="services-heading" className="mt-2">
             {content.headline}
           </Heading>
+          <div className="mt-5">
+            <TextLink href={content.cta.href} arrow className="text-lg">
+              {content.cta.label}
+            </TextLink>
+          </div>
         </Reveal>
-        <div className="grid gap-6 md:grid-cols-2">
+
+        <div className="grid gap-x-16 gap-y-14 md:grid-cols-2">
           {content.items.map((service, index) => (
             <Reveal key={service.title} delay={index * 0.07} className="h-full">
-              <Card interactive tone="surface" className="h-full">
-                <div className="flex h-full flex-col gap-4">
-                  <Heading level={3} visualLevel={4}>
+              <div className="flex h-full flex-col gap-5">
+                <div className="flex items-start gap-4">
+                  <span
+                    aria-hidden="true"
+                    className="pt-1 font-label text-sm font-semibold tracking-[0.1em] text-meadow-deep"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <Heading level={3} visualLevel={3}>
                     {service.title}
                   </Heading>
-                  <Text muted>{service.copy}</Text>
-                  <ul className="mt-1 flex flex-col gap-1.5 text-sm text-slate">
-                    {service.examples.map((example) => (
-                      <li key={example} className="flex gap-2">
-                        <span aria-hidden="true" className="text-meadow-deep">
-                          —
-                        </span>
-                        {example}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-auto pt-2">
-                    <TextLink href={service.href} arrow>
-                      Learn more
-                    </TextLink>
-                  </div>
                 </div>
-              </Card>
+                <hr className="border-ink/10" />
+                <Text muted size="lg">
+                  {service.copy}
+                </Text>
+                <div className="mt-auto">
+                  <Button href={service.href} variant="outline" size="sm">
+                    Learn more
+                    <span aria-hidden="true">→</span>
+                  </Button>
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>
-        <Reveal>
-          <CTAButton
-            label={content.cta.label}
-            href={content.cta.href}
-            location="how-we-help"
-            variant="outline"
-          />
-        </Reveal>
       </Container>
     </Section>
   );

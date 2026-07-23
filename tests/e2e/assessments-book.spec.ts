@@ -9,7 +9,7 @@ test.describe("/assessments", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "Start by understanding what your company has outgrown.",
+        name: "Find out what your company has outgrown.",
       }),
     ).toBeVisible();
     await expect(

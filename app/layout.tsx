@@ -9,12 +9,9 @@ import { Footer } from "@/components/layout/Footer";
  * Brand fonts, self-hosted from the Fontsource packages via next/font:
  * latin subsets only, preloaded, font-display swap — the display font no
  * longer delays the LCP repaint the way late-discovered CSS fonts do.
+ * Montserrat (the brand deck's headline face) carries all display type;
+ * Open Sans carries body text.
  */
-const fraunces = localFont({
-  src: "../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2",
-  variable: "--font-fraunces",
-  display: "swap",
-});
 const openSans = localFont({
   src: "../node_modules/@fontsource-variable/open-sans/files/open-sans-latin-wght-normal.woff2",
   variable: "--font-open-sans",
@@ -24,7 +21,6 @@ const montserrat = localFont({
   src: "../node_modules/@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2",
   variable: "--font-montserrat",
   display: "swap",
-  preload: false, // labels/buttons only; swap-in is fine
 });
 
 export const metadata: Metadata = {
@@ -49,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${openSans.variable} ${montserrat.variable}`}
+      className={`${openSans.variable} ${montserrat.variable}`}
     >
       <body className="flex min-h-screen flex-col">
         {/* Without JavaScript, Framer Motion entrance states would leave

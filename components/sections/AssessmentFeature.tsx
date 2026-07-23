@@ -1,15 +1,14 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { Card } from "@/components/ui/Card";
 import { Eyebrow, Heading, Text } from "@/components/ui/Text";
-import { TextLink } from "@/components/ui/TextLink";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { Reveal } from "@/components/motion/Reveal";
 import type { HomepageContent } from "@/lib/cms/types";
 
 /**
- * Assessment feature: the featured assessment leads on an ink card;
- * the remaining CMS-managed assessment cards support it.
+ * Assessment feature (per the approved design): the featured assessment
+ * on a rounded ink card; the rest as a quiet rule-separated list.
  */
 export function AssessmentFeature({
   content,
@@ -27,58 +26,60 @@ export function AssessmentFeature({
           <Heading level={2} id="assessments-heading" className="mt-2">
             {content.headline}
           </Heading>
-          <Text muted className="mt-4">
+          <Text muted size="lg" className="mt-4">
             {content.copy}
           </Text>
         </Reveal>
 
-        <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           {featured ? (
             <Reveal className="h-full">
-              <Card tone="ink" interactive className="h-full">
-                <div className="flex h-full flex-col gap-4">
-                  <Eyebrow>Featured</Eyebrow>
-                  <Heading level={3} visualLevel={3}>
-                    {featured.title}
-                  </Heading>
-                  <Text className="text-paper/75">{featured.summary}</Text>
-                  <p className="text-sm text-paper/60">
-                    {[featured.audience, featured.duration]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </p>
-                  <div className="mt-auto pt-2">
-                    <CTAButton
-                      label={featured.ctaLabel}
-                      href={featured.href}
-                      location="assessment-feature"
-                      variant="accent"
-                    />
-                  </div>
+              <div className="on-ink flex h-full flex-col gap-5 rounded-2xl bg-ink p-8 text-paper sm:p-12">
+                <p className="font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow">
+                  Featured
+                </p>
+                <h3 className="mt-6 font-display text-3xl font-bold leading-[1.15]">
+                  {featured.title}
+                </h3>
+                <Text size="lg" className="text-paper/75">
+                  {featured.summary}
+                </Text>
+                <p className="text-sm text-paper/60">
+                  {[featured.audience, featured.duration]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </p>
+                <div className="mt-auto pt-2">
+                  <CTAButton
+                    label={`${featured.ctaLabel} →`}
+                    href={featured.href}
+                    location="assessment-feature"
+                    variant="accent"
+                  />
                 </div>
-              </Card>
+              </div>
             </Reveal>
           ) : null}
 
-          <div className="flex flex-col gap-6">
+          <ul className="flex flex-col self-center">
             {rest.map((assessment, index) => (
-              <Reveal key={assessment.title} delay={index * 0.07}>
-                <Card tone="paper" interactive>
-                  <div className="flex flex-col gap-2">
-                    <Heading level={3} visualLevel={4}>
+              <li key={assessment.title} className="border-t border-ink/15 py-7 last:pb-0">
+                <Reveal delay={index * 0.07}>
+                  <h3 className="font-display text-2xl font-semibold leading-snug">
+                    <Link
+                      href={assessment.href}
+                      className="transition-colors duration-[var(--duration-quick)] hover:text-meadow-deep"
+                    >
                       {assessment.title}
-                    </Heading>
-                    <Text size="sm" muted>
-                      {assessment.summary}
-                    </Text>
-                    <TextLink href={assessment.href} arrow className="mt-1 text-sm">
-                      {assessment.ctaLabel}
-                    </TextLink>
-                  </div>
-                </Card>
-              </Reveal>
+                    </Link>
+                  </h3>
+                  <Text muted size="lg" className="mt-2">
+                    {assessment.summary}
+                  </Text>
+                </Reveal>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Container>
     </Section>

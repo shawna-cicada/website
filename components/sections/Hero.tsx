@@ -5,6 +5,25 @@ import { CicadaMark } from "@/components/brand/CicadaMark";
 import type { HomepageContent } from "@/lib/cms/types";
 
 /**
+ * Set the word "evolve" in italic brand green (meadow-deep — the
+ * text-safe green, AA on paper where plain meadow is not). Purely
+ * visual: the accessible name of the heading is unchanged.
+ */
+function EmphasizedHeadline({ headline }: { headline: string }) {
+  const match = headline.match(/evolve/i);
+  if (!match || match.index === undefined) return <>{headline}</>;
+  const start = match.index;
+  const end = start + match[0].length;
+  return (
+    <>
+      {headline.slice(0, start)}
+      <em className="italic text-meadow-deep">{headline.slice(start, end)}</em>
+      {headline.slice(end)}
+    </>
+  );
+}
+
+/**
  * Homepage hero: slow reveal, one primary and one secondary action.
  * Entrances are CSS-only (anim-fade/anim-rise) so the headline — the
  * page's LCP element — paints immediately without waiting for
@@ -25,7 +44,7 @@ export function Hero({ content }: { content: HomepageContent["hero"] }) {
         </div>
         <div className="anim-fade" style={{ animationDuration: "400ms" }}>
           <Heading level={1} id="hero-heading">
-            {content.headline}
+            <EmphasizedHeadline headline={content.headline} />
           </Heading>
         </div>
         <div className="anim-rise" style={{ animationDelay: "120ms" }}>

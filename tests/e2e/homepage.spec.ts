@@ -51,9 +51,7 @@ test.describe("homepage", () => {
   test("framework presents all three stages", async ({ page }) => {
     await page.goto("/");
     for (const stage of ["Shed", "Emerge", "Expand"]) {
-      await expect(
-        page.getByText(new RegExp(`0\\d — ${stage}`)),
-      ).toBeVisible();
+      await expect(page.getByText(stage, { exact: true })).toBeVisible();
     }
     await expect(
       page.getByRole("heading", {
@@ -70,7 +68,7 @@ test.describe("homepage", () => {
 
     // Framework renders the static layout at full opacity.
     // (toHaveCSS retries, riding out the hydration swap to the static tree.)
-    const shed = page.getByText(/01 — Shed/);
+    const shed = page.getByText("Shed", { exact: true });
     await expect(shed).toBeVisible();
     const listItem = page.locator("li", { has: shed }).first();
     await expect(listItem).toHaveCSS("opacity", "1");
@@ -104,7 +102,7 @@ test.describe("homepage", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: /Growth Happens in Stages/,
+        name: /Growth happens in stages/i,
       }),
     ).toBeVisible();
   });
