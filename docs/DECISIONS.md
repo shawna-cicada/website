@@ -61,5 +61,17 @@ components. Full mapping: `docs/BRAND.md`. This supersedes the visual
 speculation in D-002's original execution; the token architecture is
 unchanged.
 
+## D-018 — Admin built ahead of the Sanity project; Next.js upgraded to 16 — Accepted (2026-07-23)
+The Phase 7 admin experience shipped before the Sanity project exists: all
+editorial logic (slugs, checklist, templates, permissions, workflow
+transitions, LinkedIn copy) lives in pure, fully-tested `lib/editorial/`
+modules; the Studio (`sanity.config.tsx`, `sanity/`) is a thin shell over
+them, embedded at `/admin`, which renders a plain-language setup notice
+until `NEXT_PUBLIC_SANITY_PROJECT_ID` is set. Sanity v6 requires a React
+export that Next 15's vendored React lacked, so the framework moved to
+Next 16 (with `next-sanity` 13) — all suites pass unchanged. Social
+syndication is provider-neutral behind `lib/linkedin/` with a manual-only
+default and a tested no-network guarantee (docs/LINKEDIN_WORKFLOW.md).
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.
