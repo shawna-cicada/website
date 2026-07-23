@@ -235,7 +235,8 @@ export type HowWeHelpContent = {
   eyebrow: string;
   headline: string;
   copy: string;
-  systemNote: string;
+  /** The connected-system narrative, told in full on the overview. */
+  systemNarrative: string[];
   engagementsHeadline: string;
   engagementsCopy: string;
   cta: CTA;
