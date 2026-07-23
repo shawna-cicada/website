@@ -64,6 +64,41 @@ export type FeaturedInsight = {
   href: string;
 };
 
+export type AssessmentImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+/** CMS-managed assessment record (per WEBSITE_REDESIGN.md's model). */
+export type Assessment = {
+  title: string;
+  slug: string;
+  summary: string;
+  audience?: string;
+  duration?: string;
+  /**
+   * Env-var name that supplies the external provider URL. Provider links
+   * are NEVER hardcoded — unset means the assessment renders disabled.
+   */
+  externalUrlEnv: string;
+  ctaLabel: string;
+  image?: AssessmentImage;
+  featured: boolean;
+  active: boolean;
+  opensInNewTab: boolean;
+  privacyNote?: string;
+  /** utm_campaign value appended to the external URL. */
+  trackingCampaign?: string;
+};
+
+/** Assessment with its external URL resolved from the environment. */
+export type ResolvedAssessment = Assessment & {
+  /** Fully-resolved provider URL with UTM params, or null when unconfigured. */
+  externalUrl: string | null;
+};
+
 export type RelatedInsight = {
   title: string;
   href: string;

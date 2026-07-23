@@ -1,8 +1,10 @@
 import type {
+  Assessment,
   Engagement,
   HomepageContent,
   HowWeHelpContent,
   PracticeArea,
+  ResolvedAssessment,
 } from "@/lib/cms/types";
 import { homepageContent } from "@/content/seed/homepage";
 import {
@@ -10,6 +12,8 @@ import {
   howWeHelpContent,
   practiceAreas,
 } from "@/content/seed/practices";
+import { assessments } from "@/content/seed/assessments";
+import { withUtm } from "@/lib/analytics/utm";
 
 /**
  * Content adapter (D-004): all page content flows through this interface.
@@ -45,4 +49,26 @@ export async function getEngagementsForPractice(
   return engagements.filter((engagement) =>
     engagement.practices.includes(slug),
   );
+}
+
+/**
+ * Resolve an assessment's external URL from its environment variable and
+ * append UTM parameters. Unset env → null → the UI renders a graceful
+ * disabled state. Provider links are never hardcoded.
+ */
+function resolveAssessment(assessment: Assessment): ResolvedAssessment {
+  const raw = process.env[assessment.externalUrlEnv]?.trim();
+  const externalUrl = raw
+    ? withUtm(raw, { campaign: assessment.trackingCampaign })
+    : null;
+  return { ...assessment, externalUrl };
+}
+
+export async function getAssessments(): Promise<ResolvedAssessment[]> {
+  return assessments.map(resolveAssessment);
+}
+
+/** Active assessments only — what the hub renders. */
+export async function getActiveAssessments(): Promise<ResolvedAssessment[]> {
+  return (await getAssessments()).filter((assessment) => assessment.active);
 }
