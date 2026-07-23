@@ -7,7 +7,7 @@ import {
 import { publishGate } from "@/lib/editorial/checklist";
 import { applyAutomaticFields } from "@/lib/editorial/workflow";
 import { generateLinkedInPost } from "@/lib/editorial/linkedin";
-import { liveUrl, previewUrl } from "@/lib/editorial/preview";
+import { previewUrl } from "@/lib/editorial/preview";
 import type { EditorialDoc } from "@/lib/editorial/types";
 
 /**
@@ -221,7 +221,9 @@ export const ViewLiveAction: DocumentActionComponent = (props) => {
     label: "View Live Article",
     disabled: !slug,
     onHandle: () => {
-      if (slug) window.open(liveUrl(slug), "_blank", "noopener");
+      // Same-origin path: works on today's Vercel URL and on the real
+      // domain after cutover alike.
+      if (slug) window.open(`/insights/${slug}`, "_blank", "noopener");
       props.onComplete();
     },
   };
@@ -238,7 +240,11 @@ export const PreviewDraftAction: DocumentActionComponent = (props) => {
     onHandle: () => {
       if (slug) {
         patch.execute([{ set: { previewedAt: new Date().toISOString() } }]);
-        window.open(previewUrl(slug), "_blank", "noopener");
+        window.open(
+          previewUrl(slug, { baseUrl: window.location.origin }),
+          "_blank",
+          "noopener",
+        );
       }
       props.onComplete();
     },
