@@ -15,7 +15,7 @@ export const homepageContent: HomepageContent = {
     secondaryCta: { label: "Book a Discovery Call", href: "/book" },
   },
   recognition: {
-    headline: "Your company may have outgrown the way it works.",
+    headline: "Does any of this sound familiar?",
     statements: [
       "Decisions are taking longer.",
       "The founder is still carrying too much.",
@@ -50,7 +50,7 @@ export const homepageContent: HomepageContent = {
   },
   services: {
     eyebrow: "How we help",
-    headline: "Built around business needs, not consulting language.",
+    headline: "Four practices, one connected system.",
     items: [
       {
         title: "Leadership & Team Effectiveness",
@@ -145,7 +145,7 @@ export const homepageContent: HomepageContent = {
   },
   engagement: {
     eyebrow: "How an engagement works",
-    headline: "A clear path from friction to capacity.",
+    headline: "It starts with a conversation, not a contract.",
     steps: [
       {
         step: "1",
