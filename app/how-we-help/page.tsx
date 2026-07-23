@@ -110,12 +110,14 @@ export default async function HowWeHelpPage() {
               {content.engagementsCopy}
             </Text>
           </Reveal>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {/* Eight engagements: 4-across on wide screens → two even rows. */}
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {engagements.map((engagement, index) => (
               <Reveal key={engagement.name} delay={index * 0.06} className="h-full">
                 <Card
                   tone="surface"
                   accent={engagement.audience === "individual"}
+                  padding="compact"
                   className="h-full"
                 >
                   <div className="flex h-full flex-col gap-3">

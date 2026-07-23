@@ -6,9 +6,16 @@ type CardProps = {
   interactive?: boolean;
   /** accent keeps the meadow top rule always on (quiet differentiation) */
   accent?: boolean;
+  /** compact tightens padding for dense grids (e.g. 4-across) */
+  padding?: "default" | "compact";
   tone?: "surface" | "paper" | "ink";
   className?: string;
 };
+
+const cardPaddings = {
+  default: "p-6 sm:p-8",
+  compact: "p-5 sm:p-6",
+} as const;
 
 const cardTones = {
   surface: "bg-lilac text-ink",
@@ -25,13 +32,14 @@ export function Card({
   children,
   interactive = false,
   accent = false,
+  padding = "default",
   tone = "surface",
   className = "",
 }: CardProps) {
   return (
     <div
       className={
-        `relative rounded-sm p-6 sm:p-8 ${cardTones[tone]} ` +
+        `relative rounded-sm ${cardPaddings[padding]} ${cardTones[tone]} ` +
         "before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:rounded-t-sm " +
         (accent ? "before:bg-meadow " : "before:bg-meadow/0 ") +
         (interactive

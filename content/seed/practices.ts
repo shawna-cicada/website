@@ -103,6 +103,8 @@ export const practiceAreas: PracticeArea[] = [
       "Product and delivery effectiveness",
       "Organizational design and ways of working",
       "How strategy is translated, communicated, and reviewed",
+      "HR operations and people systems that scale",
+      "IPO and exit readiness — governance, reporting, operational maturity",
     ],
     leaveWith: [
       "An operating model matched to the company's current stage",
@@ -114,6 +116,7 @@ export const practiceAreas: PracticeArea[] = [
     formats: [
       "Operating Model and Product Effectiveness Assessment",
       "Scale Plan and Operational Roadmap",
+      "HR Operations and IPO Readiness",
       "Growth Stage Diagnostic",
       "Ongoing Leadership and Organizational Advisory",
     ],
@@ -283,6 +286,15 @@ export const engagements: Engagement[] = [
     bestFor: "Leadership teams preparing to scale deliberately, not reactively",
     format: "4–8 weeks · co-designed roadmap with owners and sequencing",
     practices: ["organizational-effectiveness", "founder-growth"],
+  },
+  {
+    name: "HR Operations and IPO Readiness",
+    summary:
+      "Build the people systems and operational maturity later stages demand — HR operations that scale with headcount, and the governance, reporting, and process discipline public markets expect.",
+    bestFor:
+      "Companies professionalizing ahead of a funding round, audit, or public offering",
+    format: "6–12 weeks · readiness assessment with a sequenced maturity roadmap",
+    practices: ["organizational-effectiveness"],
   },
   {
     name: "Ongoing Leadership and Organizational Advisory",

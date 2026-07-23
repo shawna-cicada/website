@@ -26,13 +26,14 @@ test.describe("/how-we-help", () => {
     }
   });
 
-  test("overview lists the seven engagements", async ({ page }) => {
+  test("overview lists the eight engagements", async ({ page }) => {
     await page.goto("/how-we-help");
     for (const engagement of [
       "Growth Stage Diagnostic",
       "Leadership Intensive",
       "Team Reset",
       "Executive & Leadership Coaching",
+      "HR Operations and IPO Readiness",
       "Operating Model and Product Effectiveness Assessment",
       "Scale Plan and Operational Roadmap",
       "Ongoing Leadership and Organizational Advisory",

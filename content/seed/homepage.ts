@@ -170,6 +170,7 @@ export const homepageContent: HomepageContent = {
       "Executive & Leadership Coaching",
       "Operating Model or Product Effectiveness Assessment",
       "Scale Plan and Operational Roadmap",
+      "HR Operations and IPO Readiness",
       "Ongoing Leadership or Organizational Advisory",
     ],
   },

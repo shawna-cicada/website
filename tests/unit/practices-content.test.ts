@@ -60,7 +60,7 @@ describe("practice areas content contract", () => {
 });
 
 describe("engagement records contract", () => {
-  it("includes the seven required engagements", async () => {
+  it("includes the eight required engagements", async () => {
     const engagements = await getEngagements();
     const names = engagements.map((engagement) => engagement.name);
     for (const required of [
@@ -70,11 +70,12 @@ describe("engagement records contract", () => {
       "Executive & Leadership Coaching",
       "Operating Model and Product Effectiveness Assessment",
       "Scale Plan and Operational Roadmap",
+      "HR Operations and IPO Readiness",
       "Ongoing Leadership and Organizational Advisory",
     ]) {
       expect(names).toContain(required);
     }
-    expect(engagements.length).toBeGreaterThanOrEqual(7);
+    expect(engagements.length).toBeGreaterThanOrEqual(8);
   });
 
   it("every engagement maps to at least one real practice", async () => {
