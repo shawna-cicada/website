@@ -19,7 +19,7 @@ export const assessments: Assessment[] = [
     active: true,
     opensInNewTab: true,
     privacyNote:
-      "This assessment runs on an external platform. Your answers are collected by that provider under its own privacy policy; Cicada Agility does not receive them unless you choose to share your results.",
+      "Built by Cicada Agility, hosted on a secure survey platform. We receive your answers and contact details, and use them to prepare your results and follow up with you.",
     trackingCampaign: "growth-stage-assessment",
   },
   {
@@ -34,7 +34,7 @@ export const assessments: Assessment[] = [
     active: true,
     opensInNewTab: true,
     privacyNote:
-      "This assessment runs on an external platform under its own privacy policy.",
+      "Your answers and contact details come to Cicada Agility — we use them to share your results and follow up.",
     trackingCampaign: "founder-growth-assessment",
   },
   {
@@ -49,7 +49,7 @@ export const assessments: Assessment[] = [
     active: true,
     opensInNewTab: true,
     privacyNote:
-      "This assessment runs on an external platform under its own privacy policy.",
+      "Your answers and contact details come to Cicada Agility — we use them to share your results and follow up.",
     trackingCampaign: "leadership-alignment-check",
   },
   {
@@ -64,7 +64,7 @@ export const assessments: Assessment[] = [
     active: true,
     opensInNewTab: true,
     privacyNote:
-      "This assessment runs on an external platform under its own privacy policy.",
+      "Your answers and contact details come to Cicada Agility — we use them to share your results and follow up.",
     trackingCampaign: "ai-readiness-assessment",
   },
   {

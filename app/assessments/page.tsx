@@ -126,15 +126,16 @@ export default async function AssessmentsPage() {
           <Reveal>
             <div className="rounded-sm border border-ink/10 bg-paper p-6">
               <h2 className="font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow-deep">
-                About third-party assessments
+                About our assessments
               </h2>
               <p className="mt-3 max-w-3xl text-sm text-slate">
-                Assessments run on external platforms operated by their
-                providers. When you start one, you leave cicadaagility.com and
-                your answers are handled under the provider&apos;s own privacy
-                policy. Cicada Agility does not collect your answers or any
-                personal data through these links, and only receives results
-                you explicitly choose to share with us.
+                These assessments were built by Cicada Agility and are
+                proprietary to our practice; they run on a secure external
+                survey platform. When you complete one, your answers and
+                contact details come to us — we use them to prepare your
+                results, follow up with you about what they show, and stay in
+                touch about work that may be relevant. Prefer to skip the
+                form? Book a conversation instead.
               </p>
             </div>
           </Reveal>
