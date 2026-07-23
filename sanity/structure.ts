@@ -10,10 +10,10 @@ export const structure: StructureResolver = (S) =>
     .title("Cicada Agility")
     .items([
       S.listItem()
-        .title("✍️ Articles & Videos")
+        .title("✍️ Articles and Insights")
         .child(
           S.list()
-            .title("Articles & Videos")
+            .title("Articles and Insights")
             .items([
               S.listItem()
                 .title("All content")

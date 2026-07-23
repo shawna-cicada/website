@@ -19,7 +19,7 @@ export const howWeHelpContent: HowWeHelpContent = {
   headline: "The challenge is rarely just leadership, process, or culture.",
   copy: "As companies grow, these systems affect one another. Cicada Agility works across leadership, operations, product, people, and ways of working to solve the underlying conditions that create friction.",
   systemNote:
-    "The four practices are one connected system. Most engagements draw on more than one, because the friction a company feels in one place usually starts somewhere else.",
+    "Growth friction moves. A delivery problem turns out to be a decision-rights problem; a leadership problem turns out to be structure. That is why these four practices are built to work together — most engagements draw on more than one.",
   engagementsHeadline: "Focused engagements",
   engagementsCopy:
     "Every engagement is designed around the company's current stage and need — these are the shapes the work most often takes.",

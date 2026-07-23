@@ -5,7 +5,7 @@ import { CicadaWordmark } from "@/components/brand/CicadaWordmark";
 const FOOTER_NAV = [
   { href: "/how-we-help", label: "How We Help" },
   { href: "/assessments", label: "Assessments" },
-  { href: "/insights", label: "Insights" },
+  { href: "/insights", label: "Articles and Insights" },
   { href: "/about", label: "About" },
   { href: "/book", label: "Book a Conversation" },
 ] as const;

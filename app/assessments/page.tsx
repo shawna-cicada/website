@@ -41,7 +41,8 @@ export default async function AssessmentsPage() {
 
       {featured ? (
         <Section tone="surface" spacing="compact" aria-labelledby="featured-assessment-heading">
-          <Container>
+          {/* Anchor target for the header's Assessments dropdown. */}
+          <Container className="scroll-mt-24" id={featured.slug}>
             <Reveal>
               <Card tone="ink" className="p-8 sm:p-12">
                 <div className="flex max-w-2xl flex-col gap-4">
@@ -88,6 +89,8 @@ export default async function AssessmentsPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {rest.map((assessment, index) => (
               <Reveal key={assessment.slug} delay={index * 0.06} className="h-full">
+                {/* Anchor target for the header's Assessments dropdown. */}
+                <div id={assessment.slug} className="h-full scroll-mt-24">
                 <Card tone="surface" className="h-full">
                   <div className="flex h-full flex-col gap-3">
                     <Heading level={3} visualLevel={4}>
@@ -115,6 +118,7 @@ export default async function AssessmentsPage() {
                     </div>
                   </div>
                 </Card>
+                </div>
               </Reveal>
             ))}
           </div>
