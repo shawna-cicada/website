@@ -104,6 +104,57 @@ export type RelatedInsight = {
   href: string;
 };
 
+/** Mirrors the contentType options in sanity/schemas/insight.ts. */
+export type InsightKind =
+  | "article"
+  | "video"
+  | "podcast"
+  | "guide"
+  | "case-insight";
+
+/** Card-level projection of a published insight (index page, sitemap). */
+export type InsightSummary = {
+  slug: string;
+  title: string;
+  summary: string;
+  kind: InsightKind;
+  category: string | null;
+  authorName: string | null;
+  /** ISO datetime set by the publish action; null only for legacy docs. */
+  publishedAt: string | null;
+  readingTime: number | null;
+  imageUrl: string | null;
+  imageAlt: string | null;
+  imageWidth: number | null;
+  imageHeight: number | null;
+};
+
+/**
+ * Portable Text block as stored by the insight schema. Typed loosely on
+ * purpose: rendering goes through @portabletext/react, which handles
+ * unknown shapes gracefully; inline images are pre-resolved to URLs in
+ * the GROQ projection.
+ */
+export type InsightBodyImage = {
+  _type: "image";
+  _key: string;
+  url: string | null;
+  alt: string | null;
+};
+
+export type InsightBodyBlock = { _type: string; _key: string } & Record<
+  string,
+  unknown
+>;
+
+/** Full projection for /insights/[slug]. */
+export type Insight = InsightSummary & {
+  body: Array<InsightBodyBlock | InsightBodyImage> | null;
+  videoUrl: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+};
+
 export type PracticeArea = {
   slug: string;
   /** Short name used in navigation, cards, and cross-links. */

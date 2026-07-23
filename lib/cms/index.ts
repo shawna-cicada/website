@@ -15,6 +15,12 @@ import {
 import { assessments } from "@/content/seed/assessments";
 import { withUtm } from "@/lib/analytics/utm";
 
+export {
+  getInsight,
+  getPublishedInsights,
+  INSIGHTS_REVALIDATE_SECONDS,
+} from "@/lib/cms/insights";
+
 /**
  * Content adapter (D-004): all page content flows through this interface.
  * Currently fixture-backed from content/seed/; Phase 2 swaps the

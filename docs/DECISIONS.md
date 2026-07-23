@@ -80,5 +80,18 @@ NOT "fix" the order back to match the brief — the brief is outdated on
 this point. Applied to the homepage framework, the About-page metaphor
 copy, the design-system sample, and the content contract test.
 
+## D-020 — Sanity project coordinates committed; /insights reads published content — Accepted (2026-07-23)
+The live Sanity project (`66n8qkam`, dataset `production`) is committed as
+the default in `lib/sanity/config.ts`. Project ID and dataset are public
+identifiers — they appear in every browser request the site makes — so
+committing them removes deploy-time env coupling without weakening
+security; access control lives entirely in Sanity sign-in + roles. The
+env vars remain as overrides for forks or a staging dataset. Phase 6's
+public pages (`/insights`, `/insights/[slug]`) read ONLY documents with
+`workflowStatus == "published"` through an untokened, CDN-cached client
+(drafts are unreachable by construction), revalidate every 5 minutes, and
+degrade to an honest empty state / 404 whenever Sanity is unreachable —
+the site builds and runs with zero network access to Sanity.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

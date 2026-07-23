@@ -27,8 +27,8 @@ logs any gaps — critical ones fail the launch checklist.
 
 | Variable | Used by | Effect when unset |
 |---|---|---|
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | /admin, Phase 2 content | /admin shows setup notice; site serves seed content |
-| `NEXT_PUBLIC_SANITY_DATASET` | same | Defaults to `production` |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | Optional override (D-020) | Defaults to the committed live project `66n8qkam` |
+| `NEXT_PUBLIC_SANITY_DATASET` | Optional override (D-020) | Defaults to `production` |
 
 ## Operations
 

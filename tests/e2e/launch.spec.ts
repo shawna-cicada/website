@@ -6,6 +6,7 @@ const PAGES = [
   "/how-we-help",
   "/how-we-help/leadership-team-effectiveness",
   "/assessments",
+  "/insights",
   "/book",
   "/about",
 ];

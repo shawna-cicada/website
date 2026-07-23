@@ -11,9 +11,11 @@ import { WIX_REDIRECTS } from "./lib/seo/redirects";
  */
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://va.vercel-scripts.com",
+  // core.sanity-cdn.com serves the Studio's bridge script (Sanity v6);
+  // lh3.googleusercontent.com serves editor avatars inside /admin.
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com https://va.vercel-scripts.com https://core.sanity-cdn.com",
   "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
-  "img-src 'self' data: blob: https://cdn.sanity.io https://*.calendly.com https://i.ytimg.com",
+  "img-src 'self' data: blob: https://cdn.sanity.io https://*.calendly.com https://i.ytimg.com https://lh3.googleusercontent.com",
   "font-src 'self' data:",
   "connect-src 'self' https://*.sanity.io wss://*.sanity.io https://*.calendly.com https://vitals.vercel-insights.com",
   "frame-src 'self' https://calendly.com https://*.calendly.com https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com",

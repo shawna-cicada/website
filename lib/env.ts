@@ -38,11 +38,9 @@ export const ENV_CHECKS: EnvCheck[] = [
     critical: false,
     consequence: "The Existing Client event type falls back to email.",
   },
-  {
-    name: "NEXT_PUBLIC_SANITY_PROJECT_ID",
-    critical: false,
-    consequence: "/admin shows the setup notice; content stays seed-backed.",
-  },
+  // NEXT_PUBLIC_SANITY_PROJECT_ID is no longer checked here: the live
+  // project's public coordinates are committed defaults (D-020,
+  // lib/sanity/config.ts); the env var remains as an optional override.
   {
     name: "ERROR_MONITORING_WEBHOOK",
     critical: false,

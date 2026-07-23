@@ -1,12 +1,17 @@
 import type { MetadataRoute } from "next";
-import { getApprovedClients, getPracticeAreas } from "@/lib/cms";
+import {
+  getApprovedClients,
+  getPracticeAreas,
+  getPublishedInsights,
+} from "@/lib/cms";
 
 const SITE_URL = "https://www.cicadaagility.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [practices, approvedClients] = await Promise.all([
+  const [practices, approvedClients, insights] = await Promise.all([
     getPracticeAreas(),
     getApprovedClients(),
+    getPublishedInsights(),
   ]);
 
   const now = new Date();
@@ -20,6 +25,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     { url: `${SITE_URL}/assessments`, lastModified: now, priority: 0.9 },
     { url: `${SITE_URL}/insights`, lastModified: now, priority: 0.7 },
+    ...insights.map((insight) => ({
+      url: `${SITE_URL}/insights/${insight.slug}`,
+      lastModified: insight.publishedAt ? new Date(insight.publishedAt) : now,
+      priority: 0.6,
+    })),
     { url: `${SITE_URL}/about`, lastModified: now, priority: 0.7 },
     { url: `${SITE_URL}/book`, lastModified: now, priority: 0.9 },
     { url: `${SITE_URL}/privacy`, lastModified: now, priority: 0.2 },
