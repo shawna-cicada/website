@@ -13,7 +13,7 @@ test.describe("/design-system", () => {
       "Buttons & text links",
       "Cards",
       "Image treatment",
-      "Illustration primitives",
+      "Logo & brand marks",
       "Motion",
       "Focus & accessibility",
     ]) {

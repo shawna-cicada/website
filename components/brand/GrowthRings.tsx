@@ -1,6 +1,6 @@
 type GrowthRingsProps = {
   className?: string;
-  /** Accent ring color defaults to chartreuse */
+  /** Accent ring color defaults to meadow */
   size?: number;
 };
 
@@ -22,7 +22,7 @@ export function GrowthRings({ className = "", size = 120 }: GrowthRingsProps) {
       <circle cx="60" cy="60" r="32" stroke="currentColor" strokeOpacity="0.55" strokeWidth="1.25" />
       <circle cx="60" cy="60" r="45" stroke="currentColor" strokeOpacity="0.35" strokeWidth="1" />
       <circle cx="60" cy="60" r="57" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1" />
-      <circle cx="60" cy="60" r="4" fill="var(--color-chartreuse)" />
+      <circle cx="60" cy="60" r="4" fill="var(--color-meadow)" />
     </svg>
   );
 }

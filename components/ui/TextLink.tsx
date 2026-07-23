@@ -12,7 +12,7 @@ type TextLinkProps = {
 };
 
 /**
- * Editorial text link: moss on ivory (AA), chartreuse on ink,
+ * Editorial text link: meadow-deep on paper (AA), meadow on ink,
  * with an animated underline that grows on hover and collapses
  * to a static underline under reduced motion (CSS-only).
  */
@@ -30,7 +30,7 @@ export function TextLink({
       target={target}
       rel={rel}
       className={
-        "group inline-flex items-center gap-1.5 font-medium text-moss [.on-ink_&]:text-chartreuse " +
+        "group inline-flex items-center gap-1.5 font-medium text-meadow-deep [.on-ink_&]:text-meadow " +
         className
       }
     >

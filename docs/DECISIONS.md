@@ -49,5 +49,17 @@ Not in launch scope. The final-CTA section leaves room for it; adding it later i
 ## D-015 — Logo retained or refreshed — Deferred
 The design system treats the logo as a swappable asset; token-based color means a refresh doesn't ripple through the build.
 
+## D-017 — Adopt the official Cicada brand assets — Accepted (2026-07-23)
+Cicada supplied the official brand presentation and logo EPS. The design
+system's speculative palette (warm ivory / chartreuse / copper) was replaced
+with the real brand: Mountain Meadow green, Big Stone/Rhino navy, White
+Lilac, Melrose, Malibu, Silver — plus AA-validated derived tints. Fonts moved
+to brand Open Sans (body) + Montserrat (labels/buttons); Fraunces stays as
+the editorial display face per the brief's "modernize" direction. The logo
+mark and CICADA logotype were extracted from the EPS into vector React
+components. Full mapping: `docs/BRAND.md`. This supersedes the visual
+speculation in D-002's original execution; the token architecture is
+unchanged.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

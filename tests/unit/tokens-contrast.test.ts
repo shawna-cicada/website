@@ -36,22 +36,24 @@ function contrast(a: string, b: string): number {
 /** [foreground, background, minimum ratio, role] */
 const PAIRS: Array<[string, string, number, string]> = [
   // Normal text: 4.5:1
-  ["--color-ink", "--color-ivory", 4.5, "body text on page background"],
-  ["--color-ink", "--color-ivory-soft", 4.5, "body text on cards"],
-  ["--color-ivory", "--color-ink", 4.5, "inverted text on ink sections"],
-  ["--color-ivory", "--color-ink-soft", 4.5, "text on raised ink surfaces"],
-  ["--color-moss", "--color-ivory", 4.5, "links / accent text on ivory"],
-  ["--color-moss", "--color-ivory-soft", 4.5, "links on cards"],
-  ["--color-copper", "--color-ivory", 4.5, "eyebrow / emergence text on ivory"],
-  ["--color-stone", "--color-ivory", 4.5, "muted text on ivory"],
-  ["--color-stone", "--color-ivory-soft", 4.5, "muted text on cards"],
-  ["--color-ink", "--color-chartreuse", 4.5, "text on accent buttons/surfaces"],
-  ["--color-ink", "--color-chartreuse-bright", 4.5, "text on hovered accent"],
-  ["--color-chartreuse", "--color-ink", 4.5, "accent links on ink"],
-  ["--color-sage", "--color-ink", 4.5, "sage eyebrows on ink"],
+  ["--color-ink", "--color-paper", 4.5, "body text on page background"],
+  ["--color-ink", "--color-lilac", 4.5, "body text on cards"],
+  ["--color-paper", "--color-ink", 4.5, "inverted text on ink sections"],
+  ["--color-paper", "--color-ink-soft", 4.5, "text on raised ink surfaces"],
+  ["--color-meadow-deep", "--color-paper", 4.5, "links / accent text on paper"],
+  ["--color-meadow-deep", "--color-lilac", 4.5, "links on cards"],
+  ["--color-slate", "--color-paper", 4.5, "muted text on paper"],
+  ["--color-slate", "--color-lilac", 4.5, "muted text on cards"],
+  ["--color-ink", "--color-meadow", 4.5, "text on accent buttons/surfaces"],
+  ["--color-ink", "--color-meadow-bright", 4.5, "text on hovered accent"],
+  ["--color-meadow", "--color-ink", 4.5, "accent links on ink"],
+  ["--color-melrose", "--color-ink", 4.5, "melrose eyebrows on ink"],
+  ["--color-malibu", "--color-ink", 4.5, "malibu highlights on ink"],
   // Non-text UI (focus ring on backgrounds): 3:1
-  ["--color-moss", "--color-ivory", 3, "focus ring on ivory"],
-  ["--color-moss", "--color-ivory-soft", 3, "focus ring on cards"],
+  ["--color-ink", "--color-paper", 3, "focus ring on paper"],
+  ["--color-ink", "--color-lilac", 3, "focus ring on cards"],
+  ["--color-ink", "--color-meadow", 3, "focus ring on accent surfaces"],
+  ["--color-meadow", "--color-ink", 3, "focus ring inside ink sections"],
 ];
 
 describe("design tokens meet WCAG AA", () => {
@@ -60,10 +62,10 @@ describe("design tokens meet WCAG AA", () => {
     expect(ratio).toBeGreaterThanOrEqual(min);
   });
 
-  it("chartreuse is documented as non-text on ivory (fails AA, by design)", () => {
-    // Guard: if chartreuse ever passes 4.5:1 on ivory this note is stale;
+  it("Mountain Meadow is documented as non-text on paper (fails AA, by design)", () => {
+    // Guard: if meadow ever passes 4.5:1 on paper this note is stale;
     // until then it must never be used for small text on light backgrounds.
-    const ratio = contrast(token("--color-chartreuse"), token("--color-ivory"));
+    const ratio = contrast(token("--color-meadow"), token("--color-paper"));
     expect(ratio).toBeLessThan(4.5);
   });
 });

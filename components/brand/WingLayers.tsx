@@ -20,12 +20,12 @@ export function WingLayers({ className = "", width = 220 }: WingLayersProps) {
     >
       <path
         d="M8 112 C 30 30, 120 6, 212 14 C 150 40, 70 70, 8 112 Z"
-        fill="var(--color-sage)"
+        fill="var(--color-melrose)"
         fillOpacity="0.35"
       />
       <path
         d="M8 112 C 44 48, 120 28, 200 40 C 140 62, 66 84, 8 112 Z"
-        fill="var(--color-chartreuse)"
+        fill="var(--color-meadow)"
         fillOpacity="0.3"
       />
       <path

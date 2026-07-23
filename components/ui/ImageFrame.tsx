@@ -33,7 +33,7 @@ export function ImageFrame({
       {treatment === "wing" ? (
         <div
           aria-hidden="true"
-          className="absolute -inset-y-3 -right-3 left-6 rounded-sm bg-sage/35"
+          className="absolute -inset-y-3 -right-3 left-6 rounded-sm bg-melrose/35"
         />
       ) : null}
       <div

@@ -4,14 +4,14 @@ type CardProps = {
   children: ReactNode;
   /** lift adds the subtle hover elevation used for interactive cards */
   interactive?: boolean;
-  tone?: "surface" | "ivory" | "ink";
+  tone?: "surface" | "paper" | "ink";
   className?: string;
 };
 
 const cardTones = {
-  surface: "bg-ivory-soft text-ink",
-  ivory: "bg-ivory text-ink border border-ink/10",
-  ink: "bg-ink text-ivory on-ink",
+  surface: "bg-lilac text-ink",
+  paper: "bg-paper text-ink border border-ink/10",
+  ink: "bg-ink text-paper on-ink",
 } as const;
 
 /**
@@ -29,10 +29,10 @@ export function Card({
     <div
       className={
         `relative rounded-sm p-6 sm:p-8 ${cardTones[tone]} ` +
-        "before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:rounded-t-sm before:bg-chartreuse/0 " +
+        "before:absolute before:inset-x-0 before:top-0 before:h-[3px] before:rounded-t-sm before:bg-meadow/0 " +
         (interactive
           ? "transition-[transform,box-shadow] duration-[var(--duration-base)] ease-[var(--ease-out-soft)] " +
-            "hover:-translate-y-1 hover:shadow-[0_12px_32px_-16px_rgba(32,31,25,0.35)] hover:before:bg-chartreuse " +
+            "hover:-translate-y-1 hover:shadow-[0_12px_32px_-16px_rgba(30,42,68,0.35)] hover:before:bg-meadow " +
             "before:transition-colors before:duration-[var(--duration-base)] "
           : "") +
         className

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useId, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { CicadaMark } from "@/components/brand/CicadaMark";
+import { CicadaWordmark } from "@/components/brand/CicadaWordmark";
 
 const NAV_ITEMS = [
   { href: "/how-we-help", label: "How We Help" },
@@ -22,14 +24,12 @@ export function Header() {
   const menuId = useId();
 
   return (
-    <header className="border-b border-ink/10 bg-ivory">
+    <header className="border-b border-ink/10 bg-paper">
       <SkipLink />
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-gutter py-4">
-        <Link
-          href="/"
-          className="font-display text-xl font-semibold tracking-tight text-ink"
-        >
-          Cicada<span className="text-emergence"> Agility</span>
+        <Link href="/" className="flex items-center gap-3">
+          <CicadaMark className="h-7 w-auto shrink-0 text-meadow" />
+          <CicadaWordmark className="h-4 w-auto text-ink" title="Cicada Agility — Home" />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">

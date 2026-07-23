@@ -8,6 +8,8 @@ import { Card } from "@/components/ui/Card";
 import { ImageFrame } from "@/components/ui/ImageFrame";
 import { GrowthRings } from "@/components/brand/GrowthRings";
 import { WingLayers } from "@/components/brand/WingLayers";
+import { CicadaMark } from "@/components/brand/CicadaMark";
+import { CicadaWordmark } from "@/components/brand/CicadaWordmark";
 
 export const metadata: Metadata = {
   title: "Design System",
@@ -15,15 +17,17 @@ export const metadata: Metadata = {
 };
 
 const COLORS = [
-  { name: "Ink", token: "--color-ink", className: "bg-ink", role: "Authority. Text, dark sections, primary buttons." },
-  { name: "Ink Soft", token: "--color-ink-soft", className: "bg-ink-soft", role: "Raised surfaces on ink." },
-  { name: "Ivory", token: "--color-ivory", className: "bg-ivory border border-ink/10", role: "Page background." },
-  { name: "Ivory Soft", token: "--color-ivory-soft", className: "bg-ivory-soft border border-ink/10", role: "Cards and wells." },
-  { name: "Chartreuse", token: "--color-chartreuse", className: "bg-chartreuse", role: "The cicada accent. Surfaces and on-ink emphasis — never small text on ivory." },
-  { name: "Moss", token: "--color-moss", className: "bg-moss", role: "Text-safe accent on ivory: links, small accents. AA." },
-  { name: "Copper", token: "--color-copper", className: "bg-copper", role: "Emergence. Eyebrows, secondary accents. AA on ivory." },
-  { name: "Stone", token: "--color-stone", className: "bg-stone", role: "Muted text on ivory. AA." },
-  { name: "Sage", token: "--color-sage", className: "bg-sage", role: "Quiet support. Decorative only." },
+  { name: "Big Stone (Ink)", token: "--color-ink", className: "bg-ink", role: "Brand navy. Authority: text, dark sections, primary buttons." },
+  { name: "Rhino (Ink Soft)", token: "--color-ink-soft", className: "bg-ink-soft", role: "Raised surfaces on ink." },
+  { name: "Paper", token: "--color-paper", className: "bg-paper border border-ink/10", role: "Near-white page background." },
+  { name: "White Lilac", token: "--color-lilac", className: "bg-lilac border border-ink/10", role: "Brand soft mineral. Cards and wells." },
+  { name: "Mountain Meadow", token: "--color-meadow", className: "bg-meadow", role: "THE brand green. Surfaces and on-ink emphasis — never small text on paper." },
+  { name: "Meadow Bright", token: "--color-meadow-bright", className: "bg-meadow-bright", role: "Hover state of accent surfaces." },
+  { name: "Meadow Deep", token: "--color-meadow-deep", className: "bg-meadow-deep", role: "Derived text-safe green: links, eyebrows, focus ring. AA." },
+  { name: "Slate", token: "--color-slate", className: "bg-slate", role: "Derived from Rhino: muted text. AA." },
+  { name: "Melrose", token: "--color-melrose", className: "bg-melrose", role: "Brand violet. Decorative; accent text on ink." },
+  { name: "Malibu", token: "--color-malibu", className: "bg-malibu", role: "Brand cyan. Rare decorative highlights." },
+  { name: "Silver", token: "--color-silver", className: "bg-silver", role: "Quiet rules and dividers. Decorative only." },
 ] as const;
 
 const TYPE_SCALE = [
@@ -56,8 +60,8 @@ function Swatch({ name, token, className, role }: (typeof COLORS)[number]) {
     <div className="flex flex-col gap-2">
       <div className={`h-20 rounded-sm ${className}`} />
       <p className="text-sm font-semibold">{name}</p>
-      <p className="font-mono text-xs text-stone">{token}</p>
-      <p className="text-xs text-stone">{role}</p>
+      <p className="font-mono text-xs text-slate">{token}</p>
+      <p className="text-xs text-slate">{role}</p>
     </div>
   );
 }
@@ -68,10 +72,10 @@ function PlaceholderImage({ label }: { label: string }) {
       role="img"
       aria-label={`Placeholder: ${label}`}
       viewBox="0 0 400 300"
-      className="h-full w-full bg-sage/40"
+      className="h-full w-full bg-melrose/40"
     >
-      <circle cx="200" cy="150" r="70" fill="var(--color-sage)" />
-      <circle cx="200" cy="150" r="46" fill="var(--color-ivory)" fillOpacity="0.5" />
+      <circle cx="200" cy="150" r="70" fill="var(--color-melrose)" />
+      <circle cx="200" cy="150" r="46" fill="var(--color-paper)" fillOpacity="0.5" />
     </svg>
   );
 }
@@ -87,10 +91,10 @@ export default function DesignSystemPage() {
             Cicada Agility Design System
           </Heading>
           <Text size="lg" muted className="max-w-2xl">
-            Every token, component, and state on one page. Sophisticated,
-            editorial, organic. One chartreuse accent, deep ink, warm ivory,
-            restrained earth tones — and no motion that ignores your
-            reduced-motion preference.
+            Every token, component, and state on one page, built on the
+            official Cicada brand: Mountain Meadow green, Big Stone navy,
+            White Lilac, and the geometric cicada mark — and no motion that
+            ignores your reduced-motion preference.
           </Text>
         </Container>
       </Section>
@@ -113,16 +117,16 @@ export default function DesignSystemPage() {
             ))}
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
-            <div className="rounded-sm bg-ivory p-5 border border-ink/10">
-              <p className="font-semibold text-ink">Ink on ivory</p>
-              <p className="text-sm text-stone">Body copy — 15.1:1</p>
+            <div className="rounded-sm bg-paper p-5 border border-ink/10">
+              <p className="font-semibold text-ink">Ink on paper</p>
+              <p className="text-sm text-slate">Body copy — 13.8:1</p>
             </div>
             <div className="on-ink rounded-sm bg-ink p-5">
-              <p className="font-semibold text-ivory">Ivory on ink</p>
-              <p className="text-sm text-ivory/70">Inverted sections</p>
+              <p className="font-semibold text-paper">Paper on ink</p>
+              <p className="text-sm text-paper/70">Inverted sections</p>
             </div>
-            <div className="rounded-sm bg-chartreuse p-5">
-              <p className="font-semibold text-ink">Ink on chartreuse</p>
+            <div className="rounded-sm bg-meadow p-5">
+              <p className="font-semibold text-ink">Ink on meadow</p>
               <p className="text-sm text-ink/80">Accent surfaces</p>
             </div>
           </div>
@@ -137,19 +141,20 @@ export default function DesignSystemPage() {
             <Heading level={2} id="ds-type">Typography</Heading>
             <Text muted className="mt-2 max-w-2xl">
               Fraunces (variable) carries the editorial voice in headings;
-              Public Sans (variable) carries UI and body text. Display sizes are
-              fluid — resize the window to see the clamp.
+              Open Sans (variable, brand) carries body text; Montserrat
+              (variable, brand) carries labels, eyebrows, and buttons. Display
+              sizes are fluid — resize the window to see the clamp.
             </Text>
           </div>
           <div className="flex flex-col gap-8">
             {TYPE_SCALE.map((step) => (
               <div key={step.label} className="border-b border-ink/10 pb-6">
-                <p className="mb-2 font-mono text-xs text-stone">{step.label}</p>
+                <p className="mb-2 font-mono text-xs text-slate">{step.label}</p>
                 <p className={step.className}>{step.sample}</p>
               </div>
             ))}
             <div>
-              <p className="mb-2 font-mono text-xs text-stone">eyebrow</p>
+              <p className="mb-2 font-mono text-xs text-slate">eyebrow</p>
               <Eyebrow>Leadership evolution for growing companies</Eyebrow>
             </div>
           </div>
@@ -171,11 +176,11 @@ export default function DesignSystemPage() {
           <div className="flex flex-col gap-4">
             {SPACING.map((space) => (
               <div key={space.name} className="flex flex-col gap-1">
-                <p className="font-mono text-xs text-stone">
+                <p className="font-mono text-xs text-slate">
                   {space.name} — {space.purpose}
                 </p>
                 <div
-                  className="h-4 rounded-xs bg-copper/70"
+                  className="h-4 rounded-xs bg-meadow-deep/70"
                   style={{ width: `var(${space.varName})` }}
                 />
               </div>
@@ -184,7 +189,7 @@ export default function DesignSystemPage() {
           <div className="flex flex-col gap-3">
             {(["narrow", "default", "wide"] as const).map((width) => (
               <Container key={width} width={width} className="!px-0">
-                <div className="rounded-xs border border-dashed border-moss/60 px-4 py-2 font-mono text-xs text-moss">
+                <div className="rounded-xs border border-dashed border-meadow-deep/60 px-4 py-2 font-mono text-xs text-meadow-deep">
                   Container width=&quot;{width}&quot;
                 </div>
               </Container>
@@ -232,7 +237,7 @@ export default function DesignSystemPage() {
           </div>
 
           <div className="on-ink flex flex-col gap-6 rounded-sm bg-ink p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-sage">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-melrose">
               On ink
             </p>
             <div className="flex flex-wrap items-center gap-4">
@@ -259,17 +264,17 @@ export default function DesignSystemPage() {
             <Heading level={2} id="ds-cards">Cards</Heading>
             <Text muted className="mt-2 max-w-2xl">
               Restrained radius, no shadow chrome at rest. Interactive cards
-              lift slightly and reveal a chartreuse top rule on hover.
+              lift slightly and reveal a meadow top rule on hover.
             </Text>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            <Card tone="ivory">
+            <Card tone="paper">
               <Heading level={3} visualLevel={4}>Static card</Heading>
               <Text muted className="mt-2">
                 For quiet content groupings on the soft surface.
               </Text>
             </Card>
-            <Card tone="surface" interactive className="bg-ivory">
+            <Card tone="surface" interactive className="bg-paper">
               <Heading level={3} visualLevel={4}>Interactive card</Heading>
               <Text muted className="mt-2">
                 Hover or focus a link inside to see the lift and top rule.
@@ -282,7 +287,7 @@ export default function DesignSystemPage() {
             </Card>
             <Card tone="ink" interactive>
               <Heading level={3} visualLevel={4}>Ink card</Heading>
-              <Text className="mt-2 text-ivory/70">
+              <Text className="mt-2 text-paper/70">
                 Inverted card for featured content and dark sections.
               </Text>
               <div className="mt-4">
@@ -303,7 +308,7 @@ export default function DesignSystemPage() {
             <Heading level={2} id="ds-images">Image treatment</Heading>
             <Text muted className="mt-2 max-w-2xl">
               Editorial crops with restrained radius. The wing treatment layers
-              a translucent sage panel behind the image — layering without
+              a translucent Melrose panel behind the image — layering without
               literal insect imagery. (Placeholder art shown; no stock photos.)
             </Text>
           </div>
@@ -312,13 +317,13 @@ export default function DesignSystemPage() {
               <ImageFrame ratio="4/3">
                 <PlaceholderImage label="plain treatment" />
               </ImageFrame>
-              <figcaption className="text-sm text-stone">Plain — 4/3</figcaption>
+              <figcaption className="text-sm text-slate">Plain — 4/3</figcaption>
             </figure>
             <figure className="flex flex-col gap-3">
               <ImageFrame ratio="4/3" treatment="wing">
                 <PlaceholderImage label="wing treatment" />
               </ImageFrame>
-              <figcaption className="text-sm text-stone">
+              <figcaption className="text-sm text-slate">
                 Wing layer — 4/3
               </figcaption>
             </figure>
@@ -331,16 +336,54 @@ export default function DesignSystemPage() {
         <Container className="flex flex-col gap-stack">
           <div>
             <Eyebrow>Brand</Eyebrow>
-            <Heading level={2} id="ds-brand">Illustration primitives</Heading>
-            <Text className="mt-2 max-w-2xl text-ivory/70">
-              Hand-drawn SVG components — no icon library. Growth rings mark
-              stages; wing layers suggest translucent emergence. Both are
-              decorative and hidden from assistive technology.
+            <Heading level={2} id="ds-brand">Logo &amp; brand marks</Heading>
+            <Text className="mt-2 max-w-2xl text-paper/70">
+              The official cicada mark and CICADA logotype (customized
+              Raleway), extracted from the brand EPS as vector components that
+              render in any token color. The mark is approved standalone at
+              small sizes — favicon, app icon. Sources live in{" "}
+              <code>public/logos/</code>.
             </Text>
           </div>
-          <div className="flex flex-wrap items-end gap-16">
-            <GrowthRings className="text-ivory" size={160} />
-            <WingLayers className="text-ivory" width={280} />
+          <div className="grid gap-12 md:grid-cols-2">
+            <figure className="flex flex-col gap-4">
+              <CicadaMark className="h-28 w-auto text-meadow" />
+              <figcaption className="text-sm text-paper/60">
+                Logo mark — Mountain Meadow on ink
+              </figcaption>
+            </figure>
+            <figure className="flex flex-col gap-4">
+              <CicadaMark className="h-28 w-auto text-paper" />
+              <figcaption className="text-sm text-paper/60">
+                Logo mark — paper on ink
+              </figcaption>
+            </figure>
+            <figure className="flex flex-col gap-4">
+              <CicadaWordmark className="h-10 w-auto text-paper" title="Cicada wordmark" />
+              <figcaption className="text-sm text-paper/60">
+                Logotype — wordmark only (header scale)
+              </figcaption>
+            </figure>
+            <figure className="flex flex-col gap-4">
+              <CicadaWordmark
+                withDescriptor
+                className="h-16 w-auto text-paper"
+                title="Cicada wordmark with descriptor"
+              />
+              <figcaption className="text-sm text-paper/60">
+                Logotype with descriptor line
+              </figcaption>
+            </figure>
+          </div>
+          <div>
+            <Text className="mb-6 max-w-2xl text-paper/70">
+              Supporting decorative primitives — growth rings and wing layers —
+              stay abstract and aria-hidden. Use them sparingly.
+            </Text>
+            <div className="flex flex-wrap items-end gap-16">
+              <GrowthRings className="text-paper" size={120} />
+              <WingLayers className="text-paper" width={220} />
+            </div>
           </div>
         </Container>
       </Section>
@@ -371,25 +414,25 @@ export default function DesignSystemPage() {
                 {MOTION_TOKENS.map((token) => (
                   <tr key={token.name} className="border-b border-ink/10">
                     <td className="py-2 pr-6 font-mono text-xs">{token.name}</td>
-                    <td className="py-2 pr-6 font-mono text-xs text-stone">
+                    <td className="py-2 pr-6 font-mono text-xs text-slate">
                       {token.value}
                     </td>
-                    <td className="py-2 text-stone">{token.use}</td>
+                    <td className="py-2 text-slate">{token.use}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
-            <div className="anim-rise rounded-sm bg-ivory-soft p-6" data-testid="motion-rise">
+            <div className="anim-rise rounded-sm bg-lilac p-6" data-testid="motion-rise">
               <p className="font-semibold">Rise-in entrance</p>
-              <p className="text-sm text-stone">
+              <p className="text-sm text-slate">
                 anim-rise — duration-reveal, ease-emergence
               </p>
             </div>
-            <div className="anim-fade rounded-sm bg-ivory-soft p-6" data-testid="motion-fade">
+            <div className="anim-fade rounded-sm bg-lilac p-6" data-testid="motion-fade">
               <p className="font-semibold">Fade entrance</p>
-              <p className="text-sm text-stone">
+              <p className="text-sm text-slate">
                 anim-fade — duration-slow, ease-out-soft
               </p>
             </div>
@@ -404,10 +447,10 @@ export default function DesignSystemPage() {
             <Eyebrow>Foundations</Eyebrow>
             <Heading level={2} id="ds-a11y">Focus &amp; accessibility</Heading>
           </div>
-          <ul className="flex max-w-2xl list-disc flex-col gap-2 pl-5 text-stone">
+          <ul className="flex max-w-2xl list-disc flex-col gap-2 pl-5 text-slate">
             <li>
-              Global <code>:focus-visible</code> ring: 2px moss outline, 3px
-              offset — visible on ivory, surface, and ink.
+              Global <code>:focus-visible</code> ring: 2px meadow-deep outline, 3px
+              offset — visible on paper, surface, and ink.
             </li>
             <li>A skip link is the first focusable element on every page.</li>
             <li>Medium and large buttons meet the 44px touch target.</li>

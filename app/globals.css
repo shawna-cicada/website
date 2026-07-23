@@ -3,31 +3,28 @@
 /* ============================================================
    Cicada Agility — Design Tokens
    Single source of truth for brand color, type, space, motion.
-   Contrast pairs are enforced by tests/unit/tokens-contrast.test.ts —
-   if you change a hex value here, that test revalidates WCAG AA.
+
+   Color values come from the official Cicada brand guidelines
+   (see docs/BRAND.md): Mountain Meadow, Rhino, Big Stone, Melrose,
+   Malibu, White Lilac, Silver — plus derived tints validated for
+   accessibility. Contrast pairs are enforced by
+   tests/unit/tokens-contrast.test.ts — if you change a hex value
+   here, that test revalidates WCAG AA.
    ============================================================ */
 
 :root {
-  /* --- Color: core palette --- */
-  --color-ink: #201f19; /* deep warm near-black: authority */
-  --color-ink-soft: #35332a; /* raised surfaces on ink */
-  --color-ivory: #f7f4eb; /* warm ivory page background */
-  --color-ivory-soft: #efeadd; /* cards / wells on ivory */
-  --color-chartreuse: #c9d64b; /* the cicada accent: decorative, large surfaces, on-ink */
-  --color-chartreuse-bright: #d4e05e; /* hover state of the accent surface */
-  --color-moss: #55631c; /* text-safe accent on ivory (links, small accents) */
-  --color-copper: #8f4f24; /* emergence: secondary accent, text-safe on ivory */
-  --color-stone: #635f52; /* muted text on ivory */
-  --color-sage: #a9af8f; /* quiet supporting tone, decorative only */
-
-  /* --- Color: semantic aliases --- */
-  --color-bg: var(--color-ivory);
-  --color-surface: var(--color-ivory-soft);
-  --color-text: var(--color-ink);
-  --color-text-muted: var(--color-stone);
-  --color-accent: var(--color-chartreuse);
-  --color-accent-ink: var(--color-moss);
-  --color-emergence: var(--color-copper);
+  /* --- Color: brand palette --- */
+  --color-ink: #1e2a44; /* Big Stone — deep brand navy: authority, text */
+  --color-ink-soft: #2d3958; /* Rhino — raised surfaces on ink */
+  --color-paper: #fafbfc; /* near-white cool page background */
+  --color-lilac: #e6eaf5; /* White Lilac — cards / wells */
+  --color-meadow: #18b698; /* Mountain Meadow — THE brand green: surfaces, on-ink accents */
+  --color-meadow-bright: #2fcbb0; /* hover state of the accent surface */
+  --color-meadow-deep: #0d7263; /* derived: text-safe brand green on light backgrounds */
+  --color-slate: #4c5872; /* derived from Rhino: muted text on light backgrounds */
+  --color-melrose: #cbb8ff; /* Melrose — soft violet: decorative, on-ink accents */
+  --color-malibu: #4ddffd; /* Malibu — light cyan: rare decorative highlights */
+  --color-silver: #c4c4c4; /* Silver — decorative rules and quiet borders only */
 
   /* --- Type scale (fluid, editorial) --- */
   --text-xs: 0.75rem;
@@ -59,24 +56,26 @@
   --ease-emergence: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* --- Focus --- */
-  --focus-ring: 2px solid var(--color-moss);
+  --focus-ring: 2px solid var(--color-ink);
   --focus-offset: 3px;
 }
 
 @theme inline {
   --color-ink: var(--color-ink);
   --color-ink-soft: var(--color-ink-soft);
-  --color-ivory: var(--color-ivory);
-  --color-ivory-soft: var(--color-ivory-soft);
-  --color-chartreuse: var(--color-chartreuse);
-  --color-chartreuse-bright: var(--color-chartreuse-bright);
-  --color-moss: var(--color-moss);
-  --color-copper: var(--color-copper);
-  --color-stone: var(--color-stone);
-  --color-sage: var(--color-sage);
+  --color-paper: var(--color-paper);
+  --color-lilac: var(--color-lilac);
+  --color-meadow: var(--color-meadow);
+  --color-meadow-bright: var(--color-meadow-bright);
+  --color-meadow-deep: var(--color-meadow-deep);
+  --color-slate: var(--color-slate);
+  --color-melrose: var(--color-melrose);
+  --color-malibu: var(--color-malibu);
+  --color-silver: var(--color-silver);
 
   --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
-  --font-sans: "Public Sans Variable", system-ui, -apple-system, sans-serif;
+  --font-sans: "Open Sans Variable", system-ui, -apple-system, sans-serif;
+  --font-label: "Montserrat Variable", "Open Sans Variable", system-ui, sans-serif;
 
   --text-xs: var(--text-xs);
   --text-sm: var(--text-sm);
@@ -106,8 +105,8 @@ html {
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: var(--text-base);
   line-height: 1.6;
@@ -115,15 +114,21 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Global visible focus for keyboard users only */
+/* Global visible focus for keyboard users only.
+   Ink ring on light surfaces; Mountain Meadow ring inside dark sections
+   (both pairings AA-verified by the token contrast test). */
 :focus-visible {
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
   border-radius: var(--radius-xs);
 }
 
+.on-ink :focus-visible {
+  outline-color: var(--color-meadow);
+}
+
 ::selection {
-  background-color: var(--color-chartreuse);
+  background-color: var(--color-meadow);
   color: var(--color-ink);
 }
 

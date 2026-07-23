@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/fraunces";
-import "@fontsource-variable/public-sans";
+import "@fontsource-variable/open-sans";
+import "@fontsource-variable/montserrat";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";

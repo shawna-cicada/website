@@ -23,20 +23,20 @@ type AsLink = CommonProps & {
 export type ButtonProps = AsButton | AsLink;
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-xs font-sans font-semibold " +
+  "inline-flex items-center justify-center gap-2 rounded-xs font-label font-semibold " +
   "tracking-wide transition-colors duration-[var(--duration-quick)] " +
   "disabled:opacity-45 disabled:cursor-not-allowed select-none";
 
 export const buttonVariants: Record<ButtonVariant, string> = {
   primary:
-    "bg-ink text-ivory hover:bg-ink-soft " +
-    "[.on-ink_&]:bg-ivory [.on-ink_&]:text-ink [.on-ink_&]:hover:bg-ivory-soft",
-  accent: "bg-chartreuse text-ink hover:bg-chartreuse-bright",
+    "bg-ink text-paper hover:bg-ink-soft " +
+    "[.on-ink_&]:bg-paper [.on-ink_&]:text-ink [.on-ink_&]:hover:bg-lilac",
+  accent: "bg-meadow text-ink hover:bg-meadow-bright",
   outline:
     "border border-ink/40 text-ink hover:border-ink hover:bg-ink/5 " +
-    "[.on-ink_&]:border-ivory/40 [.on-ink_&]:text-ivory [.on-ink_&]:hover:border-ivory [.on-ink_&]:hover:bg-ivory/10",
+    "[.on-ink_&]:border-paper/40 [.on-ink_&]:text-paper [.on-ink_&]:hover:border-paper [.on-ink_&]:hover:bg-paper/10",
   ghost:
-    "text-ink hover:bg-ink/5 [.on-ink_&]:text-ivory [.on-ink_&]:hover:bg-ivory/10",
+    "text-ink hover:bg-ink/5 [.on-ink_&]:text-paper [.on-ink_&]:hover:bg-paper/10",
 };
 
 export const buttonSizes: Record<ButtonSize, string> = {

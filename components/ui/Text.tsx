@@ -12,7 +12,7 @@ export function Eyebrow({
   return (
     <p
       className={
-        "text-sm font-semibold uppercase tracking-[0.14em] text-emergence [.on-ink_&]:text-sage " +
+        "font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow-deep [.on-ink_&]:text-melrose " +
         className
       }
     >
@@ -72,7 +72,7 @@ export function Text({
   return (
     <p
       className={`${sizes[size]} ${
-        muted ? "text-stone [.on-ink_&]:text-ivory/70" : ""
+        muted ? "text-slate [.on-ink_&]:text-paper/70" : ""
       } ${className}`}
     >
       {children}
