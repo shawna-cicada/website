@@ -1,28 +1,34 @@
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { Eyebrow, Heading, Text } from "@/components/ui/Text";
-import { Button } from "@/components/ui/Button";
+import { getHomepageContent } from "@/lib/cms";
+import { Hero } from "@/components/sections/Hero";
+import { Recognition } from "@/components/sections/Recognition";
+import { Framework } from "@/components/sections/Framework";
+import { HowWeHelp } from "@/components/sections/HowWeHelp";
+import { AssessmentFeature } from "@/components/sections/AssessmentFeature";
+import { EngagementPath } from "@/components/sections/EngagementPath";
+import { ClientLogos } from "@/components/sections/ClientLogos";
+import { FeaturedInsightSection } from "@/components/sections/FeaturedInsight";
+import { Founders } from "@/components/sections/Founders";
+import { FinalCta } from "@/components/sections/FinalCta";
 
 /**
- * Placeholder homepage. The full ten-section homepage lands in Phase 3;
- * this page exists so the shell, tokens, and route tree are exercised.
+ * Homepage — the ten sections from WEBSITE_REDESIGN.md, composed from
+ * CMS-adapter content (currently seed-backed; Sanity in Phase 2).
  */
-export default function HomePage() {
+export default async function HomePage() {
+  const content = await getHomepageContent();
+
   return (
-    <Section aria-labelledby="home-heading">
-      <Container width="narrow" className="flex flex-col items-start gap-6">
-        <Eyebrow>Leadership evolution for growing companies</Eyebrow>
-        <Heading level={1} id="home-heading">
-          Growth Happens in Stages. Leadership Must Evolve With It.
-        </Heading>
-        <Text size="lg" muted>
-          The full site is under construction. The design system that will
-          carry it is ready for review.
-        </Text>
-        <Button href="/design-system" variant="accent">
-          View the design system
-        </Button>
-      </Container>
-    </Section>
+    <>
+      <Hero content={content.hero} />
+      <Recognition content={content.recognition} />
+      <Framework content={content.framework} />
+      <HowWeHelp content={content.services} />
+      <AssessmentFeature content={content.assessments} />
+      <EngagementPath content={content.engagement} />
+      <ClientLogos content={content.clients} />
+      <FeaturedInsightSection content={content.insight} />
+      <Founders content={content.founders} />
+      <FinalCta content={content.finalCta} />
+    </>
   );
 }

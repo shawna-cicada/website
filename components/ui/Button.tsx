@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from "react";
 
 export type ButtonVariant = "primary" | "accent" | "outline" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
@@ -18,6 +18,7 @@ type AsLink = CommonProps & {
   href: string;
   target?: string;
   rel?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
 export type ButtonProps = AsButton | AsLink;
@@ -56,9 +57,15 @@ export function Button(props: ButtonProps) {
   const classes = `${base} ${buttonVariants[variant]} ${buttonSizes[size]} ${className}`;
 
   if ("href" in props && typeof props.href === "string") {
-    const { href, target, rel } = props as AsLink;
+    const { href, target, rel, onClick } = props as AsLink;
     return (
-      <Link href={href} target={target} rel={rel} className={classes}>
+      <Link
+        href={href}
+        target={target}
+        rel={rel}
+        onClick={onClick}
+        className={classes}
+      >
         {children}
       </Link>
     );

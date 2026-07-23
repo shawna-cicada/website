@@ -164,6 +164,23 @@ body {
   animation: fade-in var(--duration-slow) var(--ease-out-soft) both;
 }
 
+/* Client logo marquee: slow, linear, CSS-only. Paused via
+   animation-play-state on hover/focus (see ClientLogos); the reduced-motion
+   clamp below stops it entirely for users who prefer reduced motion. */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* The track holds two identical strips; -50% loops seamlessly. */
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 45s linear infinite;
+}
+
 /* Reduced motion: collapse all animation and smooth scrolling.
    Components may also branch on useReducedMotion for JS-driven motion. */
 @media (prefers-reduced-motion: reduce) {

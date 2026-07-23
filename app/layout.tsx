@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import "@fontsource-variable/fraunces";
 import "@fontsource-variable/open-sans";
 import "@fontsource-variable/montserrat";
@@ -21,11 +22,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col">
+        {/* Without JavaScript, Framer Motion entrance states would leave
+            content at its initial hidden style; force it visible. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <Header />
         <main id="main" className="flex-1">
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
