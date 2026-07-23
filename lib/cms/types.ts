@@ -64,6 +64,55 @@ export type FeaturedInsight = {
   href: string;
 };
 
+export type RelatedInsight = {
+  title: string;
+  href: string;
+};
+
+export type PracticeArea = {
+  slug: string;
+  /** Short name used in navigation, cards, and cross-links. */
+  name: string;
+  /** Business-problem headline that leads the detail page. */
+  headline: string;
+  /** One-paragraph summary for cards and metadata. */
+  summary: string;
+  whoFor: string[];
+  problems: string[];
+  workOn: string[];
+  leaveWith: string[];
+  /** Names of engagement records that typically apply (must match Engagement.name). */
+  formats: string[];
+  /**
+   * Methods that support the work without leading the positioning
+   * (Agile, Lean, product operations, portfolio management, facilitation).
+   */
+  supportingCapabilities: string[];
+  /** Slugs of practices this one most often combines with. */
+  relatedPractices: string[];
+  relatedInsights: RelatedInsight[];
+  seoDescription: string;
+};
+
+export type Engagement = {
+  name: string;
+  summary: string;
+  bestFor: string;
+  format: string;
+  /** Practice slugs this engagement serves. */
+  practices: string[];
+};
+
+export type HowWeHelpContent = {
+  eyebrow: string;
+  headline: string;
+  copy: string;
+  systemNote: string;
+  engagementsHeadline: string;
+  engagementsCopy: string;
+  cta: CTA;
+};
+
 export type HomepageContent = {
   hero: {
     eyebrow: string;
