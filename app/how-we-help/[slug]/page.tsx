@@ -234,8 +234,19 @@ export default async function PracticePage({ params }: PageProps) {
           <div className="grid gap-6 md:grid-cols-2">
             {formats.map((engagement, index) => (
               <Reveal key={engagement.name} delay={index * 0.06} className="h-full">
-                <Card tone="paper" className="h-full">
+                <Card
+                  tone="paper"
+                  accent={engagement.audience === "individual"}
+                  className="h-full"
+                >
                   <div className="flex h-full flex-col gap-3">
+                    {engagement.audience === "individual" ? (
+                      <p>
+                        <span className="inline-flex rounded-full bg-meadow/15 px-3 py-1 font-label text-xs font-semibold uppercase tracking-[0.08em] text-meadow-deep">
+                          One-on-one
+                        </span>
+                      </p>
+                    ) : null}
                     <Heading level={3} visualLevel={4}>
                       {engagement.name}
                     </Heading>
