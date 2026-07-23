@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Cicada Agility — Design Tokens
+   Single source of truth for brand color, type, space, motion.
+   Contrast pairs are enforced by tests/unit/tokens-contrast.test.ts —
+   if you change a hex value here, that test revalidates WCAG AA.
+   ============================================================ */
+
+:root {
+  /* --- Color: core palette --- */
+  --color-ink: #201f19; /* deep warm near-black: authority */
+  --color-ink-soft: #35332a; /* raised surfaces on ink */
+  --color-ivory: #f7f4eb; /* warm ivory page background */
+  --color-ivory-soft: #efeadd; /* cards / wells on ivory */
+  --color-chartreuse: #c9d64b; /* the cicada accent: decorative, large surfaces, on-ink */
+  --color-chartreuse-bright: #d4e05e; /* hover state of the accent surface */
+  --color-moss: #55631c; /* text-safe accent on ivory (links, small accents) */
+  --color-copper: #8f4f24; /* emergence: secondary accent, text-safe on ivory */
+  --color-stone: #635f52; /* muted text on ivory */
+  --color-sage: #a9af8f; /* quiet supporting tone, decorative only */
+
+  /* --- Color: semantic aliases --- */
+  --color-bg: var(--color-ivory);
+  --color-surface: var(--color-ivory-soft);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-stone);
+  --color-accent: var(--color-chartreuse);
+  --color-accent-ink: var(--color-moss);
+  --color-emergence: var(--color-copper);
+
+  /* --- Type scale (fluid, editorial) --- */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+  --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
+  --text-5xl: clamp(2.75rem, 2rem + 3.75vw, 4.75rem);
+
+  /* --- Spacing rhythm --- */
+  --space-section: clamp(4rem, 3rem + 5vw, 7.5rem); /* between page sections */
+  --space-stack: clamp(2rem, 1.5rem + 2.5vw, 3.5rem); /* between blocks in a section */
+  --space-gutter: clamp(1.25rem, 1rem + 2vw, 2.5rem); /* page edge padding */
+
+  /* --- Radii: restrained, editorial --- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* --- Motion tokens --- */
+  --duration-quick: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+  --duration-reveal: 900ms;
+  --ease-out-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-emergence: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* --- Focus --- */
+  --focus-ring: 2px solid var(--color-moss);
+  --focus-offset: 3px;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ivory: var(--color-ivory);
+  --color-ivory-soft: var(--color-ivory-soft);
+  --color-chartreuse: var(--color-chartreuse);
+  --color-chartreuse-bright: var(--color-chartreuse-bright);
+  --color-moss: var(--color-moss);
+  --color-copper: var(--color-copper);
+  --color-stone: var(--color-stone);
+  --color-sage: var(--color-sage);
+
+  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --font-sans: "Public Sans Variable", system-ui, -apple-system, sans-serif;
+
+  --text-xs: var(--text-xs);
+  --text-sm: var(--text-sm);
+  --text-base: var(--text-base);
+  --text-lg: var(--text-lg);
+  --text-xl: var(--text-xl);
+  --text-2xl: var(--text-2xl);
+  --text-3xl: var(--text-3xl);
+  --text-4xl: var(--text-4xl);
+  --text-5xl: var(--text-5xl);
+
+  --spacing-section: var(--space-section);
+  --spacing-stack: var(--space-stack);
+  --spacing-gutter: var(--space-gutter);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Global visible focus for keyboard users only */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: var(--radius-xs);
+}
+
+::selection {
+  background-color: var(--color-chartreuse);
+  color: var(--color-ink);
+}
+
+/* ============================================================
+   Motion utilities — every entrance respects reduced motion
+   ============================================================ */
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.anim-rise {
+  animation: rise-in var(--duration-reveal) var(--ease-emergence) both;
+}
+
+.anim-fade {
+  animation: fade-in var(--duration-slow) var(--ease-out-soft) both;
+}
+
+/* Reduced motion: collapse all animation and smooth scrolling.
+   Components may also branch on useReducedMotion for JS-driven motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
