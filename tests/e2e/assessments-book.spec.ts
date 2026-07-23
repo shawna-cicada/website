@@ -70,6 +70,7 @@ test.describe("/book", () => {
       "Discovery Call",
       "Assessment Debrief",
       "Existing Client Session",
+      "Coaching Session",
     ]) {
       await expect(
         page.getByRole("button", { name: new RegExp(label) }),

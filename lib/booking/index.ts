@@ -5,7 +5,7 @@ import type {
   BookingProvider,
 } from "@/lib/booking/types";
 
-/** The three configured conversation types (per WEBSITE_REDESIGN.md). */
+/** The configured conversation types (per WEBSITE_REDESIGN.md + D-023). */
 export const BOOKING_EVENT_TYPES: BookingEventType[] = [
   {
     key: "discovery-call",
@@ -23,6 +23,12 @@ export const BOOKING_EVENT_TYPES: BookingEventType[] = [
     key: "existing-client",
     label: "Existing Client Session",
     description: "Working time for teams we are already partnering with.",
+  },
+  {
+    key: "coaching-session",
+    label: "Coaching Session",
+    description:
+      "Already a client? Book your next one-on-one coaching session.",
   },
 ];
 

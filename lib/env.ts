@@ -38,6 +38,11 @@ export const ENV_CHECKS: EnvCheck[] = [
     critical: false,
     consequence: "The Existing Client event type falls back to email.",
   },
+  {
+    name: "CALENDLY_EVENT_URL_COACHING_SESSION",
+    critical: false,
+    consequence: "The Coaching Session event type falls back to email.",
+  },
   // NEXT_PUBLIC_SANITY_PROJECT_ID is no longer checked here: the live
   // project's public coordinates are committed defaults (D-020,
   // lib/sanity/config.ts); the env var remains as an optional override.

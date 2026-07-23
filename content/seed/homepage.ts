@@ -167,6 +167,7 @@ export const homepageContent: HomepageContent = {
       "Growth Stage Diagnostic",
       "Leadership Intensive",
       "Team Reset",
+      "Executive & Leadership Coaching",
       "Operating Model or Product Effectiveness Assessment",
       "Scale Plan and Operational Roadmap",
       "Ongoing Leadership or Organizational Advisory",

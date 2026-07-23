@@ -40,11 +40,12 @@ describe("calendly provider", () => {
 });
 
 describe("booking config", () => {
-  it("exposes the three required event types", () => {
+  it("exposes the four required event types", () => {
     expect(BOOKING_EVENT_TYPES.map((event) => event.label)).toEqual([
       "Discovery Call",
       "Assessment Debrief",
       "Existing Client Session",
+      "Coaching Session",
     ]);
   });
 

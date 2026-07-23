@@ -19,6 +19,7 @@ logs any gaps — critical ones fail the launch checklist.
 | `ASSESSMENT_URL_GROWTH_STAGE` | /assessments, homepage | Featured assessment renders "available soon" |
 | `CALENDLY_EVENT_URL_ASSESSMENT_DEBRIEF` | /book | Event type falls back to email |
 | `CALENDLY_EVENT_URL_EXISTING_CLIENT` | /book | Event type falls back to email |
+| `CALENDLY_EVENT_URL_COACHING_SESSION` | /book | Event type falls back to email |
 | `ASSESSMENT_URL_FOUNDER_GROWTH` | /assessments | Card renders "available soon" |
 | `ASSESSMENT_URL_LEADERSHIP_ALIGNMENT` | /assessments | Card renders "available soon" |
 | `ASSESSMENT_URL_AI_READINESS` | /assessments | Card renders "available soon" |
