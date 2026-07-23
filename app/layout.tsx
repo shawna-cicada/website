@@ -48,10 +48,9 @@ export default function RootLayout({
       className={`${openSans.variable} ${montserrat.variable}`}
     >
       <body className="flex min-h-screen flex-col">
-        {/* Without JavaScript, Framer Motion entrance states would leave
-            content at its initial hidden style; force it visible. */}
+        {/* Without JavaScript, entrance animations must never hide content. */}
         <noscript>
-          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+          <style>{`.reveal-item{opacity:1!important;transform:none!important;animation:none!important}`}</style>
         </noscript>
         <Header />
         <main id="main" className="flex-1">

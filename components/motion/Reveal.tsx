@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -12,28 +11,42 @@ type RevealProps = {
 
 /**
  * Entrance reveal: rises and fades in when scrolled into view.
- * - Reduced motion: renders a static element, no animation at all.
- * - No JavaScript: a <noscript> override in the root layout forces
- *   [data-reveal] elements visible, so content never stays hidden.
- * - Runs once; animating only transform/opacity avoids layout shift.
+ * Deliberately framework-free (CSS animation + IntersectionObserver)
+ * after Framer's reduced-motion hook proved unreliable in some
+ * environments. Failure-proof by construction:
+ * - The CSS in globals.css runs a guard animation that forces the
+ *   content visible ~2.5s after paint even if JS/IO never runs.
+ * - A <noscript> override in the root layout shows it instantly
+ *   without JavaScript.
+ * - The global reduced-motion clamp collapses both animations, so
+ *   reduced-motion users see content immediately, unanimated.
  */
-export function Reveal({ children, delay = 0, className }: RevealProps) {
-  const reduced = useReducedMotion();
+export function Reveal({ children, delay = 0, className = "" }: RevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
 
-  if (reduced) {
-    return <div className={className}>{children}</div>;
-  }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          el.classList.add("reveal-in");
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.div
-      data-reveal
-      className={className}
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-64px 0px" }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
+    <div
+      ref={ref}
+      className={`reveal-item ${className}`}
+      style={{ "--reveal-delay": `${delay}s` } as CSSProperties}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

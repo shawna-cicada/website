@@ -81,10 +81,10 @@ export default async function HowWeHelpPage() {
                         {practice.name}
                       </Heading>
                       <p className="font-medium text-slate">{practice.headline}</p>
-                      <Text muted size="sm">
+                      <Text muted>
                         {practice.summary}
                       </Text>
-                      <p className="mt-2 text-xs text-slate">
+                      <p className="mt-2 text-sm text-slate">
                         Connects with:{" "}
                         {practice.relatedPractices
                           .map((slug) => practiceNames.get(slug))
@@ -124,14 +124,14 @@ export default async function HowWeHelpPage() {
                     <Heading level={3} visualLevel={4}>
                       {engagement.name}
                     </Heading>
-                    <Text muted size="sm">
+                    <Text muted>
                       {engagement.summary}
                     </Text>
-                    <p className="text-xs text-slate">
+                    <p className="text-sm text-slate">
                       <span className="font-semibold">Best for:</span>{" "}
                       {engagement.bestFor}
                     </p>
-                    <p className="mt-auto pt-1 text-xs text-slate">
+                    <p className="mt-auto pt-1 text-sm text-slate">
                       {engagement.format}
                     </p>
                   </div>

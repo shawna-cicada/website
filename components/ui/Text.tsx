@@ -12,7 +12,7 @@ export function Eyebrow({
   return (
     <p
       className={
-        "font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow-deep [.on-ink_&]:text-melrose " +
+        "font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow-deep [.on-ink_&]:text-meadow " +
         className
       }
     >

@@ -30,7 +30,7 @@ export default async function AssessmentsPage() {
     <>
       <PageViewTracker event="assessment_view" props={{ path: "/assessments" }} />
 
-      <Section aria-labelledby="assessments-heading">
+      <Section spacing="compact" aria-labelledby="assessments-heading">
         <PageHero
           eyebrow="Assessments"
           headline="Find out what your company has outgrown."
@@ -40,7 +40,7 @@ export default async function AssessmentsPage() {
       </Section>
 
       {featured ? (
-        <Section tone="surface" aria-labelledby="featured-assessment-heading">
+        <Section tone="surface" spacing="compact" aria-labelledby="featured-assessment-heading">
           <Container>
             <Reveal>
               <Card tone="ink" className="p-8 sm:p-12">
@@ -78,7 +78,7 @@ export default async function AssessmentsPage() {
         </Section>
       ) : null}
 
-      <Section aria-labelledby="all-assessments-heading">
+      <Section spacing="compact" aria-labelledby="all-assessments-heading">
         <Container className="flex flex-col gap-stack">
           <Reveal>
             <Heading level={2} visualLevel={3} id="all-assessments-heading">
@@ -93,10 +93,10 @@ export default async function AssessmentsPage() {
                     <Heading level={3} visualLevel={4}>
                       {assessment.title}
                     </Heading>
-                    <Text muted size="sm">
+                    <Text muted>
                       {assessment.summary}
                     </Text>
-                    <p className="text-xs text-slate">
+                    <p className="text-sm text-slate">
                       {[assessment.audience, assessment.duration]
                         .filter(Boolean)
                         .join(" · ")}
