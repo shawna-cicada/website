@@ -259,6 +259,15 @@ export const engagements: Engagement[] = [
     practices: ["leadership-team-effectiveness"],
   },
   {
+    name: "Executive & Leadership Coaching",
+    summary:
+      "One-on-one coaching for founders, executives, and rising leaders — grounded in 360° feedback and focused on the behaviors that shape the culture around them.",
+    bestFor:
+      "Individual leaders growing into a bigger role, a stage change, or hard feedback",
+    format: "3–6 month arcs · recurring 1:1 sessions · 360° feedback with debrief",
+    practices: ["leadership-team-effectiveness", "founder-growth"],
+  },
+  {
     name: "Operating Model and Product Effectiveness Assessment",
     summary:
       "A clear-eyed read on how work actually moves through the organization — and where it stalls.",

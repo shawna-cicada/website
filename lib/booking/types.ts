@@ -7,7 +7,8 @@
 export type BookingEventKey =
   | "discovery-call"
   | "assessment-debrief"
-  | "existing-client";
+  | "existing-client"
+  | "coaching-session";
 
 export type BookingEventType = {
   key: BookingEventKey;

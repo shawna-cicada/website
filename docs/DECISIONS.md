@@ -121,5 +121,14 @@ the CRM. The /assessments disclosure and per-assessment privacy notes
 now say this plainly. The launch-gated privacy policy must cover this
 collection before cutover (see LAUNCH_CHECKLIST).
 
+## D-023 — Coaching added as a first-class engagement and booking type — Accepted (2026-07-23)
+Founder addition: the engagement list was operations-heavy, missing the
+individual dimension. "Executive & Leadership Coaching" (1:1 coaching,
+360° feedback, culture-shaping behaviors) joins the engagement records,
+serving the Leadership & Team Effectiveness and Founder Challenges
+practices. /book gains a fourth event type, "Coaching Session", for
+existing clients (CALENDLY_EVENT_URL_COACHING_SESSION; email fallback
+until set, like every event type).
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.
