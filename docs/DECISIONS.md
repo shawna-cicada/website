@@ -1,0 +1,53 @@
+# Decision Log
+
+Lightweight ADR-style log for the cicadaagility.com rebuild. The repository was empty at project start (one commit, stub README), so nothing pre-existing constrained these choices. Defaults below were confirmed by the project owner on 2026-07-23; the brief (`WEBSITE_REDESIGN.md`) is the source for context and alternatives considered.
+
+Statuses: **Accepted** (build on it) · **Deferred** (decide later; design keeps it swappable) · **Superseded** (replaced by a later entry).
+
+## D-001 — Framework: Next.js (App Router) + TypeScript — Accepted
+The brief's recommended stack; nothing in the repo establishes an alternative. App Router gives us layouts, streaming, route groups (`app/(site)/`), and first-class metadata/sitemap support for the SEO requirements.
+
+## D-002 — Styling: Tailwind CSS — Accepted
+Design tokens (color, type scale, spacing) live in the Tailwind theme so the brand system is enforced in one place. WCAG AA contrast is validated at the token level, not per-page.
+
+## D-003 — Motion: CSS-first, Framer Motion where it earns its place — Accepted
+Per the brief: CSS animation by default; Framer Motion only for the scroll-linked Shed → Emerge → Expand sequence and other interactions needing real orchestration. All motion respects `prefers-reduced-motion`.
+
+## D-004 — CMS: Sanity, isolated behind a content adapter — Accepted
+Sanity was the brief's default recommendation and is confirmed. **All page/data access goes through `lib/cms/` adapter interfaces** — components never import Sanity clients or GROQ directly. This keeps a future migration (e.g., to Storyblok) a lib-level change, and lets tests and seed content run against a fixture-backed adapter. The customized Studio (branded dashboard, guided workflows, plain-language labels) is a core deliverable, not default Sanity config.
+
+## D-005 — Hosting: Vercel — Accepted
+Preview deploys per PR, native Next.js support, redirects/headers config for the 301 map, and image optimization.
+
+## D-006 — Booking: Calendly, isolated behind a booking adapter — Accepted
+Calendly is the fastest path to a working `/book` page. **The embed, event-type config, prefill/UTM passthrough, and analytics hooks live behind `lib/booking/`** so Cal.com remains a drop-in replacement if Cicada later wants a branded/self-hosted experience. A plain fallback link renders if the embed is blocked.
+
+## D-007 — Analytics: Vercel Analytics — Accepted
+Custom events implemented through a thin `lib/analytics/` wrapper (`track(event, props)`) emitting the brief's event taxonomy (`cta_click`, `assessment_external_click`, `booking_*`, etc.). The wrapper keeps a later move to Plausible or a dual-send trivial.
+
+## D-008 — Testing: Vitest + Playwright — Accepted
+Vitest for unit/component tests (adapters, validation, LinkedIn copy generation); Playwright for e2e journeys (homepage CTAs, booking flow, assessment outbound links, insights render, redirect map verification) plus axe-based accessibility checks.
+
+## D-009 — Validation & forms: Zod + React Hook Form — Accepted
+Per the brief. Zod schemas double as the contract for CMS-shaped data crossing the content adapter.
+
+## D-010 — Email: Resend for contact form delivery — Accepted
+Per the brief. Used by the contact option on `/book`.
+
+## D-011 — LinkedIn syndication: Phase 1 (manual with generated copy) — Accepted
+The CMS generates suggested post copy + canonical URL with a one-click copy action; posting is manual. Automation (Phase 2 webhook → approval, Phase 3 direct API) is isolated behind `lib/linkedin/` and deferred until LinkedIn app permissions exist.
+
+## D-012 — First assessment provider — Deferred
+The Growth Stage Assessment CTA links to a CMS-managed external URL, so the provider can be chosen (and changed) without a deploy. If none is live at launch, "Book a Discovery Call" is promoted to primary CTA via CMS settings.
+
+## D-013 — Client logos and case-study links — Deferred
+Every logo record carries `active` and permission-review status in the CMS; nothing renders publicly until approved. Case-study links ship only if content exists at launch.
+
+## D-014 — Newsletter — Deferred
+Not in launch scope. The final-CTA section leaves room for it; adding it later is a CMS + one-component change.
+
+## D-015 — Logo retained or refreshed — Deferred
+The design system treats the logo as a swappable asset; token-based color means a refresh doesn't ripple through the build.
+
+## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
+Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.
