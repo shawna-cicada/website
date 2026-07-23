@@ -10,7 +10,7 @@ import { slugify } from "@/lib/editorial/slug";
  */
 export const insight = defineType({
   name: "insight",
-  title: "Articles & Videos",
+  title: "Articles and Insights",
   type: "document",
   groups: [
     { name: "essentials", title: "The basics", default: true },

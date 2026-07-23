@@ -33,40 +33,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-function ListBlock({
-  id,
-  eyebrow,
-  title,
-  items,
-  columns = 1,
-}: {
-  id: string;
-  eyebrow?: string;
-  title: string;
-  items: string[];
-  columns?: 1 | 2;
-}) {
+/** Meadow check mark for outcome lists on ink. */
+function CheckIcon() {
   return (
-    <div aria-labelledby={id}>
-      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <Heading level={2} visualLevel={3} id={id} className={eyebrow ? "mt-2" : ""}>
-        {title}
-      </Heading>
-      <ul
-        className={`mt-6 grid gap-x-10 gap-y-3 ${
-          columns === 2 ? "md:grid-cols-2" : ""
-        }`}
-      >
-        {items.map((item) => (
-          <li key={item} className="flex gap-3 text-slate">
-            <span aria-hidden="true" className="mt-[2px] text-meadow-deep">
-              —
-            </span>
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <svg
+      aria-hidden="true"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="mt-1 shrink-0 text-meadow"
+    >
+      <path d="M3 9.5 L7 13.5 L15 4.5" />
+    </svg>
   );
 }
 
@@ -119,18 +102,15 @@ export default async function PracticePage({ params }: PageProps) {
             </span>
             <span className="text-slate">{practice.name}</span>
           </nav>
-          <div className="anim-rise">
-            <Eyebrow>{practice.name}</Eyebrow>
-          </div>
           <div className="anim-fade" style={{ animationDuration: "400ms" }}>
             <Heading level={1} visualLevel={2} id="practice-heading">
-              {practice.headline}
+              {practice.name}
             </Heading>
           </div>
           <div className="anim-rise" style={{ animationDelay: "120ms" }}>
-            <Text size="lg" muted className="max-w-2xl">
-              {practice.summary}
-            </Text>
+            <p className="max-w-2xl border-l-2 border-meadow pl-5 text-xl leading-snug text-ink/85">
+              {practice.headline}
+            </p>
           </div>
           <div className="anim-rise" style={{ animationDelay: "220ms" }}>
             <CTAButton
@@ -143,56 +123,101 @@ export default async function PracticePage({ params }: PageProps) {
         </Container>
       </Section>
 
-      {/* Who it's for */}
+      {/* Who it's for (audience chips) + problems (recognition voice) */}
       <Section tone="surface" aria-labelledby="who-for">
-        <Container className="grid gap-10 lg:grid-cols-2">
+        <Container className="grid gap-12 lg:grid-cols-2">
           <Reveal>
-            <ListBlock
-              id="who-for"
-              eyebrow="Who it's for"
-              title="Where this work usually starts"
-              items={practice.whoFor}
-            />
+            <div>
+              <Heading level={2} visualLevel={3} id="who-for">
+                Who it&rsquo;s for
+              </Heading>
+              <ul className="mt-6 flex flex-wrap gap-3">
+                {practice.whoFor.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-full border border-ink/15 bg-paper px-4 py-2 text-sm font-medium text-ink/85"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <ListBlock
-              id="problems"
-              eyebrow="Problems we help solve"
-              title="What it looks like from the inside"
-              items={practice.problems}
-            />
+            <div>
+              <Heading level={2} visualLevel={3} id="problems">
+                Problems we help solve
+              </Heading>
+              <ul className="mt-6 flex flex-col gap-5">
+                {practice.problems.map((item) => (
+                  <li
+                    key={item}
+                    className="border-l-2 border-meadow-deep pl-5 text-ink/85"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
         </Container>
       </Section>
 
-      {/* What we may work on / leave with */}
+      {/* The work (thin brand numerals) + outcomes (checks on ink) */}
       <Section aria-labelledby="work-on">
         <Container className="flex flex-col gap-stack">
           <Reveal>
-            <ListBlock
-              id="work-on"
-              eyebrow="What we may work on"
-              title="The work, shaped to your stage"
-              items={practice.workOn}
-              columns={2}
-            />
-          </Reveal>
-          <Reveal>
-            <div className="rounded-sm bg-lilac p-6 sm:p-8">
-              <ListBlock
-                id="leave-with"
-                eyebrow="What clients leave with"
-                title="What is different afterward"
-                items={practice.leaveWith}
-                columns={2}
-              />
+            <div>
+              <Heading level={2} visualLevel={3} id="work-on">
+                What we may work on
+              </Heading>
+              <ol className="mt-8 grid gap-x-12 gap-y-6 md:grid-cols-2">
+                {practice.workOn.map((item, index) => (
+                  <li
+                    key={item}
+                    className="flex items-baseline gap-4 border-t border-ink/10 pt-4"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="font-display text-3xl font-extralight leading-none text-meadow-deep"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-medium text-ink/85">{item}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
           </Reveal>
           <Reveal>
-            <p className="text-sm text-slate">
-              <span className="font-semibold">Supporting capabilities:</span>{" "}
-              {practice.supportingCapabilities.join(" · ")}
-            </p>
+            <div className="on-ink rounded-md bg-ink p-8 sm:p-10" aria-labelledby="leave-with">
+              <Heading level={2} visualLevel={3} id="leave-with" className="text-paper">
+                What clients leave with
+              </Heading>
+              <ul className="mt-7 grid gap-x-12 gap-y-5 md:grid-cols-2">
+                {practice.leaveWith.map((item) => (
+                  <li key={item} className="flex gap-3 text-paper/85">
+                    <CheckIcon />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-label text-xs font-bold uppercase tracking-[0.14em] text-slate">
+                Supporting capabilities
+              </span>
+              {practice.supportingCapabilities.map((capability) => (
+                <span
+                  key={capability}
+                  className="rounded-full bg-lilac px-3 py-1 text-xs font-medium text-ink/75"
+                >
+                  {capability}
+                </span>
+              ))}
+            </div>
           </Reveal>
         </Container>
       </Section>

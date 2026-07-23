@@ -58,12 +58,18 @@ export default async function HowWeHelpPage() {
       <Section tone="surface" aria-labelledby="hwh-system-heading">
         <Container className="flex flex-col gap-stack">
           <Reveal className="max-w-3xl">
-            <Heading level={2} id="hwh-system-heading" visualLevel={3}>
-              One connected system
+            <Eyebrow>Our practices</Eyebrow>
+            <Heading level={2} id="hwh-system-heading" visualLevel={3} className="mt-2">
+              Four practices, one connected system
             </Heading>
             <Text muted className="mt-3">
               {content.systemNote}
             </Text>
+            <div className="mt-4">
+              <TextLink href="/about" arrow>
+                More about how we work
+              </TextLink>
+            </div>
           </Reveal>
 
           <div className="relative">

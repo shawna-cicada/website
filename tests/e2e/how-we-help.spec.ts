@@ -50,12 +50,18 @@ test.describe("/how-we-help", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "Your leadership team is working harder — and agreeing less.",
+        name: "Leadership & Team Effectiveness",
       }),
+    ).toBeVisible();
+    // The problem statement leads the page right under the title.
+    await expect(
+      page.getByText(
+        "Your leadership team is working harder — and agreeing less.",
+      ),
     ).toBeVisible();
 
     for (const block of [
-      "Who it's for",
+      "Who it’s for",
       "Problems we help solve",
       "What we may work on",
       "What clients leave with",
@@ -77,13 +83,14 @@ test.describe("/how-we-help", () => {
   test("cross-links navigate between related practices", async ({ page }) => {
     await page.goto("/how-we-help/founder-growth");
     await page
+      .getByRole("main")
       .getByRole("link", { name: "Leadership & Team Effectiveness" })
       .first()
       .click();
     await expect(page).toHaveURL(/leadership-team-effectiveness/);
     await expect(
       page.getByRole("heading", { level: 1 }),
-    ).toContainText("working harder");
+    ).toContainText("Leadership & Team Effectiveness");
   });
 
   test("Service structured data is present and valid", async ({ page }) => {

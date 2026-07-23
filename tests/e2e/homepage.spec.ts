@@ -75,6 +75,21 @@ test.describe("homepage", () => {
     ).toBeHidden();
   });
 
+  test("desktop nav: Assessments dropdown deep-links the hub", async ({
+    page,
+    isMobile,
+  }) => {
+    test.skip(isMobile, "desktop project only");
+    await page.goto("/");
+    await page.getByRole("button", { name: /show assessments pages/i }).click();
+    const link = page.getByRole("link", { name: "Growth Stage Assessment" });
+    await expect(link).toBeVisible();
+    await expect(link).toHaveAttribute("href", "/assessments#growth-stage");
+    // The dropdown must render above page content (regression: z-index).
+    await link.click();
+    await expect(page).toHaveURL(/\/assessments#growth-stage$/);
+  });
+
   test("framework presents all three stages", async ({ page }) => {
     await page.goto("/");
     for (const stage of ["Shed", "Emerge", "Expand"]) {

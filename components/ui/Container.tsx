@@ -7,6 +7,8 @@ type ContainerProps = {
   /** narrow = prose measure, default = content, wide = full editorial bleed */
   width?: "narrow" | "default" | "wide";
   className?: string;
+  /** Anchor target (e.g. nav dropdown deep links). */
+  id?: string;
 };
 
 const widths = {
@@ -20,9 +22,10 @@ export function Container({
   as: Tag = "div",
   width = "default",
   className = "",
+  id,
 }: ContainerProps) {
   return (
-    <Tag className={`mx-auto w-full px-gutter ${widths[width]} ${className}`}>
+    <Tag id={id} className={`mx-auto w-full px-gutter ${widths[width]} ${className}`}>
       {children}
     </Tag>
   );
