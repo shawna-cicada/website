@@ -242,7 +242,7 @@ export default async function PracticePage({ params }: PageProps) {
                   <div className="flex h-full flex-col gap-3">
                     {engagement.audience === "individual" ? (
                       <p>
-                        <span className="inline-flex rounded-full bg-meadow/15 px-3 py-1 font-label text-xs font-semibold uppercase tracking-[0.08em] text-meadow-deep">
+                        <span className="inline-flex rounded-full bg-meadow/15 px-3 py-1 font-label text-xs font-semibold uppercase tracking-[0.08em] text-ink">
                           One-on-one
                         </span>
                       </p>

@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { slugify } from "@/lib/editorial/slug";
+import { LinkedInPostInput } from "@/sanity/components/LinkedInPostInput";
 
 /**
  * The single content type behind Articles, Videos, Conversations,
@@ -144,10 +145,11 @@ export const insight = defineType({
       name: "linkedInPostText",
       title: "Suggested LinkedIn post",
       description:
-        "Generated for you from the title and summary (use “Copy LinkedIn Post” in the actions menu). Edit it freely — this is what you paste into LinkedIn.",
+        "Click Generate to write a post from the title and summary, then edit it freely — this is what you paste into LinkedIn. Publishing also fills this in automatically if it's empty.",
       type: "text",
       rows: 8,
       group: "promotion",
+      components: { input: LinkedInPostInput },
     }),
     defineField({
       name: "linkedInPostStatus",
