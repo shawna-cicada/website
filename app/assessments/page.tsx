@@ -1,0 +1,151 @@
+import type { Metadata } from "next";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
+import { Eyebrow, Heading, Text } from "@/components/ui/Text";
+import { Reveal } from "@/components/motion/Reveal";
+import { AssessmentCta } from "@/components/sections/AssessmentCta";
+import { PageViewTracker } from "@/components/sections/PageViewTracker";
+import { getActiveAssessments } from "@/lib/cms";
+
+export const metadata: Metadata = {
+  title: "Assessments",
+  description:
+    "Name the stage your company is in, identify the friction beneath the symptoms, and focus on the capability that needs to evolve next. Start with a Cicada Agility assessment.",
+};
+
+/**
+ * Assessment hub: featured assessment leads, remaining active records in
+ * a card grid. External links are clearly indicated and unconfigured
+ * records render disabled. Deliberately no filters — add them only when
+ * more than six records are active (per WEBSITE_REDESIGN.md).
+ */
+export default async function AssessmentsPage() {
+  const active = await getActiveAssessments();
+  const featured = active.find((assessment) => assessment.featured);
+  const rest = active.filter((assessment) => !assessment.featured);
+
+  return (
+    <>
+      <PageViewTracker event="assessment_view" props={{ path: "/assessments" }} />
+
+      <Section aria-labelledby="assessments-heading">
+        <Container className="flex max-w-4xl flex-col gap-6">
+          <Reveal>
+            <Eyebrow>Assessments</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Heading level={1} id="assessments-heading">
+              Start by understanding what your company has outgrown.
+            </Heading>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <Text size="lg" muted className="max-w-2xl">
+              Our assessments help founders and leadership teams name the stage
+              they are in, identify the friction beneath the symptoms, and
+              focus on the capability that needs to evolve next.
+            </Text>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {featured ? (
+        <Section tone="surface" aria-labelledby="featured-assessment-heading">
+          <Container>
+            <Reveal>
+              <Card tone="ink" className="p-8 sm:p-12">
+                <div className="flex max-w-2xl flex-col gap-4">
+                  <Eyebrow>Featured assessment</Eyebrow>
+                  <Heading level={2} id="featured-assessment-heading">
+                    {featured.title}
+                  </Heading>
+                  <Text size="lg" className="text-paper/75">
+                    {featured.summary}
+                  </Text>
+                  <p className="text-sm text-paper/60">
+                    {[featured.audience, featured.duration]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </p>
+                  <div className="mt-2">
+                    <AssessmentCta
+                      slug={featured.slug}
+                      title={featured.title}
+                      ctaLabel={featured.ctaLabel}
+                      externalUrl={featured.externalUrl}
+                      opensInNewTab={featured.opensInNewTab}
+                      trackingCampaign={featured.trackingCampaign}
+                      location="assessments-featured"
+                    />
+                  </div>
+                  {featured.privacyNote ? (
+                    <p className="text-xs text-paper/55">{featured.privacyNote}</p>
+                  ) : null}
+                </div>
+              </Card>
+            </Reveal>
+          </Container>
+        </Section>
+      ) : null}
+
+      <Section aria-labelledby="all-assessments-heading">
+        <Container className="flex flex-col gap-stack">
+          <Reveal>
+            <Heading level={2} visualLevel={3} id="all-assessments-heading">
+              More ways to locate the friction
+            </Heading>
+          </Reveal>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {rest.map((assessment, index) => (
+              <Reveal key={assessment.slug} delay={index * 0.06} className="h-full">
+                <Card tone="surface" className="h-full">
+                  <div className="flex h-full flex-col gap-3">
+                    <Heading level={3} visualLevel={4}>
+                      {assessment.title}
+                    </Heading>
+                    <Text muted size="sm">
+                      {assessment.summary}
+                    </Text>
+                    <p className="text-xs text-slate">
+                      {[assessment.audience, assessment.duration]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </p>
+                    <div className="mt-auto pt-2">
+                      <AssessmentCta
+                        slug={assessment.slug}
+                        title={assessment.title}
+                        ctaLabel={assessment.ctaLabel}
+                        externalUrl={assessment.externalUrl}
+                        opensInNewTab={assessment.opensInNewTab}
+                        trackingCampaign={assessment.trackingCampaign}
+                        location="assessments-grid"
+                        variant="outline"
+                      />
+                    </div>
+                  </div>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <div className="rounded-sm border border-ink/10 bg-paper p-6">
+              <h2 className="font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow-deep">
+                About third-party assessments
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm text-slate">
+                Assessments run on external platforms operated by their
+                providers. When you start one, you leave cicadaagility.com and
+                your answers are handled under the provider&apos;s own privacy
+                policy. Cicada Agility does not collect your answers or any
+                personal data through these links, and only receives results
+                you explicitly choose to share with us.
+              </p>
+            </div>
+          </Reveal>
+        </Container>
+      </Section>
+    </>
+  );
+}

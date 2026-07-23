@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="427" viewBox="0 0 320 427">
+<rect width="320" height="427" fill="#e6eaf5"/>
+<circle cx="160" cy="150" r="64" fill="#4c5872"/>
+<path d="M60 427 C 60 320, 260 320, 260 427 Z" fill="#4c5872"/>
+<text x="160" y="404" font-family="sans-serif" font-size="16" fill="#1e2a44" text-anchor="middle">PLACEHOLDER — Julia</text>
+</svg>

@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Cicada Agility — Design Tokens
+   Single source of truth for brand color, type, space, motion.
+
+   Color values come from the official Cicada brand guidelines
+   (see docs/BRAND.md): Mountain Meadow, Rhino, Big Stone, Melrose,
+   Malibu, White Lilac, Silver — plus derived tints validated for
+   accessibility. Contrast pairs are enforced by
+   tests/unit/tokens-contrast.test.ts — if you change a hex value
+   here, that test revalidates WCAG AA.
+   ============================================================ */
+
+:root {
+  /* --- Color: brand palette --- */
+  --color-ink: #1e2a44; /* Big Stone — deep brand navy: authority, text */
+  --color-ink-soft: #2d3958; /* Rhino — raised surfaces on ink */
+  --color-paper: #fafbfc; /* near-white cool page background */
+  --color-lilac: #e6eaf5; /* White Lilac — cards / wells */
+  --color-meadow: #18b698; /* Mountain Meadow — THE brand green: surfaces, on-ink accents */
+  --color-meadow-bright: #2fcbb0; /* hover state of the accent surface */
+  --color-meadow-deep: #0d7263; /* derived: text-safe brand green on light backgrounds */
+  --color-slate: #4c5872; /* derived from Rhino: muted text on light backgrounds */
+  --color-melrose: #cbb8ff; /* Melrose — soft violet: decorative, on-ink accents */
+  --color-malibu: #4ddffd; /* Malibu — light cyan: rare decorative highlights */
+  --color-silver: #c4c4c4; /* Silver — decorative rules and quiet borders only */
+
+  /* --- Type scale (fluid, editorial) --- */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.5rem + 1.9vw, 2.75rem);
+  --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
+  --text-5xl: clamp(2.75rem, 2rem + 3.75vw, 4.75rem);
+
+  /* --- Spacing rhythm --- */
+  --space-section: clamp(4rem, 3rem + 5vw, 7.5rem); /* between page sections */
+  --space-stack: clamp(2rem, 1.5rem + 2.5vw, 3.5rem); /* between blocks in a section */
+  --space-gutter: clamp(1.25rem, 1rem + 2vw, 2.5rem); /* page edge padding */
+
+  /* --- Radii: restrained, editorial --- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* --- Motion tokens --- */
+  --duration-quick: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+  --duration-reveal: 900ms;
+  --ease-out-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-emergence: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* --- Focus --- */
+  --focus-ring: 2px solid var(--color-ink);
+  --focus-offset: 3px;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-paper: var(--color-paper);
+  --color-lilac: var(--color-lilac);
+  --color-meadow: var(--color-meadow);
+  --color-meadow-bright: var(--color-meadow-bright);
+  --color-meadow-deep: var(--color-meadow-deep);
+  --color-slate: var(--color-slate);
+  --color-melrose: var(--color-melrose);
+  --color-malibu: var(--color-malibu);
+  --color-silver: var(--color-silver);
+
+  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --font-sans: "Open Sans Variable", system-ui, -apple-system, sans-serif;
+  --font-label: "Montserrat Variable", "Open Sans Variable", system-ui, sans-serif;
+
+  --text-xs: var(--text-xs);
+  --text-sm: var(--text-sm);
+  --text-base: var(--text-base);
+  --text-lg: var(--text-lg);
+  --text-xl: var(--text-xl);
+  --text-2xl: var(--text-2xl);
+  --text-3xl: var(--text-3xl);
+  --text-4xl: var(--text-4xl);
+  --text-5xl: var(--text-5xl);
+
+  --spacing-section: var(--space-section);
+  --spacing-stack: var(--space-stack);
+  --spacing-gutter: var(--space-gutter);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Global visible focus for keyboard users only.
+   Ink ring on light surfaces; Mountain Meadow ring inside dark sections
+   (both pairings AA-verified by the token contrast test). */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: var(--radius-xs);
+}
+
+.on-ink :focus-visible {
+  outline-color: var(--color-meadow);
+}
+
+::selection {
+  background-color: var(--color-meadow);
+  color: var(--color-ink);
+}
+
+/* ============================================================
+   Motion utilities — every entrance respects reduced motion
+   ============================================================ */
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.anim-rise {
+  animation: rise-in var(--duration-reveal) var(--ease-emergence) both;
+}
+
+.anim-fade {
+  animation: fade-in var(--duration-slow) var(--ease-out-soft) both;
+}
+
+/* Client logo marquee: slow, linear, CSS-only. Paused via
+   animation-play-state on hover/focus (see ClientLogos); the reduced-motion
+   clamp below stops it entirely for users who prefer reduced motion. */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* The track holds two identical strips; -50% loops seamlessly. */
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 45s linear infinite;
+}
+
+/* Reduced motion: collapse all animation and smooth scrolling.
+   Components may also branch on useReducedMotion for JS-driven motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
