@@ -51,6 +51,26 @@ export async function getEngagementsForPractice(
   );
 }
 
+export async function getAboutContent() {
+  const { aboutContent } = await import("@/content/seed/about");
+  return aboutContent;
+}
+
+export async function getFounders() {
+  const { founders } = await import("@/content/seed/about");
+  return founders;
+}
+
+export async function getClientRecords() {
+  const { clientRecords } = await import("@/content/seed/clients");
+  return clientRecords;
+}
+
+/** Approved clients only — the ONLY records /clients may render. */
+export async function getApprovedClients() {
+  return (await getClientRecords()).filter((client) => client.approved);
+}
+
 /**
  * Resolve an assessment's external URL from its environment variable and
  * append UTM parameters. Unset env → null → the UI renders a graceful

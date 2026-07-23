@@ -138,6 +138,48 @@ export type Engagement = {
   practices: string[];
 };
 
+/** Full founder profile for /about (superset of the homepage card). */
+export type FounderProfileFull = {
+  name: string;
+  role: string;
+  /** Short bio. Draft copy is flagged with draftBio until approved. */
+  bio: string;
+  /** True while the bio is placeholder copy pending editorial review. */
+  draftBio: boolean;
+  expertise: string[];
+  selectedExperience: string[];
+  linkedInUrl?: string;
+  speakingTopics: string[];
+  imageSrc: string;
+  imageAlt: string;
+};
+
+export type ClientGroup = "startup" | "growth" | "enterprise";
+
+/** CMS-managed client record. Nothing renders publicly until approved. */
+export type ClientRecord = {
+  name: string;
+  alt: string;
+  src: string;
+  width: number;
+  height: number;
+  group?: ClientGroup;
+  /** Written permission confirmed — gates all public display. */
+  approved: boolean;
+  /** Optional link to a published case insight. */
+  caseInsightHref?: string;
+};
+
+export type AboutContent = {
+  hero: { headline: string; copy: string };
+  origin: { headline: string; paragraphs: string[] };
+  beliefs: { headline: string; items: string[] };
+  system: { headline: string; copy: string };
+  principles: { headline: string; items: string[] };
+  clientExperience: { headline: string; copy: string };
+  cta: { headline: string; copy: string; primaryCta: CTA; secondaryCta: CTA };
+};
+
 export type HowWeHelpContent = {
   eyebrow: string;
   headline: string;
