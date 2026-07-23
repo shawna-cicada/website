@@ -93,5 +93,24 @@ public pages (`/insights`, `/insights/[slug]`) read ONLY documents with
 degrade to an honest empty state / 404 whenever Sanity is unreachable —
 the site builds and runs with zero network access to Sanity.
 
+## D-021 — Site content merge model: Studio overrides, seed fallback — Accepted (2026-07-23)
+Editor-managed documents now drive parts of the public site beyond
+insights, with committed seed content as the always-present fallback:
+- **Client logos**: `clientLogo` documents (uploaded, alt-texted, and
+  permission-gated in /admin) replace the seed records the moment the
+  first active one exists. The public gate is unchanged — only
+  `permissionConfirmed` records render; until any exist, the labeled
+  demo placeholders remain.
+- **Homepage**: the singleton "Homepage Content" document overrides the
+  hero headline/copy field-by-field (blank fields fall through to seed)
+  and can feature a published insight in the homepage insight section.
+Merging is pure, unit-tested logic (`lib/cms/mappers.ts`); fetching
+degrades to "no override" on any Sanity failure, so the site can never
+render blank from a CMS outage. Pages consuming this content revalidate
+every 5 minutes — editor changes reach the live site without redeploys.
+Practices, About, and the remaining homepage sections stay seed-managed
+until schemas for them are deliberately designed (they encode layout
+constraints an unstructured text field would break).
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

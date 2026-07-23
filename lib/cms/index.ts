@@ -20,6 +20,11 @@ export {
   getPublishedInsights,
   INSIGHTS_REVALIDATE_SECONDS,
 } from "@/lib/cms/insights";
+import {
+  getHomepageOverrides,
+  getSanityClientRecords,
+} from "@/lib/cms/site";
+import { mergeHomepageContent } from "@/lib/cms/mappers";
 
 /**
  * Content adapter (D-004): all page content flows through this interface.
@@ -27,7 +32,9 @@ export {
  * implementation for Sanity without touching components.
  */
 export async function getHomepageContent(): Promise<HomepageContent> {
-  return homepageContent;
+  // Studio's "Homepage Content" document overrides the seed (D-021);
+  // blank fields and CMS outages fall through to the committed copy.
+  return mergeHomepageContent(homepageContent, await getHomepageOverrides());
 }
 
 export async function getHowWeHelpContent(): Promise<HowWeHelpContent> {
@@ -68,6 +75,11 @@ export async function getFounders() {
 }
 
 export async function getClientRecords() {
+  // Studio-managed logos take over the moment the first one exists
+  // (D-021); until then — or if Sanity is unreachable — the committed
+  // seed records (unapproved placeholders) keep the demo wall working.
+  const cmsRecords = await getSanityClientRecords();
+  if (cmsRecords.length > 0) return cmsRecords;
   const { clientRecords } = await import("@/content/seed/clients");
   return clientRecords;
 }

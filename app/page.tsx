@@ -14,9 +14,13 @@ import { FeaturedInsightSection } from "@/components/sections/FeaturedInsight";
 import { Founders } from "@/components/sections/Founders";
 import { FinalCta } from "@/components/sections/FinalCta";
 
+// Editor changes in /admin (hero copy, logos, featured insight) reach
+// the live page within 5 minutes — no redeploy (D-021).
+export const revalidate = 300;
+
 /**
  * Homepage — the ten sections from WEBSITE_REDESIGN.md, composed from
- * CMS-adapter content (currently seed-backed; Sanity in Phase 2).
+ * CMS-adapter content (seed content overridden by Studio documents).
  *
  * Two honesty gates (docs/FINAL_UX_AUDIT.md):
  * - While no assessment provider URL is configured, the hero leads with

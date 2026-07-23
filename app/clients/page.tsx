@@ -9,6 +9,9 @@ import { Reveal } from "@/components/motion/Reveal";
 import { getApprovedClients } from "@/lib/cms";
 import type { ClientGroup, ClientRecord } from "@/lib/cms/types";
 
+// Logos approved in /admin appear within 5 minutes — no redeploy (D-021).
+export const revalidate = 300;
+
 const GROUP_LABELS: Record<ClientGroup, string> = {
   startup: "Startups",
   growth: "Growth companies",
