@@ -53,6 +53,7 @@ const ACTIONS: Array<{
   { label: "Edit Existing Content", intent: "browse", structureId: "insights", detail: "Find and update anything already written" },
   { label: "Schedule a Post", intent: "browse", structureId: "insights", detail: "Open a draft, then choose Schedule" },
   { label: "Update Homepage Content", intent: "browse", structureId: "homepage", detail: "Edit the homepage headlines and text" },
+  { label: "Update the About Page", intent: "browse", structureId: "about", detail: "Edit the story, beliefs, and principles" },
   { label: "Edit Practice Pages", intent: "browse", structureId: "practices", detail: "Change the How We Help page content" },
   { label: "Manage Founder Profiles", intent: "browse", structureId: "founders", detail: "Update bios and upload photos" },
   { label: "Manage Assessments", intent: "browse", structureId: "assessments", detail: "Edit assessment cards and links" },

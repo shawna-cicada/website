@@ -1,7 +1,8 @@
 import type { Template } from "sanity";
 import { EDITORIAL_TEMPLATES } from "@/lib/editorial/templates";
 import { practiceAreas } from "@/content/seed/practices";
-import { founders } from "@/content/seed/about";
+import { aboutContent, founders } from "@/content/seed/about";
+import { homepageContent } from "@/content/seed/homepage";
 
 /**
  * Initial-value templates: the visual "start from a template" choices in
@@ -55,6 +56,52 @@ export const practicePageTemplates: Template[] = practiceAreas.map(
     },
   }),
 );
+
+/**
+ * Homepage template: pre-fills a fresh Homepage Content document with
+ * the committed live copy. (An already-created document keeps its own
+ * values — its blank fields still mean "keep the current wording".)
+ */
+export const homepageTemplate: Template = {
+  id: "homepage-content",
+  title: "Homepage Content",
+  description: "Pre-filled with the current live homepage content.",
+  schemaType: "homepage",
+  value: {
+    heroHeadline: homepageContent.hero.headline,
+    heroCopy: homepageContent.hero.copy,
+    recognitionHeadline: homepageContent.recognition.headline,
+    recognitionStatements: [...homepageContent.recognition.statements],
+    servicesHeadline: homepageContent.services.headline,
+    servicesCopy: homepageContent.services.copy,
+    finalCtaHeadline: homepageContent.finalCta.headline,
+    finalCtaCopy: homepageContent.finalCta.copy,
+  },
+};
+
+/** About Page template: pre-filled with the committed live copy. */
+export const aboutPageTemplate: Template = {
+  id: "about-page",
+  title: "About Page",
+  description: "Pre-filled with the current live About page content.",
+  schemaType: "aboutPage",
+  value: {
+    heroHeadline: aboutContent.hero.headline,
+    heroCopy: aboutContent.hero.copy,
+    originHeadline: aboutContent.origin.headline,
+    originCopy: aboutContent.origin.paragraphs.join("\n\n"),
+    beliefsHeadline: aboutContent.beliefs.headline,
+    beliefsItems: aboutContent.beliefs.items.join("\n"),
+    systemHeadline: aboutContent.system.headline,
+    systemCopy: aboutContent.system.copy,
+    principlesHeadline: aboutContent.principles.headline,
+    principlesItems: aboutContent.principles.items.join("\n"),
+    clientExperienceHeadline: aboutContent.clientExperience.headline,
+    clientExperienceCopy: aboutContent.clientExperience.copy,
+    ctaHeadline: aboutContent.cta.headline,
+    ctaCopy: aboutContent.cta.copy,
+  },
+};
 
 /**
  * Founder starter templates: create a profile pre-filled with the

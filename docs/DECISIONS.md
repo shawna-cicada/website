@@ -179,5 +179,16 @@ site; the merge/fallback model is unchanged underneath. The practice
 `key` field is read-only (set by the template) so a document can never
 be retargeted at a different page.
 
+Second follow-up (same day): the About page becomes fully editable via
+an "About Page" singleton (hero, origin story with blank-line-separated
+paragraphs, beliefs and principles one-per-line, whole-system, client
+experience, closing; CTA labels/links stay code-managed), opened
+pre-filled from a template like the practice pages. The Homepage
+Content document gains the same pre-fill template, and because an
+already-created homepage document cannot be back-filled, each homepage
+field's help text now shows the current live copy. The homepage's four
+practice cards now mirror the merged practice pages (matched by link),
+so a summary edited in Practice Pages propagates to the homepage.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

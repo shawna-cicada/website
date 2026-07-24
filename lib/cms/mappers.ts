@@ -1,4 +1,5 @@
 import type {
+  AboutContent,
   ClientGroup,
   ClientRecord,
   FeaturedInsight,
@@ -6,6 +7,7 @@ import type {
   FounderProfileFull,
   HomepageContent,
   PracticeArea,
+  ServiceCard,
 } from "@/lib/cms/types";
 
 /**
@@ -92,6 +94,23 @@ function presentList(value: string[] | null | undefined): string[] | undefined {
     .map((line) => line?.trim())
     .filter((line): line is string => Boolean(line));
   return lines.length > 0 ? lines : undefined;
+}
+
+/** A textarea where each line is a list item → non-empty list, else undefined. */
+function presentLines(value: string | null | undefined): string[] | undefined {
+  return presentList(value?.split("\n"));
+}
+
+/** A textarea where blank lines separate paragraphs → list, else undefined. */
+function presentParagraphs(
+  value: string | null | undefined,
+): string[] | undefined {
+  const paragraphs = (value ?? "")
+    .split(/\n\s*\n/)
+    // Line breaks inside one paragraph flow as a single block of text.
+    .map((paragraph) => paragraph.replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+  return paragraphs.length > 0 ? paragraphs : undefined;
 }
 
 /**
@@ -244,6 +263,121 @@ export function mapFounderRow(row: FounderRow): FounderProfileFull | null {
       : FOUNDER_PLACEHOLDER_IMAGE,
     imageAlt: present(row.photoAlt) ?? `Portrait of ${name}`,
   };
+}
+
+/** Studio About Page document (singleton). */
+export type AboutOverrides = {
+  heroHeadline?: string | null;
+  heroCopy?: string | null;
+  originHeadline?: string | null;
+  /** Paragraphs separated by blank lines. */
+  originCopy?: string | null;
+  beliefsHeadline?: string | null;
+  /** One belief per line. */
+  beliefsItems?: string | null;
+  systemHeadline?: string | null;
+  systemCopy?: string | null;
+  principlesHeadline?: string | null;
+  /** One principle per line. */
+  principlesItems?: string | null;
+  clientExperienceHeadline?: string | null;
+  clientExperienceCopy?: string | null;
+  ctaHeadline?: string | null;
+  ctaCopy?: string | null;
+};
+
+/**
+ * Layer the Studio's About Page document over the seed (D-026): blank
+ * fields keep the committed copy; button labels and links stay
+ * code-managed.
+ */
+export function mergeAboutContent(
+  seed: AboutContent,
+  overrides: AboutOverrides | null,
+): AboutContent {
+  if (!overrides) return seed;
+  const originParagraphs = presentParagraphs(overrides.originCopy);
+  const beliefs = presentLines(overrides.beliefsItems);
+  const principles = presentLines(overrides.principlesItems);
+  return {
+    ...seed,
+    hero: {
+      ...seed.hero,
+      ...(present(overrides.heroHeadline)
+        ? { headline: present(overrides.heroHeadline)! }
+        : {}),
+      ...(present(overrides.heroCopy)
+        ? { copy: present(overrides.heroCopy)! }
+        : {}),
+    },
+    origin: {
+      ...seed.origin,
+      ...(present(overrides.originHeadline)
+        ? { headline: present(overrides.originHeadline)! }
+        : {}),
+      ...(originParagraphs ? { paragraphs: originParagraphs } : {}),
+    },
+    beliefs: {
+      ...seed.beliefs,
+      ...(present(overrides.beliefsHeadline)
+        ? { headline: present(overrides.beliefsHeadline)! }
+        : {}),
+      ...(beliefs ? { items: beliefs } : {}),
+    },
+    system: {
+      ...seed.system,
+      ...(present(overrides.systemHeadline)
+        ? { headline: present(overrides.systemHeadline)! }
+        : {}),
+      ...(present(overrides.systemCopy)
+        ? { copy: present(overrides.systemCopy)! }
+        : {}),
+    },
+    principles: {
+      ...seed.principles,
+      ...(present(overrides.principlesHeadline)
+        ? { headline: present(overrides.principlesHeadline)! }
+        : {}),
+      ...(principles ? { items: principles } : {}),
+    },
+    clientExperience: {
+      ...seed.clientExperience,
+      ...(present(overrides.clientExperienceHeadline)
+        ? { headline: present(overrides.clientExperienceHeadline)! }
+        : {}),
+      ...(present(overrides.clientExperienceCopy)
+        ? { copy: present(overrides.clientExperienceCopy)! }
+        : {}),
+    },
+    cta: {
+      ...seed.cta,
+      ...(present(overrides.ctaHeadline)
+        ? { headline: present(overrides.ctaHeadline)! }
+        : {}),
+      ...(present(overrides.ctaCopy)
+        ? { copy: present(overrides.ctaCopy)! }
+        : {}),
+    },
+  };
+}
+
+/**
+ * Keep the homepage practice cards in step with the (possibly
+ * Studio-edited) practice pages: each card whose link points at a
+ * practice adopts that practice's name and summary. Cards that don't
+ * link to a practice pass through untouched.
+ */
+export function syncServiceCards(
+  items: ServiceCard[],
+  practices: PracticeArea[],
+): ServiceCard[] {
+  return items.map((item) => {
+    const practice = practices.find(
+      (candidate) => item.href === `/how-we-help/${candidate.slug}`,
+    );
+    if (!practice) return item;
+    return { ...item, title: practice.name, copy: practice.summary };
+  });
 }
 
 /**

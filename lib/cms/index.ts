@@ -21,6 +21,7 @@ export {
   INSIGHTS_REVALIDATE_SECONDS,
 } from "@/lib/cms/insights";
 import {
+  getAboutOverrides,
   getHomepageOverrides,
   getPracticeOverrides,
   getSanityClientRecords,
@@ -28,8 +29,10 @@ import {
 } from "@/lib/cms/site";
 import {
   adoptFounderPhotos,
+  mergeAboutContent,
   mergeHomepageContent,
   mergePractice,
+  syncServiceCards,
 } from "@/lib/cms/mappers";
 
 /**
@@ -40,13 +43,20 @@ import {
 export async function getHomepageContent(): Promise<HomepageContent> {
   // Studio's "Homepage Content" document overrides the seed (D-021);
   // blank fields and CMS outages fall through to the committed copy.
-  const [overrides, cmsFounders] = await Promise.all([
+  const [overrides, cmsFounders, practices] = await Promise.all([
     getHomepageOverrides(),
     getSanityFounders(),
+    getPracticeAreas(),
   ]);
   const merged = mergeHomepageContent(homepageContent, overrides);
   return {
     ...merged,
+    services: {
+      ...merged.services,
+      // Practice cards mirror the (possibly Studio-edited) practice
+      // pages, so a summary edited once shows up in both places.
+      items: syncServiceCards(merged.services.items, practices),
+    },
     founders: {
       ...merged.founders,
       people: adoptFounderPhotos(merged.founders.people, cmsFounders),
@@ -90,8 +100,10 @@ export async function getEngagementsForPractice(
 }
 
 export async function getAboutContent() {
+  // Studio's "About Page" document overrides the seed (D-026); blank
+  // fields and CMS outages fall through to the committed copy.
   const { aboutContent } = await import("@/content/seed/about");
-  return aboutContent;
+  return mergeAboutContent(aboutContent, await getAboutOverrides());
 }
 
 export async function getFounders() {

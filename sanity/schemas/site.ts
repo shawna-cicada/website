@@ -71,6 +71,98 @@ export const practice = defineType({
   },
 });
 
+/** About Page — a single document, opened pre-filled from the desk. */
+export const aboutPage = defineType({
+  name: "aboutPage",
+  title: "About Page",
+  type: "document",
+  fields: [
+    defineField({
+      name: "heroHeadline",
+      title: "Page headline",
+      type: "string",
+    }),
+    defineField({
+      name: "heroCopy",
+      title: "Text under the headline",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "originHeadline",
+      title: "“Why a cicada?” headline",
+      type: "string",
+    }),
+    defineField({
+      name: "originCopy",
+      title: "“Why a cicada?” story",
+      description: "Separate paragraphs with an empty line.",
+      type: "text",
+      rows: 10,
+    }),
+    defineField({
+      name: "beliefsHeadline",
+      title: "Beliefs headline",
+      type: "string",
+    }),
+    defineField({
+      name: "beliefsItems",
+      title: "Beliefs",
+      description: "One belief per line.",
+      type: "text",
+      rows: 6,
+    }),
+    defineField({
+      name: "systemHeadline",
+      title: "“Whole system” headline",
+      type: "string",
+    }),
+    defineField({
+      name: "systemCopy",
+      title: "“Whole system” text",
+      type: "text",
+      rows: 4,
+    }),
+    defineField({
+      name: "principlesHeadline",
+      title: "Working principles headline",
+      type: "string",
+    }),
+    defineField({
+      name: "principlesItems",
+      title: "Working principles",
+      description: "One principle per line (they display numbered).",
+      type: "text",
+      rows: 7,
+    }),
+    defineField({
+      name: "clientExperienceHeadline",
+      title: "Client experience headline",
+      type: "string",
+    }),
+    defineField({
+      name: "clientExperienceCopy",
+      title: "Client experience text",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "ctaHeadline",
+      title: "Closing headline",
+      type: "string",
+    }),
+    defineField({
+      name: "ctaCopy",
+      title: "Closing text",
+      type: "text",
+      rows: 2,
+    }),
+  ],
+  preview: {
+    prepare: () => ({ title: "About Page" }),
+  },
+});
+
 export const founder = defineType({
   name: "founder",
   title: "Founders & Team",
