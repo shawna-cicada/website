@@ -45,6 +45,7 @@ export function LinkedInPostInput(props: StringInputProps) {
   const title = useFormValue(["title"]) as string | undefined;
   const summary = useFormValue(["summary"]) as string | undefined;
   const slugValue = useFormValue(["slug"]) as { current?: string } | undefined;
+  const kind = useFormValue(["contentType"]) as string | undefined;
   const [note, setNote] = useState<string | null>(null);
 
   const ready = Boolean(title?.trim() && summary?.trim());
@@ -64,6 +65,7 @@ export function LinkedInPostInput(props: StringInputProps) {
       title: title!.trim(),
       summary: summary!.trim(),
       slug,
+      kind,
       baseUrl: window.location.origin,
     });
     props.onChange(set(text));

@@ -16,6 +16,24 @@ describe("generateLinkedInPost link origin", () => {
     );
   });
 
+  it("reads like a LinkedIn post: emoji lead by kind, arrow takeaway, link line", () => {
+    const article = generateLinkedInPost(base);
+    expect(article.startsWith("💡 ")).toBe(true);
+    expect(article).toContain("🔗 Read the full piece:");
+
+    const guide = generateLinkedInPost({ ...base, kind: "guide" });
+    expect(guide.startsWith("🧭 ")).toBe(true);
+
+    const withTakeaway = generateLinkedInPost({
+      ...base,
+      takeaway: "Do less, decide more.",
+    });
+    expect(withTakeaway).toContain("👉 The short version: Do less, decide more.");
+
+    // Unknown kinds fall back to the article emoji, never to no emoji.
+    expect(generateLinkedInPost({ ...base, kind: "mystery" }).startsWith("💡 ")).toBe(true);
+  });
+
   it("uses the Studio's origin when provided, so links work pre-cutover", () => {
     const post = generateLinkedInPost({
       ...base,
@@ -73,7 +91,7 @@ describe("ManualLinkedInPublisher", () => {
       ...input,
       contentType: "video",
     });
-    expect(video.text.startsWith("New video:")).toBe(true);
+    expect(video.text.startsWith("🎥 New video:")).toBe(true);
   });
 
   it("publish returns a manual-action status with human instructions", async () => {

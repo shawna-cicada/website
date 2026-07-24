@@ -5,11 +5,22 @@ import { canonicalUrl } from "@/lib/editorial/seo";
  * copy, manual posting — see WEBSITE_REDESIGN.md). The editor can edit
  * the suggestion, copy it with one click, and mark it ready/posted.
  */
+/** Leading emoji per content kind — makes the text read like a post. */
+const KIND_EMOJI: Record<string, string> = {
+  article: "💡",
+  video: "🎥",
+  podcast: "🎙️",
+  guide: "🧭",
+  "case-insight": "📊",
+};
+
 export function generateLinkedInPost(input: {
   title: string;
   summary: string;
   takeaway?: string;
   slug: string;
+  /** Content kind (article/video/…) — picks the leading emoji. */
+  kind?: string;
   /**
    * Origin for the article link. The Studio passes its own origin so
    * the link works on whatever domain the site is actually serving
@@ -18,18 +29,19 @@ export function generateLinkedInPost(input: {
    */
   baseUrl?: string;
 }): string {
+  const emoji = KIND_EMOJI[input.kind ?? "article"] ?? KIND_EMOJI.article;
   const lines = [
-    input.title,
+    `${emoji} ${input.title}`,
     "",
     input.summary.trim(),
   ];
   if (input.takeaway?.trim()) {
-    lines.push("", `The short version: ${input.takeaway.trim()}`);
+    lines.push("", `👉 The short version: ${input.takeaway.trim()}`);
   }
   const articleUrl = input.baseUrl
     ? `${input.baseUrl.replace(/\/$/, "")}/insights/${input.slug}`
     : canonicalUrl(input.slug);
-  lines.push("", `Read the full piece: ${articleUrl}`);
+  lines.push("", `🔗 Read the full piece: ${articleUrl}`);
   const post = lines.join("\n");
   // LinkedIn's hard limit is 3000 characters; stay well inside it.
   return post.length <= 2900 ? post : `${post.slice(0, 2897)}…`;

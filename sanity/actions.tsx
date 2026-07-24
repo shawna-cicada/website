@@ -86,6 +86,7 @@ export const PublishWithChecklist: DocumentActionComponent = (
                     title: filled.title ?? "",
                     summary: filled.summary ?? "",
                     slug: filled.slug,
+                    kind: filled.contentType,
                     baseUrl: window.location.origin,
                   }),
                 }),
@@ -305,6 +306,7 @@ export const CopyLinkedInPostAction: DocumentActionComponent = (props) => {
           title: doc.title,
           summary: doc.summary,
           slug: doc.slug.current,
+          kind: typeof doc.contentType === "string" ? doc.contentType : undefined,
           baseUrl: window.location.origin,
         });
       // Save FIRST: the Promotion tab must hold the text even when the

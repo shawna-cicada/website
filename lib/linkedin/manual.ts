@@ -30,6 +30,7 @@ export const manualLinkedInPublisher: SocialPublisher = {
       summary: input.excerpt,
       takeaway: input.takeaway,
       slug: input.slug,
+      kind: input.contentType,
     });
     return {
       text,
