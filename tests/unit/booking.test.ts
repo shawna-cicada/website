@@ -9,12 +9,19 @@ afterEach(() => {
 });
 
 describe("calcom provider", () => {
-  it("returns null for unconfigured event types", () => {
-    expect(calcomProvider.getEmbedUrl("discovery-call")).toBeNull();
-    expect(calcomProvider.getFallbackUrl("discovery-call")).toBeNull();
+  it("serves the committed live event links when env is unset (D-024)", () => {
+    expect(calcomProvider.getFallbackUrl("discovery-call")).toBe(
+      "https://cal.com/cicadaagility/30min",
+    );
+    expect(calcomProvider.getFallbackUrl("assessment-debrief")).toBe(
+      "https://cal.com/cicadaagility/60min",
+    );
+    expect(calcomProvider.getFallbackUrl("coaching-session")).toBe(
+      "https://cal.com/cicadaagility/coaching-session",
+    );
   });
 
-  it("builds an inline embed URL from the env var", () => {
+  it("builds an inline embed URL; env vars override the defaults", () => {
     vi.stubEnv(
       "CALCOM_EVENT_URL_DISCOVERY_CALL",
       "https://cal.com/cicada/discovery",
@@ -23,6 +30,7 @@ describe("calcom provider", () => {
     expect(url).toBeTruthy();
     const parsed = new URL(url!);
     expect(parsed.hostname).toBe("cal.com");
+    expect(parsed.pathname).toBe("/cicada/discovery");
     expect(parsed.searchParams.get("embed")).toBe("true");
     // The fallback link is the clean page, no embed params.
     expect(calcomProvider.getFallbackUrl("discovery-call")).toBe(
@@ -121,16 +129,16 @@ describe("calendly provider", () => {
 });
 
 describe("booking config", () => {
-  it("exposes the four required event types", () => {
+  it("exposes the three offered event types (Existing Client removed)", () => {
     expect(BOOKING_EVENT_TYPES.map((event) => event.label)).toEqual([
       "Discovery Call",
       "Assessment Debrief",
-      "Existing Client Session",
       "Coaching Session",
     ]);
   });
 
   it("resolves per-event configuration independently", () => {
+    vi.stubEnv("BOOKING_PROVIDER", "calendly");
     vi.stubEnv(
       "CALENDLY_EVENT_URL_ASSESSMENT_DEBRIEF",
       "https://calendly.com/cicada/debrief",

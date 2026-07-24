@@ -1,19 +1,37 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { BookingEmbed } from "@/components/booking/BookingEmbed";
 import { BookingFallback } from "@/components/booking/BookingFallback";
-import type { BookingConfig } from "@/lib/booking/types";
+import type { BookingConfig, BookingEventKey } from "@/lib/booking/types";
 
 /**
  * Event-type chooser + embed. Accessible tab-like buttons (aria-pressed)
  * select one of the configured conversation types; the embed below swaps
- * without moving the rest of the page.
+ * without moving the rest of the page. Deep links (/book#coaching-session)
+ * pre-select the matching conversation type.
  */
 export function BookingExperience({ config }: { config: BookingConfig }) {
   const [selectedKey, setSelectedKey] = useState(config.events[0]?.key);
   const headingId = useId();
   const selected = config.events.find((event) => event.key === selectedKey);
+
+  useEffect(() => {
+    const applyHash = () => {
+      const fromHash = window.location.hash.slice(1);
+      if (config.events.some((event) => event.key === fromHash)) {
+        setSelectedKey(fromHash as BookingEventKey);
+      }
+    };
+    // Initial read runs a frame after hydration (no cascading render);
+    // the subscription keeps in-page hash navigation working.
+    const frame = requestAnimationFrame(applyHash);
+    window.addEventListener("hashchange", applyHash);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", applyHash);
+    };
+  }, [config.events]);
 
   return (
     <div className="flex flex-col gap-8" aria-labelledby={headingId}>
@@ -27,6 +45,7 @@ export function BookingExperience({ config }: { config: BookingConfig }) {
             return (
               <button
                 key={event.key}
+                id={event.key}
                 type="button"
                 aria-pressed={active}
                 onClick={() => setSelectedKey(event.key)}

@@ -306,5 +306,13 @@ export type HomepageContent = {
     copy: string;
     primaryCta: CTA;
     secondaryCta: CTA;
+    /** One card per bookable conversation type; free flags get a badge. */
+    bookingOptions: Array<{
+      label: string;
+      note: string;
+      free?: boolean;
+      ctaLabel: string;
+      href: string;
+    }>;
   };
 };

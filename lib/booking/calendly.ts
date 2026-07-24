@@ -10,7 +10,6 @@ import type { BookingEventKey, BookingProvider } from "@/lib/booking/types";
 const EVENT_ENV: Record<BookingEventKey, string> = {
   "discovery-call": "CALENDLY_EVENT_URL_DISCOVERY_CALL",
   "assessment-debrief": "CALENDLY_EVENT_URL_ASSESSMENT_DEBRIEF",
-  "existing-client": "CALENDLY_EVENT_URL_EXISTING_CLIENT",
   "coaching-session": "CALENDLY_EVENT_URL_COACHING_SESSION",
 };
 

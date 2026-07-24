@@ -6,7 +6,7 @@ import type {
   BookingProvider,
 } from "@/lib/booking/types";
 
-/** The configured conversation types (per WEBSITE_REDESIGN.md + D-023). */
+/** The configured conversation types (D-023/D-024): discovery, debrief, coaching. */
 export const BOOKING_EVENT_TYPES: BookingEventType[] = [
   {
     key: "discovery-call",
@@ -19,11 +19,6 @@ export const BOOKING_EVENT_TYPES: BookingEventType[] = [
     label: "Assessment Debrief",
     description:
       "Walk through your assessment results and what they suggest about the next stage.",
-  },
-  {
-    key: "existing-client",
-    label: "Existing Client Session",
-    description: "Working time for teams we are already partnering with.",
   },
   {
     key: "coaching-session",
@@ -39,8 +34,8 @@ const PROVIDERS: Record<string, BookingProvider> = {
 };
 
 function activeProvider(): BookingProvider {
-  const name = process.env.BOOKING_PROVIDER?.trim() || "calendly";
-  return PROVIDERS[name] ?? calendlyProvider;
+  const name = process.env.BOOKING_PROVIDER?.trim() || "calcom";
+  return PROVIDERS[name] ?? calcomProvider;
 }
 
 /** Resolve the full booking configuration for the /book page. */

@@ -21,7 +21,7 @@ map the provider's `postMessage` events to `booking_start` /
 ## Current implementation: Calendly (`calendly.ts`)
 
 - Env: `CALENDLY_EVENT_URL_DISCOVERY_CALL`, `CALENDLY_EVENT_URL_ASSESSMENT_DEBRIEF`,
-  `CALENDLY_EVENT_URL_EXISTING_CLIENT`.
+  `CALENDLY_EVENT_URL_COACHING_SESSION`.
 - Automatic visitor time zone; `embed_type=Inline`; GDPR banner hidden
   (our own consent copy renders beside the embed).
 - Signals: `calendly.date_and_time_selected` → `booking_start`,
@@ -33,10 +33,11 @@ map the provider's `postMessage` events to `booking_start` /
 
 Activate with `BOOKING_PROVIDER=calcom`.
 
-- Env: `CALCOM_EVENT_URL_DISCOVERY_CALL`, `CALCOM_EVENT_URL_ASSESSMENT_DEBRIEF`,
-  `CALCOM_EVENT_URL_EXISTING_CLIENT`, `CALCOM_EVENT_URL_COACHING_SESSION` —
-  public event links (`https://cal.com/<user>/<event-slug>`); hostnames
-  outside cal.com are rejected (matches the CSP frame-src).
+- The live public event links are committed defaults (D-024):
+  discovery `cicadaagility/30min`, debrief `cicadaagility/60min`,
+  coaching `cicadaagility/coaching-session`. `CALCOM_EVENT_URL_*` env
+  vars override them; every URL (default or override) must be a
+  `cal.com` hostname or it is rejected (matches the CSP frame-src).
 - Embed: iframe of the event URL with `embed=true&theme=light`; visitor
   time zone is automatic.
 - Signals: Cal.com exposes no reliable slot-selected message, so only
