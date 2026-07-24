@@ -56,7 +56,7 @@ const ACTIONS: Array<{
   { label: "Update the About Page", intent: "browse", structureId: "about", detail: "Edit the story, beliefs, and principles" },
   { label: "Edit Practice Pages", intent: "browse", structureId: "practices", detail: "Change the How We Help page content" },
   { label: "Manage Founder Profiles", intent: "browse", structureId: "founders", detail: "Update bios and upload photos" },
-  { label: "Manage Assessments", intent: "browse", structureId: "assessments", detail: "Edit assessment cards and links" },
+  { label: "Manage Assessments", intent: "browse", structureId: "assessments", detail: "Edit the page intro, cards, and links" },
   { label: "Manage Client Logos", intent: "browse", structureId: "clientLogos", detail: "Add logos and confirm permissions" },
   { label: "Preview the Website", intent: "external", href: "/", detail: "See the live site in a new tab" },
 ];

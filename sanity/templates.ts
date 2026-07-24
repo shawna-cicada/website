@@ -1,8 +1,9 @@
 import type { Template } from "sanity";
 import { EDITORIAL_TEMPLATES } from "@/lib/editorial/templates";
-import { practiceAreas } from "@/content/seed/practices";
+import { howWeHelpContent, practiceAreas } from "@/content/seed/practices";
 import { aboutContent, founders } from "@/content/seed/about";
 import { homepageContent } from "@/content/seed/homepage";
+import { assessmentsPageContent } from "@/content/seed/assessments";
 
 /**
  * Initial-value templates: the visual "start from a template" choices in
@@ -76,6 +77,39 @@ export const homepageTemplate: Template = {
     servicesCopy: homepageContent.services.copy,
     finalCtaHeadline: homepageContent.finalCta.headline,
     finalCtaCopy: homepageContent.finalCta.copy,
+  },
+};
+
+/** How We Help overview template: pre-filled with the committed copy. */
+export const howWeHelpPageTemplate: Template = {
+  id: "how-we-help-page",
+  title: "How We Help (overview)",
+  description: "Pre-filled with the current live page content.",
+  schemaType: "howWeHelpPage",
+  value: {
+    heroHeadline: howWeHelpContent.headline,
+    heroCopy: howWeHelpContent.copy,
+    systemHeadline: howWeHelpContent.systemHeadline,
+    systemCopy: howWeHelpContent.systemNarrative.join("\n\n"),
+    engagementsHeadline: howWeHelpContent.engagementsHeadline,
+    engagementsCopy: howWeHelpContent.engagementsCopy,
+    closingHeadline: howWeHelpContent.closing.headline,
+    closingCopy: howWeHelpContent.closing.copy,
+  },
+};
+
+/** Assessments hub page template: pre-filled with the committed copy. */
+export const assessmentsPageTemplate: Template = {
+  id: "assessments-page",
+  title: "Assessments Page",
+  description: "Pre-filled with the current live page content.",
+  schemaType: "assessmentsPage",
+  value: {
+    heroHeadline: assessmentsPageContent.hero.headline,
+    heroCopy: assessmentsPageContent.hero.copy,
+    gridHeadline: assessmentsPageContent.gridHeadline,
+    aboutHeadline: assessmentsPageContent.aboutHeadline,
+    aboutCopy: assessmentsPageContent.aboutCopy,
   },
 };
 

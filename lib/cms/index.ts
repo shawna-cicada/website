@@ -1,5 +1,6 @@
 import type {
   Assessment,
+  AssessmentsPageContent,
   Engagement,
   HomepageContent,
   HowWeHelpContent,
@@ -12,7 +13,10 @@ import {
   howWeHelpContent,
   practiceAreas,
 } from "@/content/seed/practices";
-import { assessments } from "@/content/seed/assessments";
+import {
+  assessments,
+  assessmentsPageContent,
+} from "@/content/seed/assessments";
 import { withUtm } from "@/lib/analytics/utm";
 
 export {
@@ -22,7 +26,9 @@ export {
 } from "@/lib/cms/insights";
 import {
   getAboutOverrides,
+  getAssessmentsPageOverrides,
   getHomepageOverrides,
+  getHowWeHelpOverrides,
   getPracticeOverrides,
   getSanityClientRecords,
   getSanityFounders,
@@ -30,7 +36,9 @@ import {
 import {
   adoptFounderPhotos,
   mergeAboutContent,
+  mergeAssessmentsPageContent,
   mergeHomepageContent,
+  mergeHowWeHelpContent,
   mergePractice,
   syncServiceCards,
 } from "@/lib/cms/mappers";
@@ -65,7 +73,16 @@ export async function getHomepageContent(): Promise<HomepageContent> {
 }
 
 export async function getHowWeHelpContent(): Promise<HowWeHelpContent> {
-  return howWeHelpContent;
+  // Studio's "How We Help" document overrides the seed (D-026).
+  return mergeHowWeHelpContent(howWeHelpContent, await getHowWeHelpOverrides());
+}
+
+export async function getAssessmentsPageContent(): Promise<AssessmentsPageContent> {
+  // Studio's "Assessments Page" document overrides the seed (D-026).
+  return mergeAssessmentsPageContent(
+    assessmentsPageContent,
+    await getAssessmentsPageOverrides(),
+  );
 }
 
 export async function getPracticeAreas(): Promise<PracticeArea[]> {

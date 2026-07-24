@@ -234,11 +234,29 @@ export type HowWeHelpContent = {
   eyebrow: string;
   headline: string;
   copy: string;
+  /** Heading of the connected-system block. */
+  systemHeadline: string;
   /** The connected-system narrative, told in full on the overview. */
   systemNarrative: string[];
   engagementsHeadline: string;
   engagementsCopy: string;
+  closing: {
+    headline: string;
+    copy: string;
+  };
   cta: CTA;
+};
+
+/** The /assessments hub page's editable copy (cards are Assessment records). */
+export type AssessmentsPageContent = {
+  hero: {
+    headline: string;
+    copy: string;
+  };
+  gridHeadline: string;
+  aboutHeadline: string;
+  /** The data-collection disclosure (D-022) — honest by default. */
+  aboutCopy: string;
 };
 
 export type HomepageContent = {

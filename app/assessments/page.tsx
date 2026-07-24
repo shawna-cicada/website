@@ -7,7 +7,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { PageHero } from "@/components/sections/PageHero";
 import { AssessmentCta } from "@/components/sections/AssessmentCta";
 import { PageViewTracker } from "@/components/sections/PageViewTracker";
-import { getActiveAssessments } from "@/lib/cms";
+import { getActiveAssessments, getAssessmentsPageContent } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "Assessments",
@@ -22,7 +22,10 @@ export const metadata: Metadata = {
  * more than six records are active (per WEBSITE_REDESIGN.md).
  */
 export default async function AssessmentsPage() {
-  const active = await getActiveAssessments();
+  const [active, content] = await Promise.all([
+    getActiveAssessments(),
+    getAssessmentsPageContent(),
+  ]);
   const featured = active.find((assessment) => assessment.featured);
   const rest = active.filter((assessment) => !assessment.featured);
 
@@ -33,8 +36,8 @@ export default async function AssessmentsPage() {
       <Section spacing="compact" aria-labelledby="assessments-heading">
         <PageHero
           eyebrow="Assessments"
-          headline="Find out what your company has outgrown."
-          copy="Ten minutes to name your stage, the friction beneath it, and what needs to evolve next. Your answers stay with the assessment provider unless you choose to share them."
+          headline={content.hero.headline}
+          copy={content.hero.copy}
           headingId="assessments-heading"
         />
       </Section>
@@ -83,7 +86,7 @@ export default async function AssessmentsPage() {
         <Container className="flex flex-col gap-stack">
           <Reveal>
             <Heading level={2} visualLevel={3} id="all-assessments-heading">
-              More ways to locate the friction
+              {content.gridHeadline}
             </Heading>
           </Reveal>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -126,16 +129,10 @@ export default async function AssessmentsPage() {
           <Reveal>
             <div className="rounded-sm border border-ink/10 bg-paper p-6">
               <h2 className="font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow-deep">
-                About our assessments
+                {content.aboutHeadline}
               </h2>
               <p className="mt-3 max-w-3xl text-sm text-slate">
-                These assessments were built by Cicada Agility and are
-                proprietary to our practice; they run on a secure external
-                survey platform. When you complete one, your answers and
-                contact details come to us. We use them to prepare your
-                results, follow up with you about what they show, and stay in
-                touch about work that may be relevant. Prefer to skip the
-                form? Book a conversation instead.
+                {content.aboutCopy}
               </p>
             </div>
           </Reveal>

@@ -1,4 +1,4 @@
-import type { Assessment } from "@/lib/cms/types";
+import type { Assessment, AssessmentsPageContent } from "@/lib/cms/types";
 
 /**
  * Assessment seed records — served through the CMS adapter (lib/cms).
@@ -6,6 +6,18 @@ import type { Assessment } from "@/lib/cms/types";
  * .env.example); records with an unset URL render as gracefully disabled.
  * No filters on the hub until more than six records are active.
  */
+
+/** The hub page's own copy (Studio-overridable per D-026). */
+export const assessmentsPageContent: AssessmentsPageContent = {
+  hero: {
+    headline: "Find out what your company has outgrown.",
+    copy: "Ten minutes to name your stage, the friction beneath it, and what needs to evolve next. Your answers stay with the assessment provider unless you choose to share them.",
+  },
+  gridHeadline: "More ways to locate the friction",
+  aboutHeadline: "About our assessments",
+  aboutCopy:
+    "These assessments were built by Cicada Agility and are proprietary to our practice; they run on a secure external survey platform. When you complete one, your answers and contact details come to us. We use them to prepare your results, follow up with you about what they show, and stay in touch about work that may be relevant. Prefer to skip the form? Book a conversation instead.",
+};
 export const assessments: Assessment[] = [
   {
     title: "Growth Stage Assessment",

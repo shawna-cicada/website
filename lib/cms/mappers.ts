@@ -1,11 +1,13 @@
 import type {
   AboutContent,
+  AssessmentsPageContent,
   ClientGroup,
   ClientRecord,
   FeaturedInsight,
   FounderProfile,
   FounderProfileFull,
   HomepageContent,
+  HowWeHelpContent,
   PracticeArea,
   ServiceCard,
 } from "@/lib/cms/types";
@@ -358,6 +360,94 @@ export function mergeAboutContent(
         ? { copy: present(overrides.ctaCopy)! }
         : {}),
     },
+  };
+}
+
+/** Studio How We Help overview document (singleton). */
+export type HowWeHelpOverrides = {
+  heroHeadline?: string | null;
+  heroCopy?: string | null;
+  systemHeadline?: string | null;
+  /** Paragraphs separated by blank lines. */
+  systemCopy?: string | null;
+  engagementsHeadline?: string | null;
+  engagementsCopy?: string | null;
+  closingHeadline?: string | null;
+  closingCopy?: string | null;
+};
+
+/** Layer the Studio's How We Help document over the seed (D-026). */
+export function mergeHowWeHelpContent(
+  seed: HowWeHelpContent,
+  overrides: HowWeHelpOverrides | null,
+): HowWeHelpContent {
+  if (!overrides) return seed;
+  const systemNarrative = presentParagraphs(overrides.systemCopy);
+  return {
+    ...seed,
+    ...(present(overrides.heroHeadline)
+      ? { headline: present(overrides.heroHeadline)! }
+      : {}),
+    ...(present(overrides.heroCopy)
+      ? { copy: present(overrides.heroCopy)! }
+      : {}),
+    ...(present(overrides.systemHeadline)
+      ? { systemHeadline: present(overrides.systemHeadline)! }
+      : {}),
+    ...(systemNarrative ? { systemNarrative } : {}),
+    ...(present(overrides.engagementsHeadline)
+      ? { engagementsHeadline: present(overrides.engagementsHeadline)! }
+      : {}),
+    ...(present(overrides.engagementsCopy)
+      ? { engagementsCopy: present(overrides.engagementsCopy)! }
+      : {}),
+    closing: {
+      ...seed.closing,
+      ...(present(overrides.closingHeadline)
+        ? { headline: present(overrides.closingHeadline)! }
+        : {}),
+      ...(present(overrides.closingCopy)
+        ? { copy: present(overrides.closingCopy)! }
+        : {}),
+    },
+  };
+}
+
+/** Studio Assessments Page document (singleton). */
+export type AssessmentsPageOverrides = {
+  heroHeadline?: string | null;
+  heroCopy?: string | null;
+  gridHeadline?: string | null;
+  aboutHeadline?: string | null;
+  aboutCopy?: string | null;
+};
+
+/** Layer the Studio's Assessments Page document over the seed (D-026). */
+export function mergeAssessmentsPageContent(
+  seed: AssessmentsPageContent,
+  overrides: AssessmentsPageOverrides | null,
+): AssessmentsPageContent {
+  if (!overrides) return seed;
+  return {
+    ...seed,
+    hero: {
+      ...seed.hero,
+      ...(present(overrides.heroHeadline)
+        ? { headline: present(overrides.heroHeadline)! }
+        : {}),
+      ...(present(overrides.heroCopy)
+        ? { copy: present(overrides.heroCopy)! }
+        : {}),
+    },
+    ...(present(overrides.gridHeadline)
+      ? { gridHeadline: present(overrides.gridHeadline)! }
+      : {}),
+    ...(present(overrides.aboutHeadline)
+      ? { aboutHeadline: present(overrides.aboutHeadline)! }
+      : {}),
+    ...(present(overrides.aboutCopy)
+      ? { aboutCopy: present(overrides.aboutCopy)! }
+      : {}),
   };
 }
 
