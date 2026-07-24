@@ -18,7 +18,7 @@ const CSP = [
   "img-src 'self' data: blob: https://cdn.sanity.io https://*.calendly.com https://i.ytimg.com https://lh3.googleusercontent.com",
   "font-src 'self' data:",
   "connect-src 'self' https://*.sanity.io wss://*.sanity.io https://*.calendly.com https://vitals.vercel-insights.com",
-  "frame-src 'self' https://calendly.com https://*.calendly.com https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com",
+  "frame-src 'self' https://calendly.com https://*.calendly.com https://cal.com https://*.cal.com https://www.youtube-nocookie.com https://www.youtube.com https://player.vimeo.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "form-action 'self' https://*.calendly.com",

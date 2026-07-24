@@ -1,10 +1,91 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { calcomProvider } from "@/lib/booking/calcom";
 import { calendlyProvider } from "@/lib/booking/calendly";
 import { parseBookingMessage } from "@/lib/booking/messages";
 import { getBookingConfig, BOOKING_EVENT_TYPES } from "@/lib/booking";
 
 afterEach(() => {
   vi.unstubAllEnvs();
+});
+
+describe("calcom provider", () => {
+  it("returns null for unconfigured event types", () => {
+    expect(calcomProvider.getEmbedUrl("discovery-call")).toBeNull();
+    expect(calcomProvider.getFallbackUrl("discovery-call")).toBeNull();
+  });
+
+  it("builds an inline embed URL from the env var", () => {
+    vi.stubEnv(
+      "CALCOM_EVENT_URL_DISCOVERY_CALL",
+      "https://cal.com/cicada/discovery",
+    );
+    const url = calcomProvider.getEmbedUrl("discovery-call");
+    expect(url).toBeTruthy();
+    const parsed = new URL(url!);
+    expect(parsed.hostname).toBe("cal.com");
+    expect(parsed.searchParams.get("embed")).toBe("true");
+    // The fallback link is the clean page, no embed params.
+    expect(calcomProvider.getFallbackUrl("discovery-call")).toBe(
+      "https://cal.com/cicada/discovery",
+    );
+  });
+
+  it("rejects non-Cal.com and lookalike hostnames (no arbitrary embeds)", () => {
+    for (const bad of [
+      "https://evil.example.com/calendar",
+      "https://cal.com.evil.com/x",
+      "http://cal.com/insecure",
+      "not a url",
+    ]) {
+      vi.stubEnv("CALCOM_EVENT_URL_DISCOVERY_CALL", bad);
+      expect(calcomProvider.getEmbedUrl("discovery-call")).toBeNull();
+      vi.unstubAllEnvs();
+    }
+  });
+
+  it("is selected by BOOKING_PROVIDER=calcom", () => {
+    vi.stubEnv("BOOKING_PROVIDER", "calcom");
+    vi.stubEnv(
+      "CALCOM_EVENT_URL_COACHING_SESSION",
+      "https://cal.com/cicada/coaching",
+    );
+    const config = getBookingConfig();
+    expect(config.provider).toBe("calcom");
+    const coaching = config.events.find(
+      (event) => event.key === "coaching-session",
+    );
+    expect(coaching?.embedUrl).toContain("cal.com/cicada/coaching");
+  });
+
+  it("normalizes Cal.com completion messages, origin-validated", () => {
+    const complete = {
+      origin: "https://app.cal.com",
+      data: { originator: "CAL", method: "bookingSuccessful" },
+    };
+    expect(parseBookingMessage("calcom", complete)).toBe("booking_complete");
+    expect(
+      parseBookingMessage("calcom", {
+        origin: "https://cal.com",
+        data: { type: "CAL:bookingSuccessful" },
+      }),
+    ).toBe("booking_complete");
+    // Wrong origin, junk data, unrelated actions → no signal.
+    expect(
+      parseBookingMessage("calcom", {
+        origin: "https://evil.com",
+        data: { method: "bookingSuccessful" },
+      }),
+    ).toBeNull();
+    expect(
+      parseBookingMessage("calcom", {
+        origin: "https://app.cal.com",
+        data: { method: "linkReady" },
+      }),
+    ).toBeNull();
+    expect(
+      parseBookingMessage("calcom", { origin: "https://app.cal.com", data: 7 }),
+    ).toBeNull();
+  });
 });
 
 describe("calendly provider", () => {

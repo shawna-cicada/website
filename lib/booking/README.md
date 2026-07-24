@@ -29,19 +29,18 @@ map the provider's `postMessage` events to `booking_start` /
 - UTM/referrer: the embed component forwards the visitor's `utm_*` query
   parameters onto the embed URL — Calendly stores them on the invitee.
 
-## Placeholder: Cal.com adapter (not yet implemented)
+## Also implemented: Cal.com (`calcom.ts`)
 
-To switch to Cal.com (D-006 keeps this a lib-level swap):
+Activate with `BOOKING_PROVIDER=calcom`.
 
-1. Create `calcom.ts` implementing `BookingProvider`:
-   - Env: `CALCOM_EVENT_URL_*` per event type (public event links, e.g.
-     `https://cal.com/<user>/<event>`); validate hostname `cal.com` or the
-     self-hosted domain.
-   - Embed URL: Cal.com supports inline embeds via its embed script or an
-     iframe of the event URL with `?embed=true&theme=light`; time zone is
-     also automatic.
-2. Extend `parseBookingMessage` for Cal.com's postMessage shape
-   (`{type: "CAL:bookingSuccessful"}` → `booking_complete`; validate origin).
-3. Register it in `PROVIDERS` in `index.ts` and set `BOOKING_PROVIDER=calcom`.
-
-No page or component changes are required.
+- Env: `CALCOM_EVENT_URL_DISCOVERY_CALL`, `CALCOM_EVENT_URL_ASSESSMENT_DEBRIEF`,
+  `CALCOM_EVENT_URL_EXISTING_CLIENT`, `CALCOM_EVENT_URL_COACHING_SESSION` —
+  public event links (`https://cal.com/<user>/<event-slug>`); hostnames
+  outside cal.com are rejected (matches the CSP frame-src).
+- Embed: iframe of the event URL with `embed=true&theme=light`; visitor
+  time zone is automatic.
+- Signals: Cal.com exposes no reliable slot-selected message, so only
+  `bookingSuccessful` → `booking_complete` is tracked (origin-validated,
+  action-name field read defensively across embed versions).
+- Startup env checks (lib/env.ts) follow `BOOKING_PROVIDER`: they demand
+  the CALCOM_* names when it's `calcom`, CALENDLY_* otherwise.
