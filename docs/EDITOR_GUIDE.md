@@ -138,8 +138,15 @@ lands directly on the right list:
 
 - **Update Homepage Content** — the homepage headline, the "Do any of
   these sound familiar?" statements, the practices intro, the featured
-  article, and the closing section. Every field says what it changes;
-  **leave a field empty to keep the current wording**.
+  article, and the closing section. Every field's help text shows what
+  is on the site right now; **leave a field empty to keep the current
+  wording**. The four practice cards on the homepage mirror the
+  Practice Pages automatically — edit a practice description once and
+  it updates in both places.
+- **Update the About Page** — opens pre-filled with the current live
+  content: the headline, the "Why a cicada?" story (separate paragraphs
+  with an empty line), beliefs and working principles (one per line),
+  the client-experience section, and the closing text.
 - **Edit Practice Pages** — the four How We Help pages are always
   listed by name. Open one and it comes **pre-filled with the current
   live content** — edit what you want, publish, done. Page names stay

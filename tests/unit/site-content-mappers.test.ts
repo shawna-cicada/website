@@ -4,13 +4,16 @@ import {
   FOUNDER_PLACEHOLDER_IMAGE,
   mapClientLogoRow,
   mapFounderRow,
+  mergeAboutContent,
   mergeHomepageContent,
   mergePractice,
+  syncServiceCards,
   type ClientLogoRow,
   type FounderRow,
 } from "@/lib/cms/mappers";
 import { homepageContent } from "@/content/seed/homepage";
 import { practiceAreas } from "@/content/seed/practices";
+import { aboutContent } from "@/content/seed/about";
 
 const completeRow: ClientLogoRow = {
   name: "Acme Corp",
@@ -249,6 +252,98 @@ describe("mapFounderRow (D-026)", () => {
     expect(profile?.linkedInUrl).toBeUndefined();
     expect(profile?.imageSrc).toBe(FOUNDER_PLACEHOLDER_IMAGE);
     expect(profile?.imageAlt).toBe("Portrait of Julia Kaissling");
+  });
+});
+
+describe("mergeAboutContent (D-026)", () => {
+  it("returns the seed untouched when no override document exists", () => {
+    expect(mergeAboutContent(aboutContent, null)).toBe(aboutContent);
+  });
+
+  it("overrides headlines and copy, field by field", () => {
+    const merged = mergeAboutContent(aboutContent, {
+      heroHeadline: "A new About headline.",
+      systemCopy: "New system copy.",
+    });
+    expect(merged.hero.headline).toBe("A new About headline.");
+    expect(merged.hero.copy).toBe(aboutContent.hero.copy);
+    expect(merged.system.copy).toBe("New system copy.");
+    expect(merged.origin).toEqual(aboutContent.origin);
+    // Button labels and links stay code-managed.
+    expect(merged.cta.primaryCta).toBe(aboutContent.cta.primaryCta);
+  });
+
+  it("splits the origin story into paragraphs on blank lines", () => {
+    const merged = mergeAboutContent(aboutContent, {
+      originCopy: "First paragraph,\nstill first.\n\nSecond paragraph.\n\n\nThird.",
+    });
+    expect(merged.origin.paragraphs).toEqual([
+      "First paragraph, still first.",
+      "Second paragraph.",
+      "Third.",
+    ]);
+  });
+
+  it("splits beliefs and principles one per line, dropping blanks", () => {
+    const merged = mergeAboutContent(aboutContent, {
+      beliefsItems: "First belief.\n\nSecond belief.\n   ",
+      principlesItems: "One.\nTwo.",
+    });
+    expect(merged.beliefs.items).toEqual(["First belief.", "Second belief."]);
+    expect(merged.principles.items).toEqual(["One.", "Two."]);
+  });
+
+  it("blank fields fall back to the seed", () => {
+    const merged = mergeAboutContent(aboutContent, {
+      heroHeadline: "   ",
+      originCopy: "\n\n  \n",
+      beliefsItems: "",
+    });
+    expect(merged.hero.headline).toBe(aboutContent.hero.headline);
+    expect(merged.origin.paragraphs).toBe(aboutContent.origin.paragraphs);
+    expect(merged.beliefs.items).toBe(aboutContent.beliefs.items);
+  });
+});
+
+describe("syncServiceCards (D-026)", () => {
+  it("cards adopt the linked practice's name and summary", () => {
+    const edited = practiceAreas.map((practice) =>
+      practice.slug === "ai-enablement"
+        ? { ...practice, summary: "An edited AI summary." }
+        : practice,
+    );
+    const items = syncServiceCards(homepageContent.services.items, edited);
+    const aiCard = items.find(
+      (item) => item.href === "/how-we-help/ai-enablement",
+    );
+    expect(aiCard?.copy).toBe("An edited AI summary.");
+    // Example tags stay from the homepage seed.
+    const seedAiCard = homepageContent.services.items.find(
+      (item) => item.href === "/how-we-help/ai-enablement",
+    );
+    expect(aiCard?.examples).toBe(seedAiCard?.examples);
+  });
+
+  it("every homepage card links to a practice, so all stay in sync", () => {
+    const items = syncServiceCards(homepageContent.services.items, practiceAreas);
+    for (const item of items) {
+      const practice = practiceAreas.find(
+        (candidate) => item.href === `/how-we-help/${candidate.slug}`,
+      );
+      expect(practice).toBeDefined();
+      expect(item.title).toBe(practice!.name);
+      expect(item.copy).toBe(practice!.summary);
+    }
+  });
+
+  it("cards without a matching practice pass through untouched", () => {
+    const card = {
+      title: "Something else",
+      copy: "Not a practice.",
+      examples: [],
+      href: "/assessments",
+    };
+    expect(syncServiceCards([card], practiceAreas)[0]).toBe(card);
   });
 });
 

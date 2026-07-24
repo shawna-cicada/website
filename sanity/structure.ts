@@ -72,7 +72,21 @@ export const structure: StructureResolver = (S) =>
         .id("homepage")
         .title("🏠 Homepage Content")
         .child(
-          S.document().schemaType("homepage").documentId("homepage").title("Homepage Content"),
+          S.document()
+            .schemaType("homepage")
+            .documentId("homepage")
+            .initialValueTemplate("homepage-content")
+            .title("Homepage Content"),
+        ),
+      S.listItem()
+        .id("about")
+        .title("📖 About Page")
+        .child(
+          S.document()
+            .schemaType("aboutPage")
+            .documentId("aboutPage")
+            .initialValueTemplate("about-page")
+            .title("About Page"),
         ),
       S.listItem()
         .id("practices")

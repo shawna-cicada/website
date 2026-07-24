@@ -2,6 +2,7 @@ import { sanityClient } from "@/lib/sanity/client";
 import {
   mapClientLogoRow,
   mapFounderRow,
+  type AboutOverrides,
   type ClientLogoRow,
   type FounderRow,
   type HomepageOverrides,
@@ -73,6 +74,39 @@ export async function getHomepageOverrides(): Promise<HomepageOverrides | null> 
   } catch (error) {
     console.error(
       "[cms] Sanity unreachable — homepage renders seed content.",
+      error instanceof Error ? error.message : error,
+    );
+    return null;
+  }
+}
+
+/** The About Page singleton, or null when absent/unreachable. */
+export async function getAboutOverrides(): Promise<AboutOverrides | null> {
+  try {
+    const row = await sanityClient.fetch<AboutOverrides | null>(
+      `*[_type == "aboutPage"][0]{
+        heroHeadline,
+        heroCopy,
+        originHeadline,
+        originCopy,
+        beliefsHeadline,
+        beliefsItems,
+        systemHeadline,
+        systemCopy,
+        principlesHeadline,
+        principlesItems,
+        clientExperienceHeadline,
+        clientExperienceCopy,
+        ctaHeadline,
+        ctaCopy
+      }`,
+      {},
+      fetchOptions,
+    );
+    return row ?? null;
+  } catch (error) {
+    console.error(
+      "[cms] Sanity unreachable — About page renders seed content.",
       error instanceof Error ? error.message : error,
     );
     return null;

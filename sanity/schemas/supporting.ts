@@ -1,4 +1,11 @@
 import { defineField, defineType } from "sanity";
+import { homepageContent } from "@/content/seed/homepage";
+
+/** Help text showing what's on the site when the field is left empty. */
+function keepCurrent(current: string): string {
+  const text = current.length > 160 ? `${current.slice(0, 160)}…` : current;
+  return `Leave empty to keep what's on the site now: “${text}”`;
+}
 
 /** Authors — protected from deletion while referenced (Sanity default). */
 export const author = defineType({
@@ -190,11 +197,13 @@ export const homepage = defineType({
     defineField({
       name: "heroHeadline",
       title: "Homepage headline",
+      description: keepCurrent(homepageContent.hero.headline),
       type: "string",
     }),
     defineField({
       name: "heroCopy",
       title: "Text under the headline",
+      description: keepCurrent(homepageContent.hero.copy),
       type: "text",
       rows: 3,
     }),
@@ -213,7 +222,7 @@ export const homepage = defineType({
     defineField({
       name: "recognitionHeadline",
       title: "“Sound familiar” section headline",
-      description: "Leave empty to keep the current one.",
+      description: keepCurrent(homepageContent.recognition.headline),
       type: "string",
     }),
     defineField({
@@ -227,26 +236,26 @@ export const homepage = defineType({
     defineField({
       name: "servicesHeadline",
       title: "Practices section headline",
-      description: "Leave empty to keep the current one.",
+      description: keepCurrent(homepageContent.services.headline),
       type: "string",
     }),
     defineField({
       name: "servicesCopy",
       title: "Practices section intro text",
-      description: "Leave empty to keep the current one.",
+      description: keepCurrent(homepageContent.services.copy),
       type: "text",
       rows: 3,
     }),
     defineField({
       name: "finalCtaHeadline",
       title: "Closing section headline",
-      description: "Leave empty to keep the current one.",
+      description: keepCurrent(homepageContent.finalCta.headline),
       type: "string",
     }),
     defineField({
       name: "finalCtaCopy",
       title: "Closing section text",
-      description: "Leave empty to keep the current one.",
+      description: keepCurrent(homepageContent.finalCta.copy),
       type: "text",
       rows: 2,
     }),
