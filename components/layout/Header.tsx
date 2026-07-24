@@ -155,7 +155,7 @@ export function Header() {
   const menuId = useId();
 
   return (
-    <header className="anim-drop relative z-50 border-b border-ink/10 bg-paper">
+    <header className="anim-drop sticky top-0 z-50 border-b border-ink/10 bg-paper">
       <SkipLink />
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-gutter py-4">
         <Link href="/" className="flex items-center gap-3">
