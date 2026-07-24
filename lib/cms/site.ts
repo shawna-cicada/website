@@ -1,10 +1,13 @@
 import { sanityClient } from "@/lib/sanity/client";
 import {
   mapClientLogoRow,
+  mapFounderRow,
   type ClientLogoRow,
+  type FounderRow,
   type HomepageOverrides,
+  type PracticeOverrideRow,
 } from "@/lib/cms/mappers";
-import type { ClientRecord } from "@/lib/cms/types";
+import type { ClientRecord, FounderProfileFull } from "@/lib/cms/types";
 
 /**
  * Sanity-backed site content (D-021): editor-managed documents override
@@ -55,7 +58,13 @@ export async function getHomepageOverrides(): Promise<HomepageOverrides | null> 
           summary,
           "category": category->title,
           workflowStatus
-        }
+        },
+        recognitionHeadline,
+        recognitionStatements,
+        servicesHeadline,
+        servicesCopy,
+        finalCtaHeadline,
+        finalCtaCopy
       }`,
       {},
       fetchOptions,
@@ -67,5 +76,73 @@ export async function getHomepageOverrides(): Promise<HomepageOverrides | null> 
       error instanceof Error ? error.message : error,
     );
     return null;
+  }
+}
+
+/**
+ * Studio practice-page documents keyed by practice slug. When editors
+ * create two documents for the same practice, the newest edit wins
+ * (documents are fetched oldest-first and later rows overwrite earlier
+ * keys). Empty on failure.
+ */
+export async function getPracticeOverrides(): Promise<
+  Record<string, PracticeOverrideRow>
+> {
+  try {
+    const rows = await sanityClient.fetch<PracticeOverrideRow[]>(
+      `*[_type == "practice" && defined(key)] | order(_updatedAt asc) {
+        key,
+        headline,
+        summary,
+        whoFor,
+        problems,
+        workOn,
+        leaveWith,
+        supportingCapabilities
+      }`,
+      {},
+      fetchOptions,
+    );
+    const byKey: Record<string, PracticeOverrideRow> = {};
+    for (const row of rows ?? []) {
+      if (row.key) byKey[row.key] = row;
+    }
+    return byKey;
+  } catch (error) {
+    console.error(
+      "[cms] Sanity unreachable — practice pages render seed content.",
+      error instanceof Error ? error.message : error,
+    );
+    return {};
+  }
+}
+
+/** Studio-managed founder profiles, in display order. Empty on failure. */
+export async function getSanityFounders(): Promise<FounderProfileFull[]> {
+  try {
+    const rows = await sanityClient.fetch<FounderRow[]>(
+      `*[_type == "founder"] | order(order asc, lower(name) asc) {
+        name,
+        role,
+        bio,
+        "photoUrl": photo.asset->url,
+        "photoAlt": photo.alt,
+        expertise,
+        selectedExperience,
+        speakingTopics,
+        linkedInUrl
+      }`,
+      {},
+      fetchOptions,
+    );
+    return (rows ?? [])
+      .map(mapFounderRow)
+      .filter((profile): profile is FounderProfileFull => profile !== null);
+  } catch (error) {
+    console.error(
+      "[cms] Sanity unreachable — founder profiles fall back to seed.",
+      error instanceof Error ? error.message : error,
+    );
+    return [];
   }
 }

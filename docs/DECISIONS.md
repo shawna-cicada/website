@@ -152,5 +152,23 @@ the security boundary: content access control remains Sanity sign-in +
 roles behind it. The password is shared privately (chat/password
 manager), never in the repo or docs.
 
+## D-026 — Page content and founder profiles are Studio-editable via field-level merge — Accepted (2026-07-24)
+Founder request: edit page copy and upload team photos without a code
+change. Two new document types extend the D-021 merge model. "Practice
+Pages" documents override a How We Help page field by field (headline,
+summary, whoFor, problems, workOn, leaveWith, supportingCapabilities);
+the practice NAME and slug stay code-managed because navigation labels
+and URLs depend on them. "Founders & Team" documents carry full About
+profiles (photo, bio, expertise, experience, speaking topics); the first
+profile created replaces the committed placeholder profiles wholesale
+(the client-logo model), and an uploaded photo also replaces the
+matching (by name) homepage founder card's portrait — homepage short
+bios stay code-managed. The Homepage Content document additionally
+covers the recognition, practices-intro, and closing sections. As
+everywhere in D-021: blank fields fall through to seed, and any Sanity
+failure degrades to the committed copy. Dashboard buttons now deep-link
+to their desk area via explicit structure ids (fixing the
+"Workspace not found"-style dead buttons).
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

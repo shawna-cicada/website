@@ -1,10 +1,16 @@
 import { describe, expect, it } from "vitest";
 import {
+  adoptFounderPhotos,
+  FOUNDER_PLACEHOLDER_IMAGE,
   mapClientLogoRow,
+  mapFounderRow,
   mergeHomepageContent,
+  mergePractice,
   type ClientLogoRow,
+  type FounderRow,
 } from "@/lib/cms/mappers";
 import { homepageContent } from "@/content/seed/homepage";
+import { practiceAreas } from "@/content/seed/practices";
 
 const completeRow: ClientLogoRow = {
   name: "Acme Corp",
@@ -114,5 +120,164 @@ describe("mergeHomepageContent (D-021)", () => {
     const headlineBefore = homepageContent.hero.headline;
     mergeHomepageContent(homepageContent, { heroHeadline: "Changed" });
     expect(homepageContent.hero.headline).toBe(headlineBefore);
+  });
+
+  it("overrides the recognition, services, and closing sections (D-026)", () => {
+    const merged = mergeHomepageContent(homepageContent, {
+      recognitionHeadline: "Recognize this?",
+      recognitionStatements: ["First line.", "  ", "Second line."],
+      servicesHeadline: "New services headline.",
+      servicesCopy: "New services copy.",
+      finalCtaHeadline: "New closing headline.",
+      finalCtaCopy: "New closing copy.",
+    });
+    expect(merged.recognition.headline).toBe("Recognize this?");
+    // Blank lines are dropped, not rendered.
+    expect(merged.recognition.statements).toEqual(["First line.", "Second line."]);
+    expect(merged.recognition.cta).toBe(homepageContent.recognition.cta);
+    expect(merged.services.headline).toBe("New services headline.");
+    expect(merged.services.copy).toBe("New services copy.");
+    expect(merged.services.items).toBe(homepageContent.services.items);
+    expect(merged.finalCta.headline).toBe("New closing headline.");
+    expect(merged.finalCta.copy).toBe("New closing copy.");
+    expect(merged.finalCta.bookingOptions).toBe(
+      homepageContent.finalCta.bookingOptions,
+    );
+  });
+
+  it("keeps seed statements when the Studio list is empty or all blank", () => {
+    const empty = mergeHomepageContent(homepageContent, {
+      recognitionStatements: [],
+    });
+    expect(empty.recognition.statements).toBe(
+      homepageContent.recognition.statements,
+    );
+    const blanks = mergeHomepageContent(homepageContent, {
+      recognitionStatements: ["  ", ""],
+      servicesHeadline: "   ",
+    });
+    expect(blanks.recognition.statements).toBe(
+      homepageContent.recognition.statements,
+    );
+    expect(blanks.services.headline).toBe(homepageContent.services.headline);
+  });
+});
+
+describe("mergePractice (D-026)", () => {
+  const seed = practiceAreas[0];
+
+  it("returns the seed untouched when no override exists", () => {
+    expect(mergePractice(seed, undefined)).toBe(seed);
+  });
+
+  it("overrides text and list fields, field by field", () => {
+    const merged = mergePractice(seed, {
+      key: seed.slug,
+      headline: "A sharper problem statement.",
+      workOn: ["First area", "Second area"],
+    });
+    expect(merged.headline).toBe("A sharper problem statement.");
+    expect(merged.workOn).toEqual(["First area", "Second area"]);
+    // Untouched fields keep the committed copy.
+    expect(merged.summary).toBe(seed.summary);
+    expect(merged.whoFor).toBe(seed.whoFor);
+    expect(merged.leaveWith).toBe(seed.leaveWith);
+  });
+
+  it("blank fields and blank lines fall back to the seed", () => {
+    const merged = mergePractice(seed, {
+      key: seed.slug,
+      headline: "   ",
+      problems: ["", "  "],
+    });
+    expect(merged.headline).toBe(seed.headline);
+    expect(merged.problems).toBe(seed.problems);
+  });
+
+  it("never changes the practice name or slug (nav and URLs depend on them)", () => {
+    const merged = mergePractice(seed, {
+      key: seed.slug,
+      headline: "New headline.",
+    });
+    expect(merged.name).toBe(seed.name);
+    expect(merged.slug).toBe(seed.slug);
+  });
+});
+
+describe("mapFounderRow (D-026)", () => {
+  const completeFounder: FounderRow = {
+    name: "Shawna Cullinan",
+    role: "Co-founder",
+    bio: "Works across the whole system.",
+    photoUrl: "https://cdn.sanity.io/images/x/production/shawna.jpg",
+    photoAlt: "Shawna smiling",
+    expertise: ["Operating model design"],
+    selectedExperience: ["Scale plans for growth companies"],
+    speakingTopics: ["Ways of working"],
+    linkedInUrl: "https://www.linkedin.com/in/example",
+  };
+
+  it("maps a complete Studio profile", () => {
+    const profile = mapFounderRow(completeFounder);
+    expect(profile).not.toBeNull();
+    expect(profile?.name).toBe("Shawna Cullinan");
+    expect(profile?.role).toBe("Co-founder");
+    expect(profile?.bio).toBe("Works across the whole system.");
+    expect(profile?.expertise).toEqual(["Operating model design"]);
+    expect(profile?.linkedInUrl).toBe("https://www.linkedin.com/in/example");
+    expect(profile?.imageAlt).toBe("Shawna smiling");
+    // CMS bios are editor-owned — never flagged as drafts.
+    expect(profile?.draftBio).toBe(false);
+  });
+
+  it("asks the CDN for a right-sized portrait", () => {
+    const profile = mapFounderRow(completeFounder);
+    expect(profile?.imageSrc).toContain("shawna.jpg?");
+    expect(profile?.imageSrc).toContain("w=800");
+    expect(profile?.imageSrc).toContain("auto=format");
+  });
+
+  it("drops profiles without a name", () => {
+    expect(mapFounderRow({ ...completeFounder, name: null })).toBeNull();
+    expect(mapFounderRow({ ...completeFounder, name: "   " })).toBeNull();
+  });
+
+  it("fills sensible defaults for missing optional fields", () => {
+    const profile = mapFounderRow({ name: "Julia Kaissling" });
+    expect(profile?.role).toBe("");
+    expect(profile?.expertise).toEqual([]);
+    expect(profile?.linkedInUrl).toBeUndefined();
+    expect(profile?.imageSrc).toBe(FOUNDER_PLACEHOLDER_IMAGE);
+    expect(profile?.imageAlt).toBe("Portrait of Julia Kaissling");
+  });
+});
+
+describe("adoptFounderPhotos (D-026)", () => {
+  const person = homepageContent.founders.people[0];
+
+  it("adopts an uploaded photo onto the matching homepage card", () => {
+    const cms = mapFounderRow({
+      name: ` ${person.name.toUpperCase()} `,
+      photoUrl: "https://cdn.sanity.io/images/x/production/new.jpg",
+      photoAlt: "New portrait",
+    })!;
+    const people = adoptFounderPhotos(homepageContent.founders.people, [cms]);
+    expect(people[0].imageSrc).toContain("new.jpg");
+    expect(people[0].imageAlt).toBe("New portrait");
+    // Homepage short bios stay code-managed.
+    expect(people[0].bio).toBe(person.bio);
+    expect(people[1]).toBe(homepageContent.founders.people[1]);
+  });
+
+  it("never adopts the placeholder over a committed portrait", () => {
+    const cms = mapFounderRow({ name: person.name })!;
+    const people = adoptFounderPhotos(homepageContent.founders.people, [cms]);
+    expect(people[0].imageSrc).toBe(person.imageSrc);
+  });
+
+  it("returns the cards untouched when no CMS founders exist", () => {
+    expect(adoptFounderPhotos(homepageContent.founders.people, [])).toBe(
+      homepageContent.founders.people,
+    );
   });
 });

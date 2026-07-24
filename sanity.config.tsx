@@ -8,6 +8,7 @@ import {
   clientLogo,
   homepage,
 } from "@/sanity/schemas/supporting";
+import { founder, practice } from "@/sanity/schemas/site";
 import { structure } from "@/sanity/structure";
 import { cicadaTemplates } from "@/sanity/templates";
 import { WorkflowBadge } from "@/sanity/badges";
@@ -51,7 +52,7 @@ export default defineConfig({
     ...prev,
   ],
   schema: {
-    types: [insight, author, category, assessment, clientLogo, homepage],
+    types: [insight, author, category, assessment, clientLogo, homepage, practice, founder],
     templates: (prev) => [
       ...cicadaTemplates,
       ...prev.filter((template) => template.schemaType !== "insight"),
