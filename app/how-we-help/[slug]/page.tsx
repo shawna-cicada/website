@@ -104,7 +104,12 @@ export default async function PracticePage({ params }: PageProps) {
               {practice.headline}
             </p>
           </div>
-          <div className="anim-rise" style={{ animationDelay: "220ms" }}>
+          <div className="anim-rise" style={{ animationDelay: "180ms" }}>
+            <Text size="lg" muted className="max-w-2xl">
+              {practice.summary}
+            </Text>
+          </div>
+          <div className="anim-rise" style={{ animationDelay: "260ms" }}>
             <CTAButton
               label="Discuss Your Needs"
               href="/book"
