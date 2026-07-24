@@ -63,7 +63,7 @@ test.describe("/book", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: /talk about what your company has outgrown/i,
+        name: /let.s talk about it/i,
       }),
     ).toBeVisible();
     for (const label of [

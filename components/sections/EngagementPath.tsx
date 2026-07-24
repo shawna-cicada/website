@@ -60,12 +60,14 @@ export function EngagementPath({
               >
                 Focused engagements
               </h3>
-              <ul className="mt-6 flex flex-col gap-4">
+              {/* Compact pill cloud (founder review): scannable at a
+                  glance, no bullet lines to read through. */}
+              <ul className="mt-6 flex flex-wrap gap-2.5">
                 {content.engagements.map((engagement) => (
-                  <li key={engagement} className="flex gap-3 text-paper/85">
-                    <span aria-hidden="true" className="text-meadow">
-                      —
-                    </span>
+                  <li
+                    key={engagement}
+                    className="rounded-full border border-paper/20 bg-paper/10 px-3.5 py-1.5 text-sm text-paper/90"
+                  >
                     {engagement}
                   </li>
                 ))}
