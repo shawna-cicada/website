@@ -25,7 +25,7 @@ export default function BookPage() {
       <Section spacing="compact" aria-labelledby="book-heading">
         <PageHero
           eyebrow="Book a conversation"
-          headline="Let's talk about what your company has outgrown."
+          headline="Let's talk about it."
           copy="Choose the conversation that best fits where you are today. We will use the time to understand the change your organization is navigating and determine the most useful next step."
           headingId="book-heading"
         />
