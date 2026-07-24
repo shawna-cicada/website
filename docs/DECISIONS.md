@@ -142,5 +142,15 @@ coaching covers the returning-client path. The homepage final CTA now
 renders one card per bookable conversation, deep-linking /book#<event>,
 which pre-selects the matching type.
 
+## D-025 — /admin sits behind a shared-password curtain — Accepted (2026-07-24)
+Founder request. /admin renders a team-password form before the Studio;
+a month-long HttpOnly cookie (scoped to /admin) remembers entry. The
+plaintext password is NEVER committed — lib/admin-gate.ts holds only its
+SHA-256 fingerprint, and ADMIN_GATE_PASSWORD (env) rotates it without a
+code change. This is explicitly a curtain against casual visitors, not
+the security boundary: content access control remains Sanity sign-in +
+roles behind it. The password is shared privately (chat/password
+manager), never in the repo or docs.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

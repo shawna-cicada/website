@@ -6,7 +6,9 @@ ever feels like it requires some, that's a problem with the tool, not with
 you. Tell whoever maintains the site.
 
 > **Where to go:** the editorial dashboard lives at
-> **cicadaagility.com/admin**. Sign in with your usual account.
+> **cicadaagility.com/admin**. Enter the team password first (ask
+> Shawna — it is shared privately, never written down here), then sign
+> in with your usual account.
 
 ---
 
