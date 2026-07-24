@@ -1,4 +1,5 @@
 import type { StructureResolver } from "sanity/structure";
+import { practiceAreas } from "@/content/seed/practices";
 
 /**
  * Branded desk structure: friendly groups and status-filtered lists —
@@ -76,7 +77,27 @@ export const structure: StructureResolver = (S) =>
       S.listItem()
         .id("practices")
         .title("📄 Practice Pages")
-        .child(S.documentTypeList("practice").title("Practice Pages")),
+        .child(
+          // One fixed document per How We Help page — always listed,
+          // opening pre-filled with the current live copy (via the
+          // matching template) so editing never starts from scratch.
+          S.list()
+            .title("Practice Pages")
+            .items(
+              practiceAreas.map((practice) =>
+                S.listItem()
+                  .id(practice.slug)
+                  .title(practice.name)
+                  .child(
+                    S.document()
+                      .schemaType("practice")
+                      .documentId(`practice-${practice.slug}`)
+                      .initialValueTemplate(`practice-${practice.slug}`)
+                      .title(practice.name),
+                  ),
+              ),
+            ),
+        ),
       S.listItem()
         .id("founders")
         .title("🌱 Founders & Team")

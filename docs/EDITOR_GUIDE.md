@@ -140,15 +140,18 @@ lands directly on the right list:
   these sound familiar?" statements, the practices intro, the featured
   article, and the closing section. Every field says what it changes;
   **leave a field empty to keep the current wording**.
-- **Edit Practice Pages** — the four How We Help pages. Create a
-  document, choose which practice page it edits, and fill in only the
-  parts you want to change. Page names stay fixed (they are the site
-  navigation), and blank fields keep the current copy.
-- **Manage Founder Profiles** — the people on the About page. Add a
-  profile with a photo, bio, expertise, and LinkedIn link. The first
-  profile you create replaces the built-in placeholder profiles, and an
-  uploaded photo also appears on the homepage founder card with the
-  same name. Use **Display order** to control who appears first.
+- **Edit Practice Pages** — the four How We Help pages are always
+  listed by name. Open one and it comes **pre-filled with the current
+  live content** — edit what you want, publish, done. Page names stay
+  fixed (they are the site navigation), and emptying a field falls back
+  to the built-in copy.
+- **Manage Founder Profiles** — the people on the About page. Hit the
+  **+** and pick a "Start from … current profile" template to get a
+  profile pre-filled with today's About-page content, then add a photo
+  and adjust the bio. The first profile you create replaces the
+  built-in placeholder profiles, and an uploaded photo also appears on
+  the homepage founder card with the same name. Use **Display order**
+  to control who appears first.
 - **Manage Client Logos** — upload logos; nothing shows until the
   written-permission box is checked.
 
