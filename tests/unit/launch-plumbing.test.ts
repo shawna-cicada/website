@@ -100,6 +100,28 @@ describe("production environment validation", () => {
     expect(formatEnvReport(report)).not.toContain("CRITICAL");
   });
 
+  it("booking checks follow BOOKING_PROVIDER (calcom demands CALCOM_* vars)", () => {
+    const missing = validateEnvironment({
+      BOOKING_PROVIDER: "calcom",
+    } as unknown as NodeJS.ProcessEnv);
+    expect(
+      missing.missingCritical.map((check) => check.name),
+    ).toContain("CALCOM_EVENT_URL_DISCOVERY_CALL");
+
+    const satisfied = validateEnvironment({
+      BOOKING_PROVIDER: "calcom",
+      CALCOM_EVENT_URL_DISCOVERY_CALL: "https://cal.com/cicada/discovery",
+      BOOKING_CONTACT_EMAIL: "hello@example.com",
+    } as unknown as NodeJS.ProcessEnv);
+    expect(satisfied.ok).toBe(true);
+    // Calendly vars are NOT demanded while calcom is active.
+    expect(
+      [...satisfied.missingCritical, ...satisfied.missingOptional].some(
+        (check) => check.name.startsWith("CALENDLY_"),
+      ),
+    ).toBe(false);
+  });
+
   it("every check explains its consequence in plain language", () => {
     const report = validateEnvironment({} as NodeJS.ProcessEnv);
     for (const check of [...report.missingCritical, ...report.missingOptional]) {

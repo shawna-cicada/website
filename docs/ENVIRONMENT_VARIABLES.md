@@ -20,6 +20,10 @@ logs any gaps — critical ones fail the launch checklist.
 | `CALENDLY_EVENT_URL_ASSESSMENT_DEBRIEF` | /book | Event type falls back to email |
 | `CALENDLY_EVENT_URL_EXISTING_CLIENT` | /book | Event type falls back to email |
 | `CALENDLY_EVENT_URL_COACHING_SESSION` | /book | Event type falls back to email |
+| `CALCOM_EVENT_URL_DISCOVERY_CALL` | /book (BOOKING_PROVIDER=calcom) | Primary booking pathway falls back |
+| `CALCOM_EVENT_URL_ASSESSMENT_DEBRIEF` | /book (calcom) | Event type falls back to email |
+| `CALCOM_EVENT_URL_EXISTING_CLIENT` | /book (calcom) | Event type falls back to email |
+| `CALCOM_EVENT_URL_COACHING_SESSION` | /book (calcom) | Event type falls back to email |
 | `ASSESSMENT_URL_FOUNDER_GROWTH` | /assessments | Card renders "available soon" |
 | `ASSESSMENT_URL_LEADERSHIP_ALIGNMENT` | /assessments | Card renders "available soon" |
 | `ASSESSMENT_URL_AI_READINESS` | /assessments | Card renders "available soon" |

@@ -12,12 +12,38 @@ export type EnvCheck = {
   consequence: string;
 };
 
-export const ENV_CHECKS: EnvCheck[] = [
-  {
-    name: "CALENDLY_EVENT_URL_DISCOVERY_CALL",
-    critical: true,
-    consequence: "The primary booking pathway on /book shows its fallback instead of the scheduler.",
-  },
+/**
+ * Booking event URLs are provider-prefixed (CALENDLY_* or CALCOM_*),
+ * so the check list depends on BOOKING_PROVIDER.
+ */
+function bookingEnvChecks(env: NodeJS.ProcessEnv): EnvCheck[] {
+  const provider = env.BOOKING_PROVIDER?.trim() || "calendly";
+  const prefix = provider === "calcom" ? "CALCOM" : "CALENDLY";
+  return [
+    {
+      name: `${prefix}_EVENT_URL_DISCOVERY_CALL`,
+      critical: true,
+      consequence: "The primary booking pathway on /book shows its fallback instead of the scheduler.",
+    },
+    {
+      name: `${prefix}_EVENT_URL_ASSESSMENT_DEBRIEF`,
+      critical: false,
+      consequence: "The Assessment Debrief event type falls back to email.",
+    },
+    {
+      name: `${prefix}_EVENT_URL_EXISTING_CLIENT`,
+      critical: false,
+      consequence: "The Existing Client event type falls back to email.",
+    },
+    {
+      name: `${prefix}_EVENT_URL_COACHING_SESSION`,
+      critical: false,
+      consequence: "The Coaching Session event type falls back to email.",
+    },
+  ];
+}
+
+const STATIC_ENV_CHECKS: EnvCheck[] = [
   {
     name: "BOOKING_CONTACT_EMAIL",
     critical: true,
@@ -27,21 +53,6 @@ export const ENV_CHECKS: EnvCheck[] = [
     name: "ASSESSMENT_URL_GROWTH_STAGE",
     critical: false,
     consequence: "The featured Growth Stage Assessment renders as 'available soon'.",
-  },
-  {
-    name: "CALENDLY_EVENT_URL_ASSESSMENT_DEBRIEF",
-    critical: false,
-    consequence: "The Assessment Debrief event type falls back to email.",
-  },
-  {
-    name: "CALENDLY_EVENT_URL_EXISTING_CLIENT",
-    critical: false,
-    consequence: "The Existing Client event type falls back to email.",
-  },
-  {
-    name: "CALENDLY_EVENT_URL_COACHING_SESSION",
-    critical: false,
-    consequence: "The Coaching Session event type falls back to email.",
   },
   // NEXT_PUBLIC_SANITY_PROJECT_ID is no longer checked here: the live
   // project's public coordinates are committed defaults (D-020,
@@ -62,7 +73,8 @@ export type EnvReport = {
 export function validateEnvironment(
   env: NodeJS.ProcessEnv = process.env,
 ): EnvReport {
-  const missing = ENV_CHECKS.filter((check) => !env[check.name]?.trim());
+  const checks = [...bookingEnvChecks(env), ...STATIC_ENV_CHECKS];
+  const missing = checks.filter((check) => !env[check.name]?.trim());
   return {
     ok: missing.every((check) => !check.critical),
     missingCritical: missing.filter((check) => check.critical),

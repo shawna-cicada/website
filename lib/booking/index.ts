@@ -1,3 +1,4 @@
+import { calcomProvider } from "@/lib/booking/calcom";
 import { calendlyProvider } from "@/lib/booking/calendly";
 import type {
   BookingConfig,
@@ -34,6 +35,7 @@ export const BOOKING_EVENT_TYPES: BookingEventType[] = [
 
 const PROVIDERS: Record<string, BookingProvider> = {
   calendly: calendlyProvider,
+  calcom: calcomProvider,
 };
 
 function activeProvider(): BookingProvider {
