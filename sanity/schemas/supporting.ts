@@ -260,5 +260,8 @@ export const homepage = defineType({
       rows: 2,
     }),
   ],
+  preview: {
+    prepare: () => ({ title: "Homepage Content" }),
+  },
 });
 

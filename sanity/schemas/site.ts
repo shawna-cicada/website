@@ -56,6 +56,14 @@ export const practice = defineType({
       type: "text",
       rows: 3,
     }),
+    defineField({
+      name: "seoDescription",
+      title: "Search result description (SEO)",
+      description:
+        "The one or two sentences Google shows under this page's link. Aim for under 160 characters. Leave empty to keep the current one.",
+      type: "text",
+      rows: 2,
+    }),
     stringList("whoFor", "Who it’s for", "One line per audience. Leave empty to keep the current list."),
     stringList("problems", "Problems we help solve", "One line per problem. Leave empty to keep the current list."),
     stringList("workOn", "What we may work on", "One line per work area (they display numbered). Leave empty to keep the current list."),
@@ -144,6 +152,14 @@ export const assessmentsPage = defineType({
       title: "Text under the headline",
       type: "text",
       rows: 3,
+    }),
+    defineField({
+      name: "seoDescription",
+      title: "Search result description (SEO)",
+      description:
+        "The one or two sentences Google shows under this page's link. Aim for under 160 characters.",
+      type: "text",
+      rows: 2,
     }),
     defineField({
       name: "gridHeadline",

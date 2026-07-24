@@ -49,6 +49,7 @@ export const practicePageTemplates: Template[] = practiceAreas.map(
       key: practice.slug,
       headline: practice.headline,
       summary: practice.summary,
+      seoDescription: practice.seoDescription,
       whoFor: [...practice.whoFor],
       problems: [...practice.problems],
       workOn: [...practice.workOn],
@@ -107,6 +108,7 @@ export const assessmentsPageTemplate: Template = {
   value: {
     heroHeadline: assessmentsPageContent.hero.headline,
     heroCopy: assessmentsPageContent.hero.copy,
+    seoDescription: assessmentsPageContent.seoDescription,
     gridHeadline: assessmentsPageContent.gridHeadline,
     aboutHeadline: assessmentsPageContent.aboutHeadline,
     aboutCopy: assessmentsPageContent.aboutCopy,

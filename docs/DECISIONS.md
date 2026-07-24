@@ -200,5 +200,13 @@ copy moved into the seed objects so the pages are fully merge-driven.
 The disclosure field's help text reminds editors it is part of the
 privacy disclosure and must stay truthful.
 
+Fourth follow-up (same day): every document type now has an explicit
+preview title (the Homepage Content singleton had none and rendered
+"Untitled" in the editor header), and SEO becomes editor-touchable
+where it matters: practice pages and the Assessments page gain an
+optional "Search result description (SEO)" field feeding the meta
+description (blank keeps the committed copy). Page titles, canonicals,
+sitemap, robots, JSON-LD, and OG images remain code-managed.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

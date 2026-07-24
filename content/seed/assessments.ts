@@ -13,6 +13,8 @@ export const assessmentsPageContent: AssessmentsPageContent = {
     headline: "Find out what your company has outgrown.",
     copy: "Ten minutes to name your stage, the friction beneath it, and what needs to evolve next. Your answers stay with the assessment provider unless you choose to share them.",
   },
+  seoDescription:
+    "Name the stage your company is in, identify the friction beneath the symptoms, and focus on the capability that needs to evolve next. Start with a Cicada Agility assessment.",
   gridHeadline: "More ways to locate the friction",
   aboutHeadline: "About our assessments",
   aboutCopy:

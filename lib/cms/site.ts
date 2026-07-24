@@ -149,6 +149,7 @@ export async function getAssessmentsPageOverrides(): Promise<AssessmentsPageOver
       `*[_type == "assessmentsPage"][0]{
         heroHeadline,
         heroCopy,
+        seoDescription,
         gridHeadline,
         aboutHeadline,
         aboutCopy
@@ -181,6 +182,7 @@ export async function getPracticeOverrides(): Promise<
         key,
         headline,
         summary,
+        seoDescription,
         whoFor,
         problems,
         workOn,

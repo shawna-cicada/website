@@ -188,6 +188,7 @@ export type PracticeOverrideRow = {
   key?: string | null;
   headline?: string | null;
   summary?: string | null;
+  seoDescription?: string | null;
   whoFor?: string[] | null;
   problems?: string[] | null;
   workOn?: string[] | null;
@@ -207,6 +208,7 @@ export function mergePractice(
   if (!override) return seed;
   const headline = present(override.headline);
   const summary = present(override.summary);
+  const seoDescription = present(override.seoDescription);
   const whoFor = presentList(override.whoFor);
   const problems = presentList(override.problems);
   const workOn = presentList(override.workOn);
@@ -216,6 +218,7 @@ export function mergePractice(
     ...seed,
     ...(headline ? { headline } : {}),
     ...(summary ? { summary } : {}),
+    ...(seoDescription ? { seoDescription } : {}),
     ...(whoFor ? { whoFor } : {}),
     ...(problems ? { problems } : {}),
     ...(workOn ? { workOn } : {}),
@@ -417,6 +420,7 @@ export function mergeHowWeHelpContent(
 export type AssessmentsPageOverrides = {
   heroHeadline?: string | null;
   heroCopy?: string | null;
+  seoDescription?: string | null;
   gridHeadline?: string | null;
   aboutHeadline?: string | null;
   aboutCopy?: string | null;
@@ -439,6 +443,9 @@ export function mergeAssessmentsPageContent(
         ? { copy: present(overrides.heroCopy)! }
         : {}),
     },
+    ...(present(overrides.seoDescription)
+      ? { seoDescription: present(overrides.seoDescription)! }
+      : {}),
     ...(present(overrides.gridHeadline)
       ? { gridHeadline: present(overrides.gridHeadline)! }
       : {}),

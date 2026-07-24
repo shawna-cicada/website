@@ -167,6 +167,13 @@ lands directly on the right list:
 
 Changes appear on the website within about five minutes of publishing.
 
+**Search engines (SEO):** most of it is automatic — page titles,
+sitemaps, and structured data are built in. What you control: the
+practice pages and the Assessments page have an optional **Search
+result description (SEO)** field (the text Google shows under the
+link; keep it under ~160 characters), and articles use their title,
+summary, and image descriptions — so always fill those in thoughtfully.
+
 ## Taking something off the website
 
 - **Unpublish** — takes it off the site and keeps it as a draft.
