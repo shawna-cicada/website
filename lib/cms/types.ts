@@ -282,7 +282,8 @@ export type HomepageContent = {
     eyebrow: string;
     headline: string;
     steps: EngagementStep[];
-    engagements: string[];
+    /** The engagement menu, chunked into small labeled groups. */
+    engagementGroups: Array<{ label: string; items: string[] }>;
   };
   clients: {
     headline: string;

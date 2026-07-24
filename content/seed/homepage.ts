@@ -163,15 +163,28 @@ export const homepageContent: HomepageContent = {
         copy: "A focused engagement, built for right now.",
       },
     ],
-    engagements: [
-      "Growth Stage Diagnostic",
-      "Leadership Intensive",
-      "Team Reset",
-      "Executive & Leadership Coaching",
-      "Operating Model or Product Effectiveness Assessment",
-      "Scale Plan and Operational Roadmap",
-      "HR Operations and IPO Readiness",
-      "Ongoing Leadership or Organizational Advisory",
+    engagementGroups: [
+      {
+        label: "Start here",
+        items: ["Growth Stage Diagnostic"],
+      },
+      {
+        label: "For leaders and teams",
+        items: [
+          "Leadership Intensive",
+          "Team Reset",
+          "Executive & Leadership Coaching",
+        ],
+      },
+      {
+        label: "For the organization",
+        items: [
+          "Operating Model or Product Effectiveness Assessment",
+          "Scale Plan and Operational Roadmap",
+          "HR Operations and IPO Readiness",
+          "Ongoing Leadership or Organizational Advisory",
+        ],
+      },
     ],
   },
   clients: {
