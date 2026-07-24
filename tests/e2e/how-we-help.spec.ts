@@ -52,7 +52,7 @@ test.describe("/how-we-help", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "Leadership & Team Effectiveness",
+        name: "Leadership & Executive Teams",
       }),
     ).toBeVisible();
     // The problem statement leads the page right under the title.
@@ -90,7 +90,7 @@ test.describe("/how-we-help", () => {
     expect(jsonLd).toBeTruthy();
     const data = JSON.parse(jsonLd!);
     expect(data["@type"]).toBe("Service");
-    expect(data.name).toBe("Organizational Effectiveness");
+    expect(data.name).toBe("Operating Model & Execution");
     expect(data.provider.name).toBe("Cicada Agility");
     expect(data.url).toContain("/how-we-help/organizational-effectiveness");
   });

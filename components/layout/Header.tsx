@@ -12,10 +12,10 @@ import { CicadaWordmark } from "@/components/brand/CicadaWordmark";
  * (stable slugs; the practices-content unit test guards the set).
  */
 const PRACTICE_LINKS = [
-  { href: "/how-we-help/leadership-team-effectiveness", label: "Leadership & Team Effectiveness" },
-  { href: "/how-we-help/organizational-effectiveness", label: "Organizational Effectiveness" },
-  { href: "/how-we-help/ai-enablement", label: "AI Enablement & Working Norms" },
-  { href: "/how-we-help/founder-growth", label: "Founder Challenges: Seed to Scale" },
+  { href: "/how-we-help/leadership-team-effectiveness", label: "Leadership & Executive Teams" },
+  { href: "/how-we-help/organizational-effectiveness", label: "Operating Model & Execution" },
+  { href: "/how-we-help/ai-enablement", label: "AI & Ways of Working" },
+  { href: "/how-we-help/founder-growth", label: "Founder Evolution" },
 ] as const;
 
 /** Active assessments (content/seed/assessments.ts), anchored on the hub. */

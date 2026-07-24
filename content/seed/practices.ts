@@ -31,10 +31,10 @@ export const howWeHelpContent: HowWeHelpContent = {
 export const practiceAreas: PracticeArea[] = [
   {
     slug: "leadership-team-effectiveness",
-    name: "Leadership & Team Effectiveness",
+    name: "Leadership & Executive Teams",
     headline: "Your leadership team is working harder and agreeing less.",
     summary:
-      "For the team at the top: trust, clarity, and shared accountability. We work with executive teams on how they decide, disagree, and commit, so the group leading the company works as one team.",
+      "For the team at the top. Build trust, clarify decision rights, and create accountability so the leadership team functions as one team instead of a collection of strong individuals.",
     whoFor: [
       "CEOs and their executive teams",
       "Leadership teams that are new, newly combined, or newly stretched",
@@ -80,10 +80,10 @@ export const practiceAreas: PracticeArea[] = [
   },
   {
     slug: "organizational-effectiveness",
-    name: "Organizational Effectiveness",
+    name: "Operating Model & Execution",
     headline: "Strategy is clear at the top and blurry everywhere else.",
     summary:
-      "Build the operating system your strategy moves through. Structure, priorities, governance, and delivery, matched to the stage the company is actually in, not the one it just left.",
+      "For the organization. Design the operating model, priorities, governance, and delivery systems that turn strategy into consistent execution.",
     whoFor: [
       "Executive and operations leaders in growing companies",
       "Product and delivery organizations that have outgrown their structure",
@@ -137,10 +137,10 @@ export const practiceAreas: PracticeArea[] = [
   },
   {
     slug: "ai-enablement",
-    name: "AI Enablement & Working Norms",
+    name: "AI & Ways of Working",
     headline: "AI adoption is happening inconsistently, and without shared norms.",
     summary:
-      "Turn scattered AI experimentation into a shared organizational capability. Practical norms, workable guardrails, and hands-on enablement, grounded in your teams' real work, not demos.",
+      "For how work gets done. Adopt AI intentionally, establish practical working norms, and create systems that help people make better decisions and move faster together.",
     whoFor: [
       "Leadership teams deciding what AI should mean for their organization",
       "Operations and people leaders responsible for how work changes",
@@ -186,10 +186,10 @@ export const practiceAreas: PracticeArea[] = [
   },
   {
     slug: "founder-growth",
-    name: "Founder Challenges: Seed to Scale",
+    name: "Founder Evolution",
     headline: "The company scaled. The founder's role has to change with it.",
     summary:
-      "For the founder personally: your role has to evolve as the company scales. We work one-on-one and with co-founders on delegation that feels safe, a leadership team that exists in practice, and decision-making that no longer routes through you.",
+      "For you, the founder. As your company grows, your role has to evolve too: learning to delegate, building a true leadership team, and stepping out of the center of every decision.",
     whoFor: [
       "Founders and co-founders of growing companies",
       "Founder-CEOs building their first real leadership team",
