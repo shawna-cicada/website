@@ -102,6 +102,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Anchor targets clear the sticky header. */
+  scroll-padding-top: 6rem;
 }
 
 body {
