@@ -1,37 +1,45 @@
 import { test, expect } from "@playwright/test";
+import { ADMIN_GATE_COOKIE, expectedToken } from "../../lib/admin-gate";
 
 test.describe("/admin", () => {
-  test("serves the embedded Studio shell (D-020: always configured)", async ({
+  test("shows the team-password curtain, not the Studio, to strangers", async ({
     page,
   }) => {
     const response = await page.goto("/admin");
     expect(response?.status()).toBe(200);
-
-    // The pre-D-020 "connect Sanity first" notice must be gone for good.
-    await expect(
-      page.getByRole("heading", {
-        name: /editorial dashboard is almost ready/i,
-      }),
-    ).toHaveCount(0);
-
-    // The Studio itself is client-rendered and needs network access to
-    // Sanity (unavailable in this environment), so assert the shell:
-    // Sanity's core bridge script only ships when the Studio mounts.
-    const html = await page.content();
-    expect(html).toContain("data-sanity-core");
+    await expect(page.getByRole("heading", { name: "Team access" })).toBeVisible();
+    await expect(page.getByLabel("Team password")).toBeVisible();
+    // The Studio must not ship to ungated visitors.
+    expect(await page.content()).not.toContain("data-sanity-core");
+    // The marketing chrome stays out of /admin.
+    await expect(page.getByRole("contentinfo")).toHaveCount(0);
   });
 
-  test("renders without the marketing header/footer, so the Studio's action bar fits on screen", async ({
+  test("wrong password bounces back with a plain-language error", async ({
     page,
   }) => {
     await page.goto("/admin");
-    // The site nav stacking above the full-viewport Studio pushed the
-    // Publish bar below the fold — the chrome must never render here.
-    await expect(
-      page.getByRole("link", { name: /how we help/i }),
-    ).toHaveCount(0);
-    await expect(
-      page.getByRole("contentinfo"),
-    ).toHaveCount(0);
+    await page.getByLabel("Team password").fill("not-the-password");
+    await page.getByRole("button", { name: "Continue" }).click();
+    await expect(page.getByText(/isn.t right — try again/i)).toBeVisible();
+    expect(await page.content()).not.toContain("data-sanity-core");
+  });
+
+  test("a valid gate cookie opens the Studio shell", async ({
+    page,
+    context,
+    baseURL,
+  }) => {
+    await context.addCookies([
+      {
+        name: ADMIN_GATE_COOKIE,
+        value: expectedToken(),
+        url: `${baseURL}/admin`,
+      },
+    ]);
+    await page.goto("/admin");
+    await expect(page.getByRole("heading", { name: "Team access" })).toHaveCount(0);
+    // Sanity's core bridge script only ships when the Studio mounts.
+    expect(await page.content()).toContain("data-sanity-core");
   });
 });

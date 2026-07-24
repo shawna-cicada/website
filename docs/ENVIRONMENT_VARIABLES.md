@@ -27,6 +27,7 @@ logs any gaps — critical ones fail the launch checklist.
 
 | Variable | Used by | Effect when unset |
 |---|---|---|
+| `ADMIN_GATE_PASSWORD` | /admin curtain (D-025) | Optional rotation — committed fingerprint applies |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Optional override (D-020) | Defaults to the committed live project `66n8qkam` |
 | `NEXT_PUBLIC_SANITY_DATASET` | Optional override (D-020) | Defaults to `production` |
 
