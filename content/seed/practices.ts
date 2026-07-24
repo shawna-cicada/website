@@ -34,7 +34,7 @@ export const practiceAreas: PracticeArea[] = [
     name: "Leadership & Team Effectiveness",
     headline: "Your leadership team is working harder and agreeing less.",
     summary:
-      "Build trust, clarity, and shared accountability at the top. We work with executive teams on how they decide, disagree, and commit, so the team leading the company works as well as the people in it.",
+      "For the team at the top: trust, clarity, and shared accountability. We work with executive teams on how they decide, disagree, and commit, so the group leading the company works as one team.",
     whoFor: [
       "CEOs and their executive teams",
       "Leadership teams that are new, newly combined, or newly stretched",
@@ -189,7 +189,7 @@ export const practiceAreas: PracticeArea[] = [
     name: "Founder Challenges: Seed to Scale",
     headline: "The company scaled. The founder's role has to change with it.",
     summary:
-      "Evolve the founder's role as the company scales. Delegation with the systems to make it safe, a leadership team that exists in practice, and decision-making that no longer routes through one person.",
+      "For the founder personally: your role has to evolve as the company scales. We work one-on-one and with co-founders on delegation that feels safe, a leadership team that exists in practice, and decision-making that no longer routes through you.",
     whoFor: [
       "Founders and co-founders of growing companies",
       "Founder-CEOs building their first real leadership team",

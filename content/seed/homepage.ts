@@ -51,10 +51,11 @@ export const homepageContent: HomepageContent = {
   services: {
     eyebrow: "How we help",
     headline: "Four practices, one connected system.",
+    copy: "Growth friction moves between leadership, the organization, and ways of working, so the four practices are built to work together. Each one is a different doorway into the same system.",
     items: [
       {
         title: "Leadership & Team Effectiveness",
-        copy: "Trust, clarity, and accountability as your team evolves.",
+        copy: "For the team at the top. Trust, decision rights, and accountability, so the group leading the company works as one team rather than a collection of strong individuals.",
         examples: [
           "Executive team alignment",
           "Leadership intensives",
@@ -65,7 +66,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "Organizational Effectiveness",
-        copy: "Operating systems that let strategy actually move.",
+        copy: "For the organization itself. The operating model, priorities, governance, and delivery systems your strategy moves through, matched to the stage you are actually in.",
         examples: [
           "Operating model design",
           "Product and delivery effectiveness",
@@ -76,7 +77,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "AI Enablement & Working Norms",
-        copy: "Adopt AI practically, responsibly, consistently.",
+        copy: "For how your teams work. Practical AI adoption with shared norms and workable guardrails, grounded in your teams' real work rather than demos.",
         examples: [
           "AI readiness and opportunity assessment",
           "Team working agreements",
@@ -87,7 +88,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "Founder Challenges: Seed to Scale",
-        copy: "Evolve your role as the business grows.",
+        copy: "For you, the founder. Your role has to evolve as the company scales: delegation that feels safe, a leadership team that is real, and decisions that no longer route through you.",
         examples: [
           "Founder transition and delegation",
           "Leadership team formation",
@@ -142,50 +143,6 @@ export const homepageContent: HomepageContent = {
       },
     ],
     cta: { label: "Explore all assessments", href: "/assessments" },
-  },
-  engagement: {
-    eyebrow: "How an engagement works",
-    headline: "It starts with a conversation, not a contract.",
-    steps: [
-      {
-        step: "1",
-        title: "Discover",
-        copy: "An assessment or a short call.",
-      },
-      {
-        step: "2",
-        title: "Diagnose",
-        copy: "Find the real constraint beneath the symptoms.",
-      },
-      {
-        step: "3",
-        title: "Evolve",
-        copy: "A focused engagement, built for right now.",
-      },
-    ],
-    engagementGroups: [
-      {
-        label: "Start here",
-        items: ["Growth Stage Diagnostic"],
-      },
-      {
-        label: "For leaders and teams",
-        items: [
-          "Leadership Intensive",
-          "Team Reset",
-          "Executive & Leadership Coaching",
-        ],
-      },
-      {
-        label: "For the organization",
-        items: [
-          "Operating Model or Product Effectiveness Assessment",
-          "Scale Plan and Operational Roadmap",
-          "HR Operations and IPO Readiness",
-          "Ongoing Leadership or Organizational Advisory",
-        ],
-      },
-    ],
   },
   clients: {
     headline: "Experience supporting teams from startup to enterprise",

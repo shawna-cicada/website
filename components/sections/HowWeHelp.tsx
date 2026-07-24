@@ -23,6 +23,9 @@ export function HowWeHelp({
           <Heading level={2} id="services-heading" className="mt-2">
             {content.headline}
           </Heading>
+          <Text muted size="lg" className="mt-4">
+            {content.copy}
+          </Text>
           <div className="mt-5">
             <TextLink href={content.cta.href} arrow className="text-lg">
               {content.cta.label}

@@ -59,15 +59,7 @@ export default async function PracticePage({ params }: PageProps) {
   const practice = await getPracticeArea(slug);
   if (!practice) notFound();
 
-  const [allPractices, formats] = await Promise.all([
-    getPracticeAreas(),
-    getEngagementsForPractice(slug),
-  ]);
-  const related = practice.relatedPractices
-    .map((relatedSlug) =>
-      allPractices.find((candidate) => candidate.slug === relatedSlug),
-    )
-    .filter((candidate) => candidate !== undefined);
+  const formats = await getEngagementsForPractice(slug);
 
   return (
     <>
@@ -131,12 +123,10 @@ export default async function PracticePage({ params }: PageProps) {
               <Heading level={2} visualLevel={3} id="who-for">
                 Who it&rsquo;s for
               </Heading>
-              <ul className="mt-6 flex flex-wrap gap-3">
+              {/* Plain quiet lines (founder review: no pills). */}
+              <ul className="mt-6 flex flex-col gap-4">
                 {practice.whoFor.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-full border border-ink/15 bg-paper px-4 py-2 text-sm font-medium text-ink/85"
-                  >
+                  <li key={item} className="font-medium text-ink/85">
                     {item}
                   </li>
                 ))}
@@ -264,9 +254,9 @@ export default async function PracticePage({ params }: PageProps) {
         </Container>
       </Section>
 
-      {/* Related insights + related practices */}
+      {/* Related insights (related practices removed per founder review) */}
       <Section aria-labelledby="related-heading">
-        <Container className="grid gap-12 lg:grid-cols-2">
+        <Container className="max-w-3xl">
           <Reveal>
             <div>
               <Eyebrow>Related insights</Eyebrow>
@@ -279,29 +269,6 @@ export default async function PracticePage({ params }: PageProps) {
                     <TextLink href={insight.href} arrow>
                       {insight.title}
                     </TextLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div>
-              <Eyebrow>Related practices</Eyebrow>
-              <Heading level={2} visualLevel={4} className="mt-2">
-                This work often pairs with
-              </Heading>
-              <ul className="mt-5 flex flex-col gap-4">
-                {related.map((relatedPractice) => (
-                  <li key={relatedPractice.slug}>
-                    <TextLink
-                      href={`/how-we-help/${relatedPractice.slug}`}
-                      arrow
-                    >
-                      {relatedPractice.name}
-                    </TextLink>
-                    <p className="mt-1 text-sm text-slate">
-                      {relatedPractice.summary}
-                    </p>
                   </li>
                 ))}
               </ul>

@@ -8,7 +8,6 @@ import { Recognition } from "@/components/sections/Recognition";
 import { Framework } from "@/components/sections/Framework";
 import { HowWeHelp } from "@/components/sections/HowWeHelp";
 import { AssessmentFeature } from "@/components/sections/AssessmentFeature";
-import { EngagementPath } from "@/components/sections/EngagementPath";
 import { ClientLogos } from "@/components/sections/ClientLogos";
 import { FeaturedInsightSection } from "@/components/sections/FeaturedInsight";
 import { Founders } from "@/components/sections/Founders";
@@ -53,8 +52,6 @@ export default async function HomePage() {
       <Recognition content={content.recognition} />
       <Framework content={content.framework} />
       <HowWeHelp content={content.services} />
-      {/* Path first, then the concrete entry point (the assessment). */}
-      <EngagementPath content={content.engagement} />
       <AssessmentFeature content={content.assessments} />
       <ClientLogos
         content={{

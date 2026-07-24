@@ -42,12 +42,6 @@ export type AssessmentCard = {
   featured: boolean;
 };
 
-export type EngagementStep = {
-  step: string;
-  title: string;
-  copy: string;
-};
-
 export type FounderProfile = {
   name: string;
   role: string;
@@ -268,6 +262,8 @@ export type HomepageContent = {
   services: {
     eyebrow: string;
     headline: string;
+    /** Connective intro: why the four practices are one system. */
+    copy: string;
     items: ServiceCard[];
     cta: CTA;
   };
@@ -277,13 +273,6 @@ export type HomepageContent = {
     copy: string;
     items: AssessmentCard[];
     cta: CTA;
-  };
-  engagement: {
-    eyebrow: string;
-    headline: string;
-    steps: EngagementStep[];
-    /** The engagement menu, chunked into small labeled groups. */
-    engagementGroups: Array<{ label: string; items: string[] }>;
   };
   clients: {
     headline: string;
