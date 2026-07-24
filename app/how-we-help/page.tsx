@@ -62,7 +62,7 @@ export default async function HowWeHelpPage() {
             <Reveal>
               <Eyebrow>One connected system</Eyebrow>
               <Heading level={2} id="hwh-system-heading" visualLevel={3} className="mt-2 max-w-2xl">
-                Growth friction shows up in one place and starts in another.
+                Friction shows up in one place. Its cause is usually somewhere else.
               </Heading>
               <div className="mt-4 flex max-w-2xl flex-col gap-4">
                 {content.systemNarrative.map((paragraph) => (

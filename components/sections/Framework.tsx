@@ -1,13 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
+import { motion, useReducedMotion, useScroll } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading, Text } from "@/components/ui/Text";
 import type { FrameworkStage, HomepageContent } from "@/lib/cms/types";
@@ -104,41 +98,16 @@ function ScrollLinkedStages({ stages }: { stages: FrameworkStage[] }) {
         className="mb-10 h-[2px] origin-left rounded-full bg-meadow/80"
         style={{ scaleX: scrollYProgress }}
       />
+      {/* Columns are static so the three numerals share one top line
+          (founder review); the growing rule carries the motion. */}
       <ol ref={ref} className="grid gap-10 lg:grid-cols-3">
         {stages.map((stage, index) => (
-          <ScrollStage
-            key={stage.name}
-            stage={stage}
-            index={index}
-            progress={scrollYProgress}
-            count={stages.length}
-          />
+          <li key={stage.name} className="h-full">
+            <StageColumn stage={stage} index={index} />
+          </li>
         ))}
       </ol>
     </div>
   );
 }
 
-function ScrollStage({
-  stage,
-  index,
-  progress,
-  count,
-}: {
-  stage: FrameworkStage;
-  index: number;
-  progress: MotionValue<number>;
-  count: number;
-}) {
-  // Each column settles as the visitor scrolls through its slice.
-  // Translate only — text contrast holds at every scroll position.
-  const start = index / (count + 1);
-  const end = (index + 1) / count;
-  const y = useTransform(progress, [start, end], [24, 0]);
-
-  return (
-    <motion.li style={{ y }} className="h-full">
-      <StageColumn stage={stage} index={index} />
-    </motion.li>
-  );
-}

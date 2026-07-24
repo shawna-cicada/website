@@ -49,9 +49,9 @@ export const homepageContent: HomepageContent = {
     ],
   },
   services: {
-    eyebrow: "How we help",
-    headline: "Four practices, one connected system.",
-    copy: "Growth friction moves between leadership, the organization, and ways of working, so the four practices are built to work together. Each one is a different doorway into the same system.",
+    eyebrow: "One connected system",
+    headline: "Friction shows up in one place. Its cause is usually somewhere else.",
+    copy: "The team at the top, the operating model, how work gets done, and your own role as founder all shape one another as the company grows. Our four practices are built to work together, because fixing one in isolation usually just moves the problem.",
     items: [
       {
         title: "Leadership & Executive Teams",
