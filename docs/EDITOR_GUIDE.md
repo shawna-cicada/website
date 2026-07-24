@@ -131,6 +131,29 @@ From the dashboard, **Edit Existing Content**, or use the lists on the
 dashboard itself. Content is grouped by status (Drafts, Scheduled,
 Published, Archived) — no searching through technical menus.
 
+## Editing website pages (no code needed)
+
+The dashboard has a button for each editable area, and every button
+lands directly on the right list:
+
+- **Update Homepage Content** — the homepage headline, the "Do any of
+  these sound familiar?" statements, the practices intro, the featured
+  article, and the closing section. Every field says what it changes;
+  **leave a field empty to keep the current wording**.
+- **Edit Practice Pages** — the four How We Help pages. Create a
+  document, choose which practice page it edits, and fill in only the
+  parts you want to change. Page names stay fixed (they are the site
+  navigation), and blank fields keep the current copy.
+- **Manage Founder Profiles** — the people on the About page. Add a
+  profile with a photo, bio, expertise, and LinkedIn link. The first
+  profile you create replaces the built-in placeholder profiles, and an
+  uploaded photo also appears on the homepage founder card with the
+  same name. Use **Display order** to control who appears first.
+- **Manage Client Logos** — upload logos; nothing shows until the
+  written-permission box is checked.
+
+Changes appear on the website within about five minutes of publishing.
+
 ## Taking something off the website
 
 - **Unpublish** — takes it off the site and keeps it as a draft.

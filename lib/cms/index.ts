@@ -22,9 +22,15 @@ export {
 } from "@/lib/cms/insights";
 import {
   getHomepageOverrides,
+  getPracticeOverrides,
   getSanityClientRecords,
+  getSanityFounders,
 } from "@/lib/cms/site";
-import { mergeHomepageContent } from "@/lib/cms/mappers";
+import {
+  adoptFounderPhotos,
+  mergeHomepageContent,
+  mergePractice,
+} from "@/lib/cms/mappers";
 
 /**
  * Content adapter (D-004): all page content flows through this interface.
@@ -34,7 +40,18 @@ import { mergeHomepageContent } from "@/lib/cms/mappers";
 export async function getHomepageContent(): Promise<HomepageContent> {
   // Studio's "Homepage Content" document overrides the seed (D-021);
   // blank fields and CMS outages fall through to the committed copy.
-  return mergeHomepageContent(homepageContent, await getHomepageOverrides());
+  const [overrides, cmsFounders] = await Promise.all([
+    getHomepageOverrides(),
+    getSanityFounders(),
+  ]);
+  const merged = mergeHomepageContent(homepageContent, overrides);
+  return {
+    ...merged,
+    founders: {
+      ...merged.founders,
+      people: adoptFounderPhotos(merged.founders.people, cmsFounders),
+    },
+  };
 }
 
 export async function getHowWeHelpContent(): Promise<HowWeHelpContent> {
@@ -42,13 +59,21 @@ export async function getHowWeHelpContent(): Promise<HowWeHelpContent> {
 }
 
 export async function getPracticeAreas(): Promise<PracticeArea[]> {
-  return practiceAreas;
+  // Studio "Practice Pages" documents override seed copy field by field
+  // (D-026); names and slugs stay code-managed for navigation and URLs.
+  const overrides = await getPracticeOverrides();
+  return practiceAreas.map((practice) =>
+    mergePractice(practice, overrides[practice.slug]),
+  );
 }
 
 export async function getPracticeArea(
   slug: string,
 ): Promise<PracticeArea | undefined> {
-  return practiceAreas.find((practice) => practice.slug === slug);
+  const seed = practiceAreas.find((practice) => practice.slug === slug);
+  if (!seed) return undefined;
+  const overrides = await getPracticeOverrides();
+  return mergePractice(seed, overrides[slug]);
 }
 
 export async function getEngagements(): Promise<Engagement[]> {
@@ -70,6 +95,11 @@ export async function getAboutContent() {
 }
 
 export async function getFounders() {
+  // The first Studio-created founder profile replaces the committed
+  // placeholder profiles wholesale (same model as client logos); until
+  // then — or if Sanity is unreachable — the seed profiles render.
+  const cmsFounders = await getSanityFounders();
+  if (cmsFounders.length > 0) return cmsFounders;
   const { founders } = await import("@/content/seed/about");
   return founders;
 }

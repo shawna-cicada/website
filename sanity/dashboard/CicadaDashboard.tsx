@@ -44,15 +44,19 @@ const ACTIONS: Array<{
   detail: string;
   template?: string;
   type?: string;
+  /** Explicit id of a top-level desk item (sanity/structure.ts). */
+  structureId?: string;
   href?: string;
 }> = [
   { label: "Create a New Article", intent: "create", type: "insight", template: "insight-leadership-insight", detail: "Start from a template with writing prompts" },
   { label: "Add a Video", intent: "create", type: "insight", template: "insight-video-post", detail: "Share a video or recorded conversation" },
-  { label: "Edit Existing Content", intent: "browse", type: "insight", detail: "Find and update anything already written" },
-  { label: "Schedule a Post", intent: "browse", type: "insight", detail: "Open a draft, then choose Schedule" },
-  { label: "Update Homepage Content", intent: "browse", type: "homepage", detail: "Change what the homepage features" },
-  { label: "Manage Assessments", intent: "browse", type: "assessment", detail: "Edit assessment cards and links" },
-  { label: "Manage Client Logos", intent: "browse", type: "clientLogo", detail: "Add logos and confirm permissions" },
+  { label: "Edit Existing Content", intent: "browse", structureId: "insights", detail: "Find and update anything already written" },
+  { label: "Schedule a Post", intent: "browse", structureId: "insights", detail: "Open a draft, then choose Schedule" },
+  { label: "Update Homepage Content", intent: "browse", structureId: "homepage", detail: "Edit the homepage headlines and text" },
+  { label: "Edit Practice Pages", intent: "browse", structureId: "practices", detail: "Change the How We Help page content" },
+  { label: "Manage Founder Profiles", intent: "browse", structureId: "founders", detail: "Update bios and upload photos" },
+  { label: "Manage Assessments", intent: "browse", structureId: "assessments", detail: "Edit assessment cards and links" },
+  { label: "Manage Client Logos", intent: "browse", structureId: "clientLogos", detail: "Add logos and confirm permissions" },
   { label: "Preview the Website", intent: "external", href: "/", detail: "See the live site in a new tab" },
 ];
 
@@ -119,8 +123,10 @@ export function CicadaDashboard() {
       });
       return;
     }
-    if (action.type) {
-      router.navigateUrl({ path: `${basePath}/structure/${action.type}` });
+    if (action.structureId) {
+      // Deep-link into the desk item with the matching explicit .id()
+      // (sanity/structure.ts) so each button lands on its content area.
+      router.navigateUrl({ path: `${basePath}/structure/${action.structureId}` });
     }
   }
 

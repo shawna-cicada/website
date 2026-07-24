@@ -210,6 +210,46 @@ export const homepage = defineType({
       type: "reference",
       to: [{ type: "assessment" }],
     }),
+    defineField({
+      name: "recognitionHeadline",
+      title: "“Sound familiar” section headline",
+      description: "Leave empty to keep the current one.",
+      type: "string",
+    }),
+    defineField({
+      name: "recognitionStatements",
+      title: "“Sound familiar” statements",
+      description:
+        "One line per statement. Leave empty to keep the current six.",
+      type: "array",
+      of: [{ type: "string" }],
+    }),
+    defineField({
+      name: "servicesHeadline",
+      title: "Practices section headline",
+      description: "Leave empty to keep the current one.",
+      type: "string",
+    }),
+    defineField({
+      name: "servicesCopy",
+      title: "Practices section intro text",
+      description: "Leave empty to keep the current one.",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "finalCtaHeadline",
+      title: "Closing section headline",
+      description: "Leave empty to keep the current one.",
+      type: "string",
+    }),
+    defineField({
+      name: "finalCtaCopy",
+      title: "Closing section text",
+      description: "Leave empty to keep the current one.",
+      type: "text",
+      rows: 2,
+    }),
   ],
 });
 
