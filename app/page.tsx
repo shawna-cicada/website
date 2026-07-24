@@ -74,7 +74,7 @@ export default async function HomePage() {
         // always visibly labeled as samples (founder request, 2026-07-23).
         demoNote={
           approvedClients.length === 0
-            ? "Sample logos shown for layout preview — real client logos appear here with written permission."
+            ? "Sample logos shown for layout preview. Real client logos appear here with written permission."
             : undefined
         }
       />

@@ -132,7 +132,7 @@ export default async function AssessmentsPage() {
                 These assessments were built by Cicada Agility and are
                 proprietary to our practice; they run on a secure external
                 survey platform. When you complete one, your answers and
-                contact details come to us — we use them to prepare your
+                contact details come to us. We use them to prepare your
                 results, follow up with you about what they show, and stay in
                 touch about work that may be relevant. Prefer to skip the
                 form? Book a conversation instead.

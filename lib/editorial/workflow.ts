@@ -45,7 +45,7 @@ export function publishDoc(
     return {
       ok: false,
       problems: [
-        "Publishing needs a Publisher or Administrator account. Your draft is safe — ask a Publisher to review and publish it.",
+        "Publishing needs a Publisher or Administrator account. Your draft is safe. Ask a Publisher to review and publish it.",
       ],
     };
   }
@@ -134,7 +134,7 @@ export function sendForReview(
     ok: true,
     doc: { ...doc, status: "needs-review", scheduledAt: undefined },
     notes: [
-      "Moved to Waiting for review — Publishers see it on the dashboard and in the review list.",
+      "Moved to Waiting for review. Publishers see it on the dashboard and in the review list.",
     ],
   };
 }
@@ -153,7 +153,7 @@ export function backToDraft(
   return {
     ok: true,
     doc: { ...doc, status: "draft", scheduledAt: undefined },
-    notes: ["Back to draft — keep writing and send it for review when ready."],
+    notes: ["Back to draft. Keep writing and send it for review when ready."],
   };
 }
 
@@ -167,7 +167,7 @@ export function unpublishDoc(
   return {
     ok: true,
     doc: { ...doc, status: "draft", publishedAt: undefined, scheduledAt: undefined },
-    notes: ["The piece is off the website and saved as a draft — nothing was deleted."],
+    notes: ["The piece is off the website and saved as a draft. Nothing was deleted."],
   };
 }
 
@@ -188,7 +188,7 @@ export function archiveDoc(
       ok: false,
       needsConfirmation: true,
       message:
-        "Archive this piece? It will come off the website but nothing is deleted — you can restore it any time from the Archived list.",
+        "Archive this piece? It will come off the website but nothing is deleted. You can restore it any time from the Archived list.",
     };
   }
   return {
@@ -211,7 +211,7 @@ export function restoreVersion(
     ok: true,
     doc: { ...revision, status: "draft" },
     notes: [
-      "The previous version is restored as a draft — review it, then publish when ready.",
+      "The previous version is restored as a draft. Review it, then publish when ready.",
     ],
   };
 }

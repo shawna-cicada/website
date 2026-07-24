@@ -21,7 +21,7 @@ test.describe("/admin", () => {
     await page.goto("/admin");
     await page.getByLabel("Team password").fill("not-the-password");
     await page.getByRole("button", { name: "Continue" }).click();
-    await expect(page.getByText(/isn.t right — try again/i)).toBeVisible();
+    await expect(page.getByText(/isn.t right. Try again/i)).toBeVisible();
     expect(await page.content()).not.toContain("data-sanity-core");
   });
 

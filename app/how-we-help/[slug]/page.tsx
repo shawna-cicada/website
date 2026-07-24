@@ -321,7 +321,7 @@ export default async function PracticePage({ params }: PageProps) {
           <Reveal delay={0.1}>
             <Text size="lg" className="text-paper/75">
               Tell us what your organization is running into. We will tell you
-              honestly whether — and how — we can help.
+              honestly whether, and how, we can help.
             </Text>
           </Reveal>
           <Reveal delay={0.2} className="flex flex-wrap gap-4">

@@ -23,7 +23,7 @@ describe("AssessmentCta", () => {
     const button = screen.getByRole("button", { name: "Start the assessment" });
     expect(button).toBeDisabled();
     expect(
-      screen.getByText(/being prepared — available soon/i),
+      screen.getByText(/being prepared. Available soon/i),
     ).toBeInTheDocument();
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });

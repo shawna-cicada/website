@@ -21,7 +21,7 @@ const COLORS = [
   { name: "Rhino (Ink Soft)", token: "--color-ink-soft", className: "bg-ink-soft", role: "Raised surfaces on ink." },
   { name: "Paper", token: "--color-paper", className: "bg-paper border border-ink/10", role: "Near-white page background." },
   { name: "White Lilac", token: "--color-lilac", className: "bg-lilac border border-ink/10", role: "Brand soft mineral. Cards and wells." },
-  { name: "Mountain Meadow", token: "--color-meadow", className: "bg-meadow", role: "THE brand green. Surfaces and on-ink emphasis — never small text on paper." },
+  { name: "Mountain Meadow", token: "--color-meadow", className: "bg-meadow", role: "THE brand green. Surfaces and on-ink emphasis, never small text on paper." },
   { name: "Meadow Bright", token: "--color-meadow-bright", className: "bg-meadow-bright", role: "Hover state of accent surfaces." },
   { name: "Meadow Deep", token: "--color-meadow-deep", className: "bg-meadow-deep", role: "Derived text-safe green: links, eyebrows, focus ring. AA." },
   { name: "Slate", token: "--color-slate", className: "bg-slate", role: "Derived from Rhino: muted text. AA." },
@@ -52,7 +52,7 @@ const MOTION_TOKENS = [
   { name: "duration-slow", value: "600ms", use: "Fades, larger settles" },
   { name: "duration-reveal", value: "900ms", use: "Section entrances, hero reveal" },
   { name: "ease-out-soft", value: "cubic-bezier(0.33, 1, 0.68, 1)", use: "Default easing" },
-  { name: "ease-emergence", value: "cubic-bezier(0.22, 1, 0.36, 1)", use: "Entrances — quick start, long settle" },
+  { name: "ease-emergence", value: "cubic-bezier(0.22, 1, 0.36, 1)", use: "Entrances: quick start, long settle" },
 ] as const;
 
 function Swatch({ name, token, className, role }: (typeof COLORS)[number]) {
@@ -86,7 +86,7 @@ export default function DesignSystemPage() {
       {/* ---------------------------------------------------- intro */}
       <Section aria-labelledby="ds-title">
         <Container className="flex flex-col gap-4">
-          <Eyebrow>Internal — not linked from the site</Eyebrow>
+          <Eyebrow>Internal: not linked from the site</Eyebrow>
           <Heading level={1} id="ds-title">
             Cicada Agility Design System
           </Heading>
@@ -119,7 +119,7 @@ export default function DesignSystemPage() {
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="rounded-sm bg-paper p-5 border border-ink/10">
               <p className="font-semibold text-ink">Ink on paper</p>
-              <p className="text-sm text-slate">Body copy — 13.8:1</p>
+              <p className="text-sm text-slate">Body copy · 13.8:1</p>
             </div>
             <div className="on-ink rounded-sm bg-ink p-5">
               <p className="font-semibold text-paper">Paper on ink</p>
@@ -222,7 +222,7 @@ export default function DesignSystemPage() {
             </div>
             <div className="flex flex-wrap items-center gap-4">
               <Button size="sm">Small</Button>
-              <Button size="md">Medium — 44px target</Button>
+              <Button size="md">Medium (44px target)</Button>
               <Button size="lg">Large</Button>
               <Button href="/design-system#ds-buttons" variant="outline">
                 Rendered as a link
@@ -317,7 +317,7 @@ export default function DesignSystemPage() {
               <ImageFrame ratio="4/3">
                 <PlaceholderImage label="plain treatment" />
               </ImageFrame>
-              <figcaption className="text-sm text-slate">Plain — 4/3</figcaption>
+              <figcaption className="text-sm text-slate">Plain · 4/3</figcaption>
             </figure>
             <figure className="flex flex-col gap-3">
               <ImageFrame ratio="4/3" treatment="wing">
@@ -341,7 +341,7 @@ export default function DesignSystemPage() {
               The official cicada mark and CICADA logotype (customized
               Raleway), extracted from the brand EPS as vector components that
               render in any token color. The mark is approved standalone at
-              small sizes — favicon, app icon. Sources live in{" "}
+              small sizes: favicon, app icon. Sources live in{" "}
               <code>public/logos/</code>.
             </Text>
           </div>

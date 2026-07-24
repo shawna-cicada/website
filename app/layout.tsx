@@ -27,7 +27,7 @@ const montserrat = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.cicadaagility.com"),
   title: {
-    default: "Cicada Agility — Growth Happens in Stages",
+    default: "Cicada Agility | Growth Happens in Stages",
     template: "%s | Cicada Agility",
   },
   description:

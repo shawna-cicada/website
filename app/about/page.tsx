@@ -184,7 +184,7 @@ export default async function AboutPage() {
                       </Text>
                       {founder.draftBio ? (
                         <p className="mt-2 text-xs italic text-slate">
-                          Draft bio — pending editorial review.
+                          Draft bio: pending editorial review.
                         </p>
                       ) : null}
                     </div>

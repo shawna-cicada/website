@@ -57,7 +57,7 @@ export default async function AdminPage({ searchParams }: PageProps) {
         </p>
         {wrongPassword ? (
           <p style={{ margin: 0, color: "#8f4f24" }}>
-            That password isn&rsquo;t right — try again.
+            That password isn&rsquo;t right. Try again.
           </p>
         ) : null}
         <label htmlFor="admin-gate-password" style={{ fontWeight: 600 }}>

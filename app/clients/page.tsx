@@ -103,7 +103,7 @@ export default async function ClientsPage() {
               <Text muted size="lg" className="mt-3">
                 We are gathering permissions from the organizations we have
                 worked with. In the meantime, the best way to understand our
-                work is to explore how we help — or to talk with us directly.
+                work is to explore how we help, or to talk with us directly.
               </Text>
             </Reveal>
             <Reveal delay={0.1} className="flex flex-wrap gap-4">

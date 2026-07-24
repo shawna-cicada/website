@@ -15,7 +15,7 @@ export const aboutContent: AboutContent = {
   origin: {
     headline: "Why a cicada?",
     paragraphs: [
-      "Cicadas do not grow in one smooth, continuous line. They live in stages — long seasons of steady growth underground, then an emergence into daylight, the shedding of the shell that carried them there, and wings expanding into a capacity they did not have before.",
+      "Cicadas do not grow in one smooth, continuous line. They live in stages: long seasons of steady growth underground, then an emergence into daylight, the shedding of the shell that carried them there, and wings expanding into a capacity they did not have before.",
       "Companies grow the same way. Each stage asks something new to emerge, something to be shed, and greater capacity to expand. The habits, structures, and ways of working that built the last stage are often the very things limiting the next one.",
       "That is the work we do: helping leadership teams notice which stage they are in, let go of what no longer serves them, and build what the next stage asks of them.",
     ],
@@ -24,14 +24,14 @@ export const aboutContent: AboutContent = {
     headline: "What we believe",
     items: [
       "Your company is not broken. It may simply have outgrown the leadership habits, operating structures, and ways of working that brought it here.",
-      "Growth problems are rarely confined to one team, one process, or one leader — they live in the connections between them.",
+      "Growth problems are rarely confined to one team, one process, or one leader. They live in the connections between them.",
       "Lasting change is built with the people who must carry it, not delivered to them.",
       "The goal of outside help is internal capability, not dependence.",
     ],
   },
   system: {
     headline: "We work across the whole system",
-    copy: "Leadership, operations, product, people, and ways of working affect one another as a company grows. We deliberately work across all of them — because solving one part of the system in isolation usually moves the friction rather than removing it.",
+    copy: "Leadership, operations, product, people, and ways of working affect one another as a company grows. We deliberately work across all of them, because solving one part of the system in isolation usually moves the friction rather than removing it.",
   },
   principles: {
     headline: "How we work",
@@ -46,7 +46,7 @@ export const aboutContent: AboutContent = {
   },
   clientExperience: {
     headline: "Experience from startup to enterprise",
-    copy: "We have supported founders, leadership teams, and organizations across stages — from seed-stage companies forming their first leadership team to enterprises evolving how strategy moves through thousands of people. Client logos and stories appear here only with written permission.",
+    copy: "We have supported founders, leadership teams, and organizations across stages, from seed-stage companies forming their first leadership team to enterprises evolving how strategy moves through thousands of people. Client logos and stories appear here only with written permission.",
   },
   cta: {
     headline: "Let's find out what your company is ready to become.",
@@ -61,7 +61,7 @@ export const founders: FounderProfileFull[] = [
     name: "Shawna Cullinan",
     role: "Co-founder",
     // PLACEHOLDER bio — drafted from the brief; awaiting editorial review.
-    bio: "Shawna works with organizations on the systems growth runs on: product development, delivery, operations, operating model design, and ways of working. Her work helps strategy actually move through an organization — connecting what leadership intends with what teams experience day to day.",
+    bio: "Shawna works with organizations on the systems growth runs on: product development, delivery, operations, operating model design, and ways of working. Her work helps strategy actually move through an organization, connecting what leadership intends with what teams experience day to day.",
     draftBio: true,
     expertise: [
       "Operating model and organizational design",
@@ -80,7 +80,7 @@ export const founders: FounderProfileFull[] = [
       "Practical AI working norms for real teams",
     ],
     imageSrc: "/founders/placeholder-shawna.svg",
-    imageAlt: "Placeholder portrait of Shawna Cullinan — final photography pending",
+    imageAlt: "Placeholder portrait of Shawna Cullinan, final photography pending",
   },
   {
     name: "Julia Kaissling",
@@ -101,10 +101,10 @@ export const founders: FounderProfileFull[] = [
     ],
     linkedInUrl: undefined, // To be supplied before launch.
     speakingTopics: [
-      "Growth happens in stages — leadership must evolve with it",
+      "Growth happens in stages. Leadership must evolve with it",
       "From founder-led to leadership-team-led",
     ],
     imageSrc: "/founders/placeholder-julia.svg",
-    imageAlt: "Placeholder portrait of Julia Kaissling — final photography pending",
+    imageAlt: "Placeholder portrait of Julia Kaissling, final photography pending",
   },
 ];

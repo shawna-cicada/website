@@ -15,8 +15,8 @@ export default function NotFound() {
         </Heading>
         <Text size="lg" muted>
           The address may have changed when we rebuilt the site, or the link
-          you followed is out of date. Everything important still exists —
-          here is where to find it:
+          you followed is out of date. Everything important still exists.
+          Here is where to find it:
         </Text>
         <ul className="flex flex-col gap-2">
           <li>
