@@ -9,7 +9,7 @@ import { getBookingConfig } from "@/lib/booking";
 export const metadata: Metadata = {
   title: "Book a Conversation",
   description:
-    "Choose the conversation that best fits where you are today — a discovery call, an assessment debrief, or an existing client session with Cicada Agility.",
+    "Choose the conversation that best fits where you are today — a free discovery call, an assessment debrief, or a coaching session with Cicada Agility.",
 };
 
 /** /book: provider-agnostic scheduling with an always-available fallback. */

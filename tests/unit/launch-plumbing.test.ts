@@ -86,13 +86,12 @@ describe("production environment validation", () => {
     expect(report.ok).toBe(false);
     expect(
       report.missingCritical.map((check) => check.name),
-    ).toContain("CALENDLY_EVENT_URL_DISCOVERY_CALL");
+    ).toContain("BOOKING_CONTACT_EMAIL");
     expect(formatEnvReport(report)).toContain("[env][CRITICAL]");
   });
 
   it("passes when critical variables are present", () => {
     const report = validateEnvironment({
-      CALENDLY_EVENT_URL_DISCOVERY_CALL: "https://calendly.com/x/y",
       BOOKING_CONTACT_EMAIL: "hello@example.com",
     } as unknown as NodeJS.ProcessEnv);
     expect(report.ok).toBe(true);
@@ -100,26 +99,28 @@ describe("production environment validation", () => {
     expect(formatEnvReport(report)).not.toContain("CRITICAL");
   });
 
-  it("booking checks follow BOOKING_PROVIDER (calcom demands CALCOM_* vars)", () => {
-    const missing = validateEnvironment({
-      BOOKING_PROVIDER: "calcom",
-    } as unknown as NodeJS.ProcessEnv);
-    expect(
-      missing.missingCritical.map((check) => check.name),
-    ).toContain("CALCOM_EVENT_URL_DISCOVERY_CALL");
-
-    const satisfied = validateEnvironment({
-      BOOKING_PROVIDER: "calcom",
-      CALCOM_EVENT_URL_DISCOVERY_CALL: "https://cal.com/cicada/discovery",
+  it("booking checks follow BOOKING_PROVIDER", () => {
+    // calcom (default) ships committed event links (D-024) — no URL
+    // vars are demanded, and Calendly vars are never nagged about.
+    const calcom = validateEnvironment({
       BOOKING_CONTACT_EMAIL: "hello@example.com",
     } as unknown as NodeJS.ProcessEnv);
-    expect(satisfied.ok).toBe(true);
-    // Calendly vars are NOT demanded while calcom is active.
+    expect(calcom.ok).toBe(true);
     expect(
-      [...satisfied.missingCritical, ...satisfied.missingOptional].some(
-        (check) => check.name.startsWith("CALENDLY_"),
+      [...calcom.missingCritical, ...calcom.missingOptional].some((check) =>
+        check.name.includes("EVENT_URL"),
       ),
     ).toBe(false);
+
+    // Switching to calendly demands its env URLs again.
+    const calendly = validateEnvironment({
+      BOOKING_PROVIDER: "calendly",
+      BOOKING_CONTACT_EMAIL: "hello@example.com",
+    } as unknown as NodeJS.ProcessEnv);
+    expect(calendly.ok).toBe(false);
+    expect(
+      calendly.missingCritical.map((check) => check.name),
+    ).toContain("CALENDLY_EVENT_URL_DISCOVERY_CALL");
   });
 
   it("every check explains its consequence in plain language", () => {

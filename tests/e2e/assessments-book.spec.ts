@@ -69,7 +69,6 @@ test.describe("/book", () => {
     for (const label of [
       "Discovery Call",
       "Assessment Debrief",
-      "Existing Client Session",
       "Coaching Session",
     ]) {
       await expect(
@@ -78,16 +77,17 @@ test.describe("/book", () => {
     }
   });
 
-  test("unconfigured scheduling shows the accessible fallback", async ({
+  test("scheduling embeds load from the committed Cal.com links (D-024)", async ({
     page,
   }) => {
     await page.goto("/book");
-    await expect(page.getByText(/is being set up/i)).toBeVisible();
-    // No iframe when unconfigured; page content still fully rendered.
-    await expect(page.locator("iframe")).toHaveCount(0);
+    // The discovery embed iframe points at the live public event page.
+    await expect(
+      page.locator('iframe[src*="cal.com/cicadaagility/30min"]'),
+    ).toBeAttached();
   });
 
-  test("event selector switches without losing page content", async ({
+  test("event selector switches embeds without losing page content", async ({
     page,
   }) => {
     await page.goto("/book");
@@ -95,8 +95,15 @@ test.describe("/book", () => {
     await debrief.click();
     await expect(debrief).toHaveAttribute("aria-pressed", "true");
     await expect(
-      page.getByText(/Scheduling for “Assessment Debrief” is being set up/i),
-    ).toBeVisible();
+      page.locator('iframe[src*="cal.com/cicadaagility/60min"]'),
+    ).toBeAttached();
+  });
+
+  test("deep links pre-select the conversation type", async ({ page }) => {
+    await page.goto("/book#coaching-session");
+    await expect(
+      page.getByRole("button", { name: /Coaching Session/ }),
+    ).toHaveAttribute("aria-pressed", "true");
   });
 
   test("privacy and time zone copy are present", async ({ page }) => {

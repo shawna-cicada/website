@@ -224,5 +224,26 @@ export const homepageContent: HomepageContent = {
     copy: "Let's identify what your organization has outgrown and what must evolve next.",
     primaryCta: { label: "Book a Discovery Call", href: "/book" },
     secondaryCta: { label: "Start an Assessment", href: "/assessments" },
+    bookingOptions: [
+      {
+        label: "Discovery Call",
+        note: "30 minutes — a first conversation about where your company is.",
+        free: true,
+        ctaLabel: "Book a Discovery Call",
+        href: "/book#discovery-call",
+      },
+      {
+        label: "Assessment Debrief",
+        note: "60 minutes — walk through your assessment results together.",
+        ctaLabel: "Book a Debrief",
+        href: "/book#assessment-debrief",
+      },
+      {
+        label: "Coaching Session",
+        note: "For leaders we already coach — book your next session.",
+        ctaLabel: "Book Coaching",
+        href: "/book#coaching-session",
+      },
+    ],
   },
 };

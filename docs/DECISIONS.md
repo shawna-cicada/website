@@ -130,5 +130,17 @@ practices. /book gains a fourth event type, "Coaching Session", for
 existing clients (CALENDLY_EVENT_URL_COACHING_SESSION; email fallback
 until set, like every event type).
 
+## D-024 — Cal.com is the live booking provider; public event links committed — Accepted (2026-07-24)
+Founder set up Cal.com (account `cicadaagility`). BOOKING_PROVIDER now
+defaults to calcom, and the three public event links are committed as
+defaults in lib/booking/calcom.ts (same reasoning as D-020 — they are
+the pages visitors are sent to): discovery `30min` (free, badged on the
+homepage), debrief `60min`, coaching `coaching-session`. Env vars remain
+as overrides; hostname validation applies to defaults and overrides
+alike. "Existing Client Session" was removed from the offering —
+coaching covers the returning-client path. The homepage final CTA now
+renders one card per bookable conversation, deep-linking /book#<event>,
+which pre-selects the matching type.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

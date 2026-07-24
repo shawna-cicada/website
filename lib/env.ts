@@ -17,26 +17,23 @@ export type EnvCheck = {
  * so the check list depends on BOOKING_PROVIDER.
  */
 function bookingEnvChecks(env: NodeJS.ProcessEnv): EnvCheck[] {
-  const provider = env.BOOKING_PROVIDER?.trim() || "calendly";
-  const prefix = provider === "calcom" ? "CALCOM" : "CALENDLY";
+  const provider = env.BOOKING_PROVIDER?.trim() || "calcom";
+  // calcom (the default) ships committed public event links (D-024) —
+  // env vars are optional overrides, so nothing to demand at startup.
+  if (provider !== "calendly") return [];
   return [
     {
-      name: `${prefix}_EVENT_URL_DISCOVERY_CALL`,
+      name: "CALENDLY_EVENT_URL_DISCOVERY_CALL",
       critical: true,
       consequence: "The primary booking pathway on /book shows its fallback instead of the scheduler.",
     },
     {
-      name: `${prefix}_EVENT_URL_ASSESSMENT_DEBRIEF`,
+      name: "CALENDLY_EVENT_URL_ASSESSMENT_DEBRIEF",
       critical: false,
       consequence: "The Assessment Debrief event type falls back to email.",
     },
     {
-      name: `${prefix}_EVENT_URL_EXISTING_CLIENT`,
-      critical: false,
-      consequence: "The Existing Client event type falls back to email.",
-    },
-    {
-      name: `${prefix}_EVENT_URL_COACHING_SESSION`,
+      name: "CALENDLY_EVENT_URL_COACHING_SESSION",
       critical: false,
       consequence: "The Coaching Session event type falls back to email.",
     },

@@ -24,7 +24,11 @@ test.describe("homepage", () => {
     const count = await bookingCtas.count();
     expect(count).toBeGreaterThanOrEqual(2); // hero + final CTA
     for (let i = 0; i < count; i++) {
-      await expect(bookingCtas.nth(i)).toHaveAttribute("href", "/book");
+      // Hero links to /book; the final-CTA card deep-links its event.
+      await expect(bookingCtas.nth(i)).toHaveAttribute(
+        "href",
+        /^\/book(#discovery-call)?$/,
+      );
     }
     // The persistent header CTA also books a conversation. On mobile it
     // lives in the disclosure menu (covered by the mobile nav test).
