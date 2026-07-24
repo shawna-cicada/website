@@ -54,8 +54,8 @@ export const homepageContent: HomepageContent = {
     copy: "Growth friction moves between leadership, the organization, and ways of working, so the four practices are built to work together. Each one is a different doorway into the same system.",
     items: [
       {
-        title: "Leadership & Team Effectiveness",
-        copy: "For the team at the top. Trust, decision rights, and accountability, so the group leading the company works as one team rather than a collection of strong individuals.",
+        title: "Leadership & Executive Teams",
+        copy: "For the team at the top. Build trust, clarify decision rights, and create accountability so the leadership team functions as one team instead of a collection of strong individuals.",
         examples: [
           "Executive team alignment",
           "Leadership intensives",
@@ -65,8 +65,8 @@ export const homepageContent: HomepageContent = {
         href: "/how-we-help/leadership-team-effectiveness",
       },
       {
-        title: "Organizational Effectiveness",
-        copy: "For the organization itself. The operating model, priorities, governance, and delivery systems your strategy moves through, matched to the stage you are actually in.",
+        title: "Operating Model & Execution",
+        copy: "For the organization. Design the operating model, priorities, governance, and delivery systems that turn strategy into consistent execution.",
         examples: [
           "Operating model design",
           "Product and delivery effectiveness",
@@ -76,8 +76,8 @@ export const homepageContent: HomepageContent = {
         href: "/how-we-help/organizational-effectiveness",
       },
       {
-        title: "AI Enablement & Working Norms",
-        copy: "For how your teams work. Practical AI adoption with shared norms and workable guardrails, grounded in your teams' real work rather than demos.",
+        title: "AI & Ways of Working",
+        copy: "For how work gets done. Adopt AI intentionally, establish practical working norms, and create systems that help people make better decisions and move faster together.",
         examples: [
           "AI readiness and opportunity assessment",
           "Team working agreements",
@@ -87,8 +87,8 @@ export const homepageContent: HomepageContent = {
         href: "/how-we-help/ai-enablement",
       },
       {
-        title: "Founder Challenges: Seed to Scale",
-        copy: "For you, the founder. Your role has to evolve as the company scales: delegation that feels safe, a leadership team that is real, and decisions that no longer route through you.",
+        title: "Founder Evolution",
+        copy: "For you, the founder. As your company grows, your role has to evolve too: learning to delegate, building a true leadership team, and stepping out of the center of every decision.",
         examples: [
           "Founder transition and delegation",
           "Leadership team formation",
