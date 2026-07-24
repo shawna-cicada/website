@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Eyebrow, Heading, Text } from "@/components/ui/Text";
+import { TextLink } from "@/components/ui/TextLink";
 import { Reveal } from "@/components/motion/Reveal";
 import type { HomepageContent } from "@/lib/cms/types";
 
@@ -60,18 +61,30 @@ export function EngagementPath({
               >
                 Focused engagements
               </h3>
-              {/* Compact pill cloud (founder review): scannable at a
-                  glance, no bullet lines to read through. */}
-              <ul className="mt-6 flex flex-wrap gap-2.5">
-                {content.engagements.map((engagement) => (
-                  <li
-                    key={engagement}
-                    className="rounded-full border border-paper/20 bg-paper/10 px-3.5 py-1.5 text-sm text-paper/90"
-                  >
-                    {engagement}
-                  </li>
+              {/* Chunked into small labeled groups (founder review):
+                  three quiet clusters read faster than one long list,
+                  and need no bullets or pills at all. */}
+              <div className="mt-7 flex flex-col gap-7">
+                {content.engagementGroups.map((group) => (
+                  <div key={group.label}>
+                    <p className="font-label text-xs font-bold uppercase tracking-[0.14em] text-paper/50">
+                      {group.label}
+                    </p>
+                    <ul className="mt-2.5 flex flex-col gap-2">
+                      {group.items.map((item) => (
+                        <li key={item} className="text-paper/90">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
+              </div>
+              <div className="mt-8 border-t border-paper/15 pt-5">
+                <TextLink href="/how-we-help" arrow>
+                  Explore the engagements
+                </TextLink>
+              </div>
             </aside>
           </Reveal>
         </div>
