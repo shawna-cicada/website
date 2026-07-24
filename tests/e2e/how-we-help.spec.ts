@@ -58,7 +58,7 @@ test.describe("/how-we-help", () => {
     // The problem statement leads the page right under the title.
     await expect(
       page.getByText(
-        "Your leadership team is working harder — and agreeing less.",
+        "Your leadership team is working harder and agreeing less.",
       ),
     ).toBeVisible();
 

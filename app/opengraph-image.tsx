@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 export const alt =
-  "Cicada Agility — Growth Happens in Stages. Leadership Must Evolve With It.";
+  "Cicada Agility | Growth Happens in Stages. Leadership Must Evolve With It.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

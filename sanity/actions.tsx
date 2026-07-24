@@ -98,7 +98,7 @@ export const PublishWithChecklist: DocumentActionComponent = (
     },
     dialog: showProblems && {
       type: "dialog",
-      header: "Almost there — a few things first",
+      header: "Almost there: a few things first",
       onClose: () => setShowProblems(false),
       content: (
         <ul style={{ lineHeight: 1.6, paddingLeft: "1.2em" }}>
@@ -225,7 +225,7 @@ export const ArchiveAction: DocumentActionComponent = (props) => {
     dialog: confirming && {
       type: "confirm",
       message:
-        "Archive this piece? It will come off the website, but nothing is deleted — you can restore it any time from the Archived list.",
+        "Archive this piece? It will come off the website, but nothing is deleted. You can restore it any time from the Archived list.",
       onCancel: () => setConfirming(false),
       onConfirm: () => {
         patch.execute([{ set: { workflowStatus: "archived" } }]);
@@ -321,7 +321,7 @@ export const CopyLinkedInPostAction: DocumentActionComponent = (props) => {
         );
       } catch {
         setMessage(
-          "Your browser blocked automatic copying — the text is saved in the Promotion tab, select and copy it from there.",
+          "Your browser blocked automatic copying. The text is saved in the Promotion tab, select and copy it from there.",
         );
       }
     },

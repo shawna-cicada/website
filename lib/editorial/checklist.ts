@@ -31,7 +31,7 @@ export function prePublishChecklist(doc: EditorialDoc): ChecklistItem[] {
       label: "The title is complete",
       ok: (doc.title ?? "").trim().length >= 5,
       critical: true,
-      fix: "Add a title of at least a few words — it becomes the headline and the page address.",
+      fix: "Add a title of at least a few words. It becomes the headline and the page address.",
     },
     {
       key: "summary",
@@ -68,14 +68,14 @@ export function prePublishChecklist(doc: EditorialDoc): ChecklistItem[] {
       critical: true,
       fix: isVideo
         ? "Paste the link to the video (YouTube or Vimeo) in the video field."
-        : "The body of the article is still empty — write or paste your content.",
+        : "The body of the article is still empty. Write or paste your content.",
     },
     {
       key: "category",
       label: "A category is selected",
       ok: (doc.category ?? "").trim().length > 0,
       critical: true,
-      fix: "Pick the category that fits best — it powers related-content suggestions.",
+      fix: "Pick the category that fits best. It powers related-content suggestions.",
     },
     {
       key: "prompts-resolved",
@@ -89,7 +89,7 @@ export function prePublishChecklist(doc: EditorialDoc): ChecklistItem[] {
       label: "The piece has been previewed",
       ok: Boolean(doc.previewedAt),
       critical: false,
-      fix: "Use Preview to see the piece as readers will — it takes a few seconds and catches most surprises.",
+      fix: "Use Preview to see the piece as readers will. It takes a few seconds and catches most surprises.",
     },
     {
       key: "linkedin-ready",

@@ -261,8 +261,8 @@ export default async function InsightPage({ params }: PageProps) {
           </Reveal>
           <Reveal delay={0.1}>
             <Text size="lg" className="text-paper/75">
-              A short conversation is the fastest way to find out whether —
-              and how — we can help.
+              A short conversation is the fastest way to find out whether, and how, we
+              can help.
             </Text>
           </Reveal>
           <Reveal delay={0.2} className="flex flex-wrap gap-4">

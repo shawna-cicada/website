@@ -56,7 +56,7 @@ export function AssessmentCta({
           {ctaLabel}
         </Button>
         <p id={`${slug}-soon`} className="text-xs text-slate [.on-ink_&]:text-paper/60">
-          This assessment is being prepared — available soon.
+          This assessment is being prepared. Available soon.
         </p>
       </div>
     );

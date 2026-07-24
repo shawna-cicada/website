@@ -49,7 +49,7 @@ export const insight = defineType({
         rule
           .required()
           .min(5)
-          .error("Add a title of at least a few words — it becomes the headline."),
+          .error("Add a title of at least a few words. It becomes the headline."),
     }),
     defineField({
       name: "summary",
@@ -63,7 +63,7 @@ export const insight = defineType({
         rule
           .required()
           .min(20)
-          .error("Write one or two sentences — this is what people see before they click."),
+          .error("Write one or two sentences. This is what people see before they click."),
     }),
     defineField({
       name: "author",
@@ -84,7 +84,7 @@ export const insight = defineType({
           name: "alt",
           title: "Describe the image in a few words",
           description:
-            "For people using screen readers — say what the image shows.",
+            "For people using screen readers. Say what the image shows.",
           type: "string",
           validation: (rule) =>
             rule
@@ -99,7 +99,7 @@ export const insight = defineType({
       name: "body",
       title: "The piece itself",
       description:
-        "Write here like a document: headings, lists, quotes, links, and images. Lines starting with ✎ are template prompts — replace them with your words.",
+        "Write here like a document: headings, lists, quotes, links, and images. Lines starting with ✎ are template prompts. Replace them with your words.",
       type: "array",
       group: "essentials",
       of: [
@@ -145,7 +145,7 @@ export const insight = defineType({
       name: "linkedInPostText",
       title: "Suggested LinkedIn post",
       description:
-        "Click Generate to write a post from the title and summary, then edit it freely — this is what you paste into LinkedIn. Publishing also fills this in automatically if it's empty.",
+        "Click Generate to write a post from the title and summary, then edit it freely. This is what you paste into LinkedIn. Publishing also fills this in automatically if it's empty.",
       type: "text",
       rows: 8,
       group: "promotion",

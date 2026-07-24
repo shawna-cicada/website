@@ -37,13 +37,13 @@ const NAV_ITEMS: ReadonlyArray<{
   {
     href: "/how-we-help",
     label: "How We Help",
-    overviewLabel: "All practices — overview",
+    overviewLabel: "All practices",
     children: PRACTICE_LINKS,
   },
   {
     href: "/assessments",
     label: "Assessments",
-    overviewLabel: "All assessments — overview",
+    overviewLabel: "All assessments",
     children: ASSESSMENT_LINKS,
   },
   { href: "/insights", label: "Articles and Insights" },
@@ -160,7 +160,7 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-gutter py-4">
         <Link href="/" className="flex items-center gap-3">
           <CicadaMark className="h-7 w-auto shrink-0 text-meadow" />
-          <CicadaWordmark className="h-4 w-auto text-ink" title="Cicada Agility — Home" />
+          <CicadaWordmark className="h-4 w-auto text-ink" title="Cicada Agility home" />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">

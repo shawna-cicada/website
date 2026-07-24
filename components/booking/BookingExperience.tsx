@@ -34,12 +34,12 @@ export function BookingExperience({ config }: { config: BookingConfig }) {
   }, [config.events]);
 
   return (
-    <div className="flex flex-col gap-8" aria-labelledby={headingId}>
+    <div className="flex flex-col gap-6" aria-labelledby={headingId}>
       <div>
         <h2 id={headingId} className="font-label text-sm font-bold uppercase tracking-[0.14em] text-meadow-deep">
           Choose a conversation type
         </h2>
-        <div className="mt-4 grid gap-3 sm:grid-cols-3" role="group" aria-labelledby={headingId}>
+        <div className="mt-3 grid gap-3 sm:grid-cols-3" role="group" aria-labelledby={headingId}>
           {config.events.map((event) => {
             const active = event.key === selectedKey;
             return (
@@ -66,7 +66,7 @@ export function BookingExperience({ config }: { config: BookingConfig }) {
                 <span className="text-sm text-slate">{event.description}</span>
                 {/* Explicit action affordance — these are choices, not info. */}
                 <span className="mt-1 text-sm font-semibold text-meadow-deep">
-                  {active ? "✓ Selected — pick a time below" : "Book this →"}
+                  {active ? "✓ Selected. Pick a time below" : "Book this →"}
                 </span>
               </button>
             );

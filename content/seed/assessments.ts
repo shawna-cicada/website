@@ -10,7 +10,7 @@ export const assessments: Assessment[] = [
   {
     title: "Growth Stage Assessment",
     slug: "growth-stage",
-    summary: "Name your stage — and what it's asking of you.",
+    summary: "Name your stage, and what it's asking of you.",
     audience: "Founders and CEOs",
     duration: "About 10 minutes",
     externalUrlEnv: "ASSESSMENT_URL_GROWTH_STAGE",
@@ -25,7 +25,7 @@ export const assessments: Assessment[] = [
   {
     title: "Founder Growth Assessment",
     slug: "founder-growth",
-    summary: "Where your role must evolve next — and what to hand off.",
+    summary: "Where your role must evolve next, and what to hand off.",
     audience: "Founders",
     duration: "About 10 minutes",
     externalUrlEnv: "ASSESSMENT_URL_FOUNDER_GROWTH",
@@ -34,13 +34,13 @@ export const assessments: Assessment[] = [
     active: true,
     opensInNewTab: true,
     privacyNote:
-      "Your answers and contact details come to Cicada Agility — we use them to share your results and follow up.",
+      "Your answers and contact details come to Cicada Agility. We use them to share your results and follow up.",
     trackingCampaign: "founder-growth-assessment",
   },
   {
     title: "Leadership Team Alignment Check",
     slug: "leadership-alignment",
-    summary: "Aligned in principle — but in practice?",
+    summary: "Aligned in principle, but in practice?",
     audience: "Executive teams",
     duration: "About 15 minutes",
     externalUrlEnv: "ASSESSMENT_URL_LEADERSHIP_ALIGNMENT",
@@ -49,7 +49,7 @@ export const assessments: Assessment[] = [
     active: true,
     opensInNewTab: true,
     privacyNote:
-      "Your answers and contact details come to Cicada Agility — we use them to share your results and follow up.",
+      "Your answers and contact details come to Cicada Agility. We use them to share your results and follow up.",
     trackingCampaign: "leadership-alignment-check",
   },
   {
@@ -64,7 +64,7 @@ export const assessments: Assessment[] = [
     active: true,
     opensInNewTab: true,
     privacyNote:
-      "Your answers and contact details come to Cicada Agility — we use them to share your results and follow up.",
+      "Your answers and contact details come to Cicada Agility. We use them to share your results and follow up.",
     trackingCampaign: "ai-readiness-assessment",
   },
   {
@@ -72,7 +72,7 @@ export const assessments: Assessment[] = [
     title: "Organizational Effectiveness Scan",
     slug: "org-effectiveness-scan",
     summary:
-      "A deeper organizational scan, in development — not yet available.",
+      "A deeper organizational scan, in development. Not yet available.",
     externalUrlEnv: "ASSESSMENT_URL_ORG_EFFECTIVENESS",
     ctaLabel: "Start the scan",
     featured: false,

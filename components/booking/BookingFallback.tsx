@@ -58,7 +58,7 @@ export function BookingFallback({
       ) : null}
       {!fallbackUrl && !contactEmail ? (
         <p className="text-sm text-slate">
-          Please check back shortly — scheduling will be available soon.
+          Please check back shortly. Scheduling will be available soon.
         </p>
       ) : null}
     </div>

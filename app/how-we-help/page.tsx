@@ -62,7 +62,7 @@ export default async function HowWeHelpPage() {
             <Reveal>
               <Eyebrow>One connected system</Eyebrow>
               <Heading level={2} id="hwh-system-heading" visualLevel={3} className="mt-2 max-w-2xl">
-                Growth friction shows up in one place — and starts in another.
+                Growth friction shows up in one place and starts in another.
               </Heading>
               <div className="mt-4 flex max-w-2xl flex-col gap-4">
                 {content.systemNarrative.map((paragraph) => (
@@ -131,16 +131,11 @@ export default async function HowWeHelpPage() {
                     <Heading level={3} visualLevel={4}>
                       {engagement.name}
                     </Heading>
+                    {/* Simplified per founder review: name + summary only —
+                        the practice pages carry format details. */}
                     <Text muted>
                       {engagement.summary}
                     </Text>
-                    <p className="text-sm text-slate">
-                      <span className="font-semibold">Best for:</span>{" "}
-                      {engagement.bestFor}
-                    </p>
-                    <p className="mt-auto pt-1 text-sm text-slate">
-                      {engagement.format}
-                    </p>
                   </div>
                 </Card>
               </Reveal>
@@ -158,7 +153,7 @@ export default async function HowWeHelpPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <Text size="lg" className="text-paper/75">
-              That is normal — it usually starts in more than one place. A
+              That is normal. It usually starts in more than one place. A
               short conversation is the fastest way to find out.
             </Text>
           </Reveal>

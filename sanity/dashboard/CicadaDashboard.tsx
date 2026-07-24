@@ -132,7 +132,7 @@ export function CicadaDashboard() {
         </p>
         <h1 style={{ fontSize: 28, margin: "6px 0 4px" }}>Editorial dashboard</h1>
         <p style={{ color: "#4c5872", margin: 0 }}>
-          What would you like to do? Pick an action — no technical knowledge needed.
+          What would you like to do? Pick an action. No technical knowledge needed.
         </p>
       </header>
 
@@ -162,7 +162,7 @@ export function CicadaDashboard() {
 
       {error ? (
         <p style={{ color: "#8f4f24" }}>
-          The content lists could not load — check your connection and refresh.
+          The content lists could not load. Check your connection and refresh.
           The actions above still work.
         </p>
       ) : null}
@@ -170,7 +170,7 @@ export function CicadaDashboard() {
 
       {docs ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 20 }}>
-          <RecentList title="Recent drafts" docs={drafts} onOpen={open} empty="No drafts right now — create something new above." />
+          <RecentList title="Recent drafts" docs={drafts} onOpen={open} empty="No drafts right now. Create something new above." />
           <RecentList title="Scheduled posts" docs={scheduled} onOpen={open} empty="Nothing scheduled." showSchedule />
           <RecentList title="Recently published" docs={published} onOpen={open} empty="Nothing published yet." showLive />
           <RecentList title="Needs attention (missing required info)" docs={missingInfo} onOpen={open} empty="Everything has what it needs. 🎉" />
@@ -233,7 +233,7 @@ function RecentList({
                     </span>
                   </span>
                   <span style={{ display: "block", fontSize: 12, color: "#4c5872", marginTop: 4 }}>
-                    Last edited {doc._updatedAt ? new Date(doc._updatedAt).toLocaleString() : "—"}
+                    Last edited {doc._updatedAt ? new Date(doc._updatedAt).toLocaleString() : "recently"}
                     {doc.lastEditor && doc.lastEditor !== "—" ? ` by ${doc.lastEditor}` : ""}
                     {showSchedule && doc.scheduledAt
                       ? ` · goes live ${new Date(doc.scheduledAt).toLocaleString()}`

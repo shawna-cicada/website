@@ -33,7 +33,7 @@ test.describe("/about", () => {
       await page.getByText("Selected experience", { exact: true }).count(),
     ).toBe(2);
     expect(
-      await page.getByText(/Draft bio — pending editorial review/i).count(),
+      await page.getByText(/Draft bio: pending editorial review/i).count(),
     ).toBe(2);
   });
 

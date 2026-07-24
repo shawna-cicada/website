@@ -66,5 +66,5 @@ export function explainDenied(role: EditorialRole, action: EditorialAction): str
   if (role === "editor") {
     return "Your account can write and prepare content, but publishing is done by a Publisher or Administrator. Save your draft and let them know it is ready.";
   }
-  return "This needs an Administrator account — ask yours to make the change or to adjust your access.";
+  return "This needs an Administrator account. Ask yours to make the change or to adjust your access.";
 }

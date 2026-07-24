@@ -153,7 +153,7 @@ describe("publish and schedule transitions", () => {
     expect(result.ok).toBe(true);
     if (result.ok) {
       expect(result.doc.status).toBe("draft");
-      expect(result.notes[0]).toContain("nothing was deleted");
+      expect(result.notes[0].toLowerCase()).toContain("nothing was deleted");
     }
   });
 });

@@ -36,7 +36,7 @@ test.describe("/assessments", () => {
     expect(await disabled.count()).toBeGreaterThanOrEqual(1);
     await expect(disabled.first()).toBeDisabled();
     await expect(
-      page.getByText(/being prepared — available soon/i).first(),
+      page.getByText(/being prepared. Available soon/i).first(),
     ).toBeVisible();
   });
 

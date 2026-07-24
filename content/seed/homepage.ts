@@ -106,7 +106,7 @@ export const homepageContent: HomepageContent = {
     items: [
       {
         title: "Growth Stage Assessment",
-        summary: "Name your stage — and what it's asking of you.",
+        summary: "Name your stage, and what it's asking of you.",
         audience: "Founders and CEOs",
         duration: "About 10 minutes",
         href: "/assessments",
@@ -124,7 +124,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         title: "Leadership Team Alignment Check",
-        summary: "Aligned in principle — but in practice?",
+        summary: "Aligned in principle, but in practice?",
         audience: "Executive teams",
         duration: "About 15 minutes",
         href: "/assessments",
@@ -192,7 +192,7 @@ export const homepageContent: HomepageContent = {
     featured: {
       category: "Leadership",
       title: "The habits that built your company may be the ones holding it back",
-      excerpt: "Every growth stage rewards different leadership behavior. The habits that created early momentum — speed, involvement, personal ownership of every decision — quietly become the constraint the organization is working around.",
+      excerpt: "Every growth stage rewards different leadership behavior. The habits that created early momentum (speed, involvement, personal ownership of every decision) quietly become the constraint the organization is working around.",
       href: "/insights",
     },
     cta: { label: "Explore All Insights", href: "/insights" },
@@ -200,21 +200,21 @@ export const homepageContent: HomepageContent = {
   founders: {
     eyebrow: "Who we are",
     headline: "Two perspectives. One connected system.",
-    copy: "Leadership, coaching, product, delivery, operations, organizational design — we work across the whole system, because growth is rarely limited by one team or one process.",
+    copy: "Leadership, coaching, product, delivery, operations, organizational design: we work across the whole system, because growth is rarely limited by one team or one process.",
     people: [
       {
         name: "Shawna Cullinan",
         role: "Co-founder",
         bio: "Works with organizations on product development, delivery, operations, and the operating systems that let strategy move.",
         imageSrc: "/founders/placeholder-shawna.svg",
-        imageAlt: "Placeholder portrait of Shawna Cullinan — final photography pending",
+        imageAlt: "Placeholder portrait of Shawna Cullinan, final photography pending",
       },
       {
         name: "Julia Kaissling",
         role: "Co-founder",
         bio: "Works with founders and leadership teams on leadership evolution, coaching, and the human side of organizational change.",
         imageSrc: "/founders/placeholder-julia.svg",
-        imageAlt: "Placeholder portrait of Julia Kaissling — final photography pending",
+        imageAlt: "Placeholder portrait of Julia Kaissling, final photography pending",
       },
     ],
     cta: { label: "Meet the Founders", href: "/about" },
@@ -227,20 +227,20 @@ export const homepageContent: HomepageContent = {
     bookingOptions: [
       {
         label: "Discovery Call",
-        note: "30 minutes — a first conversation about where your company is.",
+        note: "30 minutes. A first conversation about where your company is.",
         free: true,
         ctaLabel: "Book a Discovery Call",
         href: "/book#discovery-call",
       },
       {
         label: "Assessment Debrief",
-        note: "60 minutes — walk through your assessment results together.",
+        note: "60 minutes. Walk through your assessment results together.",
         ctaLabel: "Book a Debrief",
         href: "/book#assessment-debrief",
       },
       {
         label: "Coaching Session",
-        note: "For leaders we already coach — book your next session.",
+        note: "For leaders we already coach. Book your next session.",
         ctaLabel: "Book Coaching",
         href: "/book#coaching-session",
       },

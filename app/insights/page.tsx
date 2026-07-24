@@ -18,7 +18,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Articles and Insights",
   description:
-    "Articles, videos, and conversations from our work with founders and leadership teams — what each stage of growth demands, what companies outgrow, and how leadership evolves through it.",
+    "Articles, videos, and conversations from our work with founders and leadership teams: what each stage of growth demands, what companies outgrow, and how leadership evolves through it.",
   alternates: { canonical: "/insights" },
 };
 
@@ -36,7 +36,7 @@ export default async function InsightsPage() {
         <PageHero
           eyebrow="From our work"
           headline="Articles and Insights"
-          copy="Articles, videos, and conversations from our work with founders and leadership teams — what each stage of growth demands, what companies outgrow, and how leadership evolves through it."
+          copy="Articles, videos, and conversations from our work with founders and leadership teams: what each stage of growth demands, what companies outgrow, and how leadership evolves through it."
           headingId="insights-heading"
         />
       </Section>

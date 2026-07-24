@@ -82,7 +82,7 @@ export const assessment = defineType({
       name: "externalUrl",
       title: "Assessment link",
       description:
-        "The full link to the external assessment. Leave empty until the provider link is ready — the website shows it as “available soon”.",
+        "The full link to the external assessment. Leave empty until the provider link is ready. The website shows it as “available soon”.",
       type: "url",
     }),
     defineField({
@@ -145,7 +145,7 @@ export const clientLogo = defineType({
           title: "Describe the logo in a few words",
           type: "string",
           validation: (rule) =>
-            rule.required().error("e.g. “Acme Corp logo” — screen readers announce this."),
+            rule.required().error("e.g. “Acme Corp logo”. Screen readers announce this."),
         }),
       ],
       validation: (rule) => rule.required().error("Upload the logo image."),

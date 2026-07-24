@@ -69,7 +69,7 @@ export function LinkedInPostInput(props: StringInputProps) {
       baseUrl: window.location.origin,
     });
     props.onChange(set(text));
-    setNote("Suggestion written — edit it freely, it's yours now.");
+    setNote("Suggestion written. Edit it freely, it's yours now.");
   }
 
   async function copy() {
@@ -77,9 +77,9 @@ export function LinkedInPostInput(props: StringInputProps) {
     if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
-      setNote("Copied — paste it into a new LinkedIn post.");
+      setNote("Copied. Paste it into a new LinkedIn post.");
     } catch {
-      setNote("Your browser blocked copying — select the text and copy it.");
+      setNote("Your browser blocked copying. Select the text and copy it.");
     }
   }
 
@@ -105,7 +105,7 @@ export function LinkedInPostInput(props: StringInputProps) {
       </div>
       {!ready ? (
         <p style={hintStyle}>
-          Add a title and summary first — the suggestion is written from
+          Add a title and summary first. The suggestion is written from
           them.
         </p>
       ) : null}
