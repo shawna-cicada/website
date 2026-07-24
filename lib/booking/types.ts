@@ -13,6 +13,8 @@ export type BookingEventType = {
   key: BookingEventKey;
   label: string;
   description: string;
+  /** Renders a FREE badge wherever the event type is offered. */
+  free?: boolean;
 };
 
 /** A normalized booking funnel signal parsed from provider messages. */

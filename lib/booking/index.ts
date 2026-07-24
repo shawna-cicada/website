@@ -13,6 +13,7 @@ export const BOOKING_EVENT_TYPES: BookingEventType[] = [
     label: "Discovery Call",
     description:
       "A first conversation about where your company is and what it may have outgrown.",
+    free: true,
   },
   {
     key: "assessment-debrief",

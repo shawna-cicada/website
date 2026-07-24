@@ -75,6 +75,12 @@ test.describe("/book", () => {
         page.getByRole("button", { name: new RegExp(label) }),
       ).toBeVisible();
     }
+    // The discovery option is visibly marked free, and each option
+    // carries an explicit action affordance.
+    await expect(
+      page.getByRole("button", { name: /Discovery Call.*Free/s }),
+    ).toBeVisible();
+    await expect(page.getByText("Book this →").first()).toBeVisible();
   });
 
   test("scheduling embeds load from the committed Cal.com links (D-024)", async ({
