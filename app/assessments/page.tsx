@@ -9,11 +9,15 @@ import { AssessmentCta } from "@/components/sections/AssessmentCta";
 import { PageViewTracker } from "@/components/sections/PageViewTracker";
 import { getActiveAssessments, getAssessmentsPageContent } from "@/lib/cms";
 
-export const metadata: Metadata = {
-  title: "Assessments",
-  description:
-    "Name the stage your company is in, identify the friction beneath the symptoms, and focus on the capability that needs to evolve next. Start with a Cicada Agility assessment.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  // The search-result description is Studio-editable (D-026).
+  const content = await getAssessmentsPageContent();
+  return {
+    title: "Assessments",
+    description: content.seoDescription,
+    alternates: { canonical: "/assessments" },
+  };
+}
 
 /**
  * Assessment hub: featured assessment leads, remaining active records in

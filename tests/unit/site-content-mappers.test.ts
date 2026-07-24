@@ -180,9 +180,11 @@ describe("mergePractice (D-026)", () => {
     const merged = mergePractice(seed, {
       key: seed.slug,
       headline: "A sharper problem statement.",
+      seoDescription: "A search-tuned description.",
       workOn: ["First area", "Second area"],
     });
     expect(merged.headline).toBe("A sharper problem statement.");
+    expect(merged.seoDescription).toBe("A search-tuned description.");
     expect(merged.workOn).toEqual(["First area", "Second area"]);
     // Untouched fields keep the committed copy.
     expect(merged.summary).toBe(seed.summary);
@@ -352,11 +354,13 @@ describe("mergeAssessmentsPageContent (D-026)", () => {
   it("overrides fields individually; blanks fall back", () => {
     const merged = mergeAssessmentsPageContent(assessmentsPageContent, {
       heroHeadline: "New assessments headline.",
+      seoDescription: "A search-tuned description.",
       aboutCopy: "Updated disclosure text.",
       gridHeadline: "   ",
     });
     expect(merged.hero.headline).toBe("New assessments headline.");
     expect(merged.hero.copy).toBe(assessmentsPageContent.hero.copy);
+    expect(merged.seoDescription).toBe("A search-tuned description.");
     expect(merged.aboutCopy).toBe("Updated disclosure text.");
     expect(merged.gridHeadline).toBe(assessmentsPageContent.gridHeadline);
     expect(merged.aboutHeadline).toBe(assessmentsPageContent.aboutHeadline);

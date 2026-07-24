@@ -253,6 +253,8 @@ export type AssessmentsPageContent = {
     headline: string;
     copy: string;
   };
+  /** What Google shows under the page's link. */
+  seoDescription: string;
   gridHeadline: string;
   aboutHeadline: string;
   /** The data-collection disclosure (D-022) — honest by default. */
