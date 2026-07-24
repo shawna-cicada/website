@@ -16,7 +16,7 @@ describe("homepage content contract", () => {
 
   it("booking CTAs point at /book", async () => {
     const content = await getHomepageContent();
-    expect(content.hero.secondaryCta.label).toBe("Book a Discovery Call");
+    expect(content.hero.secondaryCta.label).toBe("Book a Free Discovery Call");
     expect(content.hero.secondaryCta.href).toBe("/book");
     expect(content.finalCta.primaryCta.href).toBe("/book");
   });

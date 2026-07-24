@@ -11,7 +11,7 @@ test.describe("homepage", () => {
       has: page.getByRole("heading", { level: 1 }),
     });
     await expect(
-      hero.getByRole("link", { name: "Book a Discovery Call" }),
+      hero.getByRole("link", { name: "Book a Free Discovery Call" }),
     ).toHaveAttribute("href", "/book");
     await expect(
       hero.getByRole("link", { name: "Explore our assessments" }),
@@ -20,7 +20,7 @@ test.describe("homepage", () => {
 
   test("booking CTAs lead to /book", async ({ page, isMobile }) => {
     await page.goto("/");
-    const bookingCtas = page.getByRole("link", { name: "Book a Discovery Call" });
+    const bookingCtas = page.getByRole("link", { name: /book a (free )?discovery call/i });
     const count = await bookingCtas.count();
     expect(count).toBeGreaterThanOrEqual(2); // hero + final CTA
     for (let i = 0; i < count; i++) {
