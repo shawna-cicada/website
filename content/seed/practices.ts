@@ -19,7 +19,7 @@ export const howWeHelpContent: HowWeHelpContent = {
   headline: "The challenge is rarely just leadership, process, or culture.",
   copy: "As companies grow, these systems affect one another. Cicada Agility works across leadership, operations, product, people, and ways of working to solve the underlying conditions that create friction.",
   systemNarrative: [
-    "Companies don't outgrow everything at once. Strategy stays clear at the top while delivery stalls. The leadership team holds together while the structure underneath it strains. Friction shows up in one place and starts in another.",
+    "Companies don't outgrow everything at once. Strategy stays clear at the top while delivery stalls. The leadership team holds together while the structure underneath it strains.",
     "That is why we work as one connected system across leadership, operations, product, people, and ways of working. Each practice below is a different doorway into the same work: helping the company evolve how it leads and operates for the stage it is entering, not the one it just left. Most engagements draw on more than one.",
   ],
   engagementsHeadline: "Focused engagements",
