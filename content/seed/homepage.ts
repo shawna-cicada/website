@@ -12,7 +12,7 @@ export const homepageContent: HomepageContent = {
     headline: "Growth happens in stages. Leadership must evolve with it.",
     copy: "We help founders and leadership teams evolve how the company leads and operates as it grows.",
     primaryCta: { label: "Start the Growth Stage Assessment", href: "/assessments" },
-    secondaryCta: { label: "Book a Discovery Call", href: "/book" },
+    secondaryCta: { label: "Book a Free Discovery Call", href: "/book" },
   },
   recognition: {
     headline: "Does any of this sound familiar?",
@@ -222,7 +222,7 @@ export const homepageContent: HomepageContent = {
   finalCta: {
     headline: "What brought your company here may not take it forward.",
     copy: "Let's identify what your organization has outgrown and what must evolve next.",
-    primaryCta: { label: "Book a Discovery Call", href: "/book" },
+    primaryCta: { label: "Book a Free Discovery Call", href: "/book" },
     secondaryCta: { label: "Start an Assessment", href: "/assessments" },
     bookingOptions: [
       {

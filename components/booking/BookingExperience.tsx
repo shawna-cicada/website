@@ -49,14 +49,25 @@ export function BookingExperience({ config }: { config: BookingConfig }) {
                 type="button"
                 aria-pressed={active}
                 onClick={() => setSelectedKey(event.key)}
-                className={`flex min-h-11 flex-col gap-1 rounded-sm border p-4 text-left transition-colors duration-[var(--duration-quick)] ${
+                className={`flex min-h-11 cursor-pointer flex-col gap-1.5 rounded-sm border p-4 text-left transition-all duration-[var(--duration-quick)] ${
                   active
                     ? "border-meadow-deep bg-lilac"
-                    : "border-ink/15 hover:border-ink/40"
+                    : "border-ink/15 hover:-translate-y-0.5 hover:border-meadow-deep/60"
                 }`}
               >
-                <span className="font-semibold">{event.label}</span>
-                <span className="text-xs text-slate">{event.description}</span>
+                <span className="flex items-center gap-2 font-semibold">
+                  {event.label}
+                  {event.free ? (
+                    <span className="rounded-full bg-meadow px-2.5 py-0.5 font-label text-xs font-bold uppercase tracking-[0.08em] text-ink">
+                      Free
+                    </span>
+                  ) : null}
+                </span>
+                <span className="text-sm text-slate">{event.description}</span>
+                {/* Explicit action affordance — these are choices, not info. */}
+                <span className="mt-1 text-sm font-semibold text-meadow-deep">
+                  {active ? "✓ Selected — pick a time below" : "Book this →"}
+                </span>
               </button>
             );
           })}
