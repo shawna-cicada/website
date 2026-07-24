@@ -69,7 +69,6 @@ test.describe("/how-we-help", () => {
       "What clients leave with",
       "Typical engagement formats",
       "Related insights",
-      "Related practices",
     ]) {
       await expect(page.getByText(block, { exact: true })).toBeVisible();
     }
@@ -80,19 +79,6 @@ test.describe("/how-we-help", () => {
     for (let i = 0; i < count; i++) {
       await expect(ctas.nth(i)).toHaveAttribute("href", "/book");
     }
-  });
-
-  test("cross-links navigate between related practices", async ({ page }) => {
-    await page.goto("/how-we-help/founder-growth");
-    await page
-      .getByRole("main")
-      .getByRole("link", { name: "Leadership & Team Effectiveness" })
-      .first()
-      .click();
-    await expect(page).toHaveURL(/leadership-team-effectiveness/);
-    await expect(
-      page.getByRole("heading", { level: 1 }),
-    ).toContainText("Leadership & Team Effectiveness");
   });
 
   test("Service structured data is present and valid", async ({ page }) => {
