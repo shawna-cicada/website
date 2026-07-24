@@ -5,15 +5,18 @@ import {
   mapClientLogoRow,
   mapFounderRow,
   mergeAboutContent,
+  mergeAssessmentsPageContent,
   mergeHomepageContent,
+  mergeHowWeHelpContent,
   mergePractice,
   syncServiceCards,
   type ClientLogoRow,
   type FounderRow,
 } from "@/lib/cms/mappers";
 import { homepageContent } from "@/content/seed/homepage";
-import { practiceAreas } from "@/content/seed/practices";
+import { howWeHelpContent, practiceAreas } from "@/content/seed/practices";
 import { aboutContent } from "@/content/seed/about";
+import { assessmentsPageContent } from "@/content/seed/assessments";
 
 const completeRow: ClientLogoRow = {
   name: "Acme Corp",
@@ -302,6 +305,61 @@ describe("mergeAboutContent (D-026)", () => {
     expect(merged.hero.headline).toBe(aboutContent.hero.headline);
     expect(merged.origin.paragraphs).toBe(aboutContent.origin.paragraphs);
     expect(merged.beliefs.items).toBe(aboutContent.beliefs.items);
+  });
+});
+
+describe("mergeHowWeHelpContent (D-026)", () => {
+  it("returns the seed untouched when no override document exists", () => {
+    expect(mergeHowWeHelpContent(howWeHelpContent, null)).toBe(howWeHelpContent);
+  });
+
+  it("overrides fields individually, splitting the narrative on blank lines", () => {
+    const merged = mergeHowWeHelpContent(howWeHelpContent, {
+      heroHeadline: "New overview headline.",
+      systemCopy: "One paragraph.\n\nAnother paragraph.",
+      closingCopy: "New closing copy.",
+    });
+    expect(merged.headline).toBe("New overview headline.");
+    expect(merged.systemNarrative).toEqual([
+      "One paragraph.",
+      "Another paragraph.",
+    ]);
+    expect(merged.closing.copy).toBe("New closing copy.");
+    // Untouched fields keep the committed copy.
+    expect(merged.copy).toBe(howWeHelpContent.copy);
+    expect(merged.systemHeadline).toBe(howWeHelpContent.systemHeadline);
+    expect(merged.closing.headline).toBe(howWeHelpContent.closing.headline);
+    expect(merged.cta).toBe(howWeHelpContent.cta);
+  });
+
+  it("blank fields fall back to the seed", () => {
+    const merged = mergeHowWeHelpContent(howWeHelpContent, {
+      heroHeadline: "  ",
+      systemCopy: "\n\n",
+    });
+    expect(merged.headline).toBe(howWeHelpContent.headline);
+    expect(merged.systemNarrative).toBe(howWeHelpContent.systemNarrative);
+  });
+});
+
+describe("mergeAssessmentsPageContent (D-026)", () => {
+  it("returns the seed untouched when no override document exists", () => {
+    expect(mergeAssessmentsPageContent(assessmentsPageContent, null)).toBe(
+      assessmentsPageContent,
+    );
+  });
+
+  it("overrides fields individually; blanks fall back", () => {
+    const merged = mergeAssessmentsPageContent(assessmentsPageContent, {
+      heroHeadline: "New assessments headline.",
+      aboutCopy: "Updated disclosure text.",
+      gridHeadline: "   ",
+    });
+    expect(merged.hero.headline).toBe("New assessments headline.");
+    expect(merged.hero.copy).toBe(assessmentsPageContent.hero.copy);
+    expect(merged.aboutCopy).toBe("Updated disclosure text.");
+    expect(merged.gridHeadline).toBe(assessmentsPageContent.gridHeadline);
+    expect(merged.aboutHeadline).toBe(assessmentsPageContent.aboutHeadline);
   });
 });
 

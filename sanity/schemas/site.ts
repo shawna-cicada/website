@@ -71,6 +71,104 @@ export const practice = defineType({
   },
 });
 
+/** How We Help overview — a single document, opened pre-filled. */
+export const howWeHelpPage = defineType({
+  name: "howWeHelpPage",
+  title: "How We Help (overview)",
+  type: "document",
+  fields: [
+    defineField({
+      name: "heroHeadline",
+      title: "Page headline",
+      type: "string",
+    }),
+    defineField({
+      name: "heroCopy",
+      title: "Text under the headline",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "systemHeadline",
+      title: "“One connected system” headline",
+      type: "string",
+    }),
+    defineField({
+      name: "systemCopy",
+      title: "“One connected system” text",
+      description: "Separate paragraphs with an empty line.",
+      type: "text",
+      rows: 8,
+    }),
+    defineField({
+      name: "engagementsHeadline",
+      title: "Engagements headline",
+      type: "string",
+    }),
+    defineField({
+      name: "engagementsCopy",
+      title: "Engagements intro text",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "closingHeadline",
+      title: "Closing headline",
+      type: "string",
+    }),
+    defineField({
+      name: "closingCopy",
+      title: "Closing text",
+      type: "text",
+      rows: 2,
+    }),
+  ],
+  preview: {
+    prepare: () => ({ title: "How We Help (overview)" }),
+  },
+});
+
+/** Assessments hub page copy — the cards are Assessment documents. */
+export const assessmentsPage = defineType({
+  name: "assessmentsPage",
+  title: "Assessments Page",
+  type: "document",
+  fields: [
+    defineField({
+      name: "heroHeadline",
+      title: "Page headline",
+      type: "string",
+    }),
+    defineField({
+      name: "heroCopy",
+      title: "Text under the headline",
+      type: "text",
+      rows: 3,
+    }),
+    defineField({
+      name: "gridHeadline",
+      title: "Headline above the assessment cards",
+      type: "string",
+    }),
+    defineField({
+      name: "aboutHeadline",
+      title: "“About our assessments” headline",
+      type: "string",
+    }),
+    defineField({
+      name: "aboutCopy",
+      title: "“About our assessments” text",
+      description:
+        "This is the honest note about what happens with people's answers and contact details. Keep it truthful — it is part of our privacy disclosure.",
+      type: "text",
+      rows: 5,
+    }),
+  ],
+  preview: {
+    prepare: () => ({ title: "Assessments Page" }),
+  },
+});
+
 /** About Page — a single document, opened pre-filled from the desk. */
 export const aboutPage = defineType({
   name: "aboutPage",

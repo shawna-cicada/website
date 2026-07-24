@@ -62,7 +62,7 @@ export default async function HowWeHelpPage() {
             <Reveal>
               <Eyebrow>One connected system</Eyebrow>
               <Heading level={2} id="hwh-system-heading" visualLevel={3} className="mt-2 max-w-2xl">
-                Friction shows up in one place. Its cause is usually somewhere else.
+                {content.systemHeadline}
               </Heading>
               <div className="mt-4 flex max-w-2xl flex-col gap-4">
                 {content.systemNarrative.map((paragraph) => (
@@ -148,13 +148,12 @@ export default async function HowWeHelpPage() {
         <Container className="flex max-w-3xl flex-col items-start gap-6">
           <Reveal>
             <Heading level={2} id="hwh-cta-heading">
-              Not sure where the friction starts?
+              {content.closing.headline}
             </Heading>
           </Reveal>
           <Reveal delay={0.1}>
             <Text size="lg" className="text-paper/75">
-              That is normal. It usually starts in more than one place. A
-              short conversation is the fastest way to find out.
+              {content.closing.copy}
             </Text>
           </Reveal>
           <Reveal delay={0.2}>

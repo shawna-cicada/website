@@ -97,8 +97,19 @@ export const structure: StructureResolver = (S) =>
           // matching template) so editing never starts from scratch.
           S.list()
             .title("Practice Pages")
-            .items(
-              practiceAreas.map((practice) =>
+            .items([
+              S.listItem()
+                .id("overview")
+                .title("How We Help (overview)")
+                .child(
+                  S.document()
+                    .schemaType("howWeHelpPage")
+                    .documentId("howWeHelpPage")
+                    .initialValueTemplate("how-we-help-page")
+                    .title("How We Help (overview)"),
+                ),
+              S.divider(),
+              ...practiceAreas.map((practice) =>
                 S.listItem()
                   .id(practice.slug)
                   .title(practice.name)
@@ -110,7 +121,7 @@ export const structure: StructureResolver = (S) =>
                       .title(practice.name),
                   ),
               ),
-            ),
+            ]),
         ),
       S.listItem()
         .id("founders")
@@ -119,7 +130,27 @@ export const structure: StructureResolver = (S) =>
       S.listItem()
         .id("assessments")
         .title("🧭 Assessments")
-        .child(S.documentTypeList("assessment").title("Assessments")),
+        .child(
+          S.list()
+            .title("Assessments")
+            .items([
+              S.listItem()
+                .id("page")
+                .title("Assessments Page (intro text)")
+                .child(
+                  S.document()
+                    .schemaType("assessmentsPage")
+                    .documentId("assessmentsPage")
+                    .initialValueTemplate("assessments-page")
+                    .title("Assessments Page"),
+                ),
+              S.divider(),
+              S.listItem()
+                .id("cards")
+                .title("Assessment cards")
+                .child(S.documentTypeList("assessment").title("Assessment cards")),
+            ]),
+        ),
       S.listItem()
         .id("clientLogos")
         .title("🤝 Client Logos")

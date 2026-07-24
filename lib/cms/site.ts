@@ -3,9 +3,11 @@ import {
   mapClientLogoRow,
   mapFounderRow,
   type AboutOverrides,
+  type AssessmentsPageOverrides,
   type ClientLogoRow,
   type FounderRow,
   type HomepageOverrides,
+  type HowWeHelpOverrides,
   type PracticeOverrideRow,
 } from "@/lib/cms/mappers";
 import type { ClientRecord, FounderProfileFull } from "@/lib/cms/types";
@@ -107,6 +109,57 @@ export async function getAboutOverrides(): Promise<AboutOverrides | null> {
   } catch (error) {
     console.error(
       "[cms] Sanity unreachable — About page renders seed content.",
+      error instanceof Error ? error.message : error,
+    );
+    return null;
+  }
+}
+
+/** The How We Help overview singleton, or null when absent/unreachable. */
+export async function getHowWeHelpOverrides(): Promise<HowWeHelpOverrides | null> {
+  try {
+    const row = await sanityClient.fetch<HowWeHelpOverrides | null>(
+      `*[_type == "howWeHelpPage"][0]{
+        heroHeadline,
+        heroCopy,
+        systemHeadline,
+        systemCopy,
+        engagementsHeadline,
+        engagementsCopy,
+        closingHeadline,
+        closingCopy
+      }`,
+      {},
+      fetchOptions,
+    );
+    return row ?? null;
+  } catch (error) {
+    console.error(
+      "[cms] Sanity unreachable — How We Help renders seed content.",
+      error instanceof Error ? error.message : error,
+    );
+    return null;
+  }
+}
+
+/** The Assessments Page singleton, or null when absent/unreachable. */
+export async function getAssessmentsPageOverrides(): Promise<AssessmentsPageOverrides | null> {
+  try {
+    const row = await sanityClient.fetch<AssessmentsPageOverrides | null>(
+      `*[_type == "assessmentsPage"][0]{
+        heroHeadline,
+        heroCopy,
+        gridHeadline,
+        aboutHeadline,
+        aboutCopy
+      }`,
+      {},
+      fetchOptions,
+    );
+    return row ?? null;
+  } catch (error) {
+    console.error(
+      "[cms] Sanity unreachable — Assessments page renders seed content.",
       error instanceof Error ? error.message : error,
     );
     return null;

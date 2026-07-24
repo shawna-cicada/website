@@ -8,13 +8,21 @@ import {
   clientLogo,
   homepage,
 } from "@/sanity/schemas/supporting";
-import { aboutPage, founder, practice } from "@/sanity/schemas/site";
+import {
+  aboutPage,
+  assessmentsPage,
+  founder,
+  howWeHelpPage,
+  practice,
+} from "@/sanity/schemas/site";
 import { structure } from "@/sanity/structure";
 import {
   aboutPageTemplate,
+  assessmentsPageTemplate,
   cicadaTemplates,
   founderStarterTemplates,
   homepageTemplate,
+  howWeHelpPageTemplate,
   practicePageTemplates,
 } from "@/sanity/templates";
 import { WorkflowBadge } from "@/sanity/badges";
@@ -58,20 +66,36 @@ export default defineConfig({
     ...prev,
   ],
   schema: {
-    types: [insight, author, category, assessment, clientLogo, homepage, aboutPage, practice, founder],
+    types: [
+      insight,
+      author,
+      category,
+      assessment,
+      clientLogo,
+      homepage,
+      aboutPage,
+      howWeHelpPage,
+      assessmentsPage,
+      practice,
+      founder,
+    ],
     templates: (prev) => [
       ...cicadaTemplates,
       ...practicePageTemplates,
       ...founderStarterTemplates,
       homepageTemplate,
       aboutPageTemplate,
+      howWeHelpPageTemplate,
+      assessmentsPageTemplate,
       // Blank defaults are dropped for insights (guided templates) and
       // the fixed page documents (only the pre-filled ones exist).
       ...prev.filter(
         (template) =>
           template.schemaType !== "insight" &&
           template.schemaType !== "practice" &&
-          template.schemaType !== "aboutPage",
+          template.schemaType !== "aboutPage" &&
+          template.schemaType !== "howWeHelpPage" &&
+          template.schemaType !== "assessmentsPage",
       ),
     ],
   },

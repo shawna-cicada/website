@@ -147,11 +147,14 @@ lands directly on the right list:
   content: the headline, the "Why a cicada?" story (separate paragraphs
   with an empty line), beliefs and working principles (one per line),
   the client-experience section, and the closing text.
-- **Edit Practice Pages** — the four How We Help pages are always
-  listed by name. Open one and it comes **pre-filled with the current
-  live content** — edit what you want, publish, done. Page names stay
-  fixed (they are the site navigation), and emptying a field falls back
-  to the built-in copy.
+- **Edit Practice Pages** — the How We Help overview page plus the four
+  practice pages, always listed by name. Open one and it comes
+  **pre-filled with the current live content** — edit what you want,
+  publish, done. Page names stay fixed (they are the site navigation),
+  and emptying a field falls back to the built-in copy.
+- **Manage Assessments** — the page's intro text ("Assessments Page")
+  and the assessment cards live side by side here. The "About our
+  assessments" note is part of our privacy disclosure — keep it honest.
 - **Manage Founder Profiles** — the people on the About page. Hit the
   **+** and pick a "Start from … current profile" template to get a
   profile pre-filled with today's About-page content, then add a photo

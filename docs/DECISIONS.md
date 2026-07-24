@@ -190,5 +190,15 @@ field's help text now shows the current live copy. The homepage's four
 practice cards now mirror the merged practice pages (matched by link),
 so a summary edited in Practice Pages propagates to the homepage.
 
+Third follow-up (same day): the last two seed-only pages join the
+model. "How We Help (overview)" (hero, connected-system headline and
+blank-line-separated narrative, engagements intro, closing) sits first
+in the Practice Pages desk list; "Assessments Page" (hero, grid
+headline, the D-022 "About our assessments" disclosure) sits beside
+the assessment cards under Assessments. Their previously hardcoded
+copy moved into the seed objects so the pages are fully merge-driven.
+The disclosure field's help text reminds editors it is part of the
+privacy disclosure and must stay truthful.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.
