@@ -170,5 +170,14 @@ failure degrades to the committed copy. Dashboard buttons now deep-link
 to their desk area via explicit structure ids (fixing the
 "Workspace not found"-style dead buttons).
 
+Follow-up (same day, founder feedback): an empty override list read as
+"start from scratch." The four practice pages are now fixed desk
+documents (`practice-<slug>`) that open pre-filled with the committed
+live copy via initial-value templates, and founder starter templates
+pre-fill each profile from the seed. Editors modify what is on the
+site; the merge/fallback model is unchanged underneath. The practice
+`key` field is read-only (set by the template) so a document can never
+be retargeted at a different page.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

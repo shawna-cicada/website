@@ -36,6 +36,9 @@ export const practice = defineType({
       title: "Which practice page is this?",
       type: "string",
       options: { list: PRACTICE_KEYS, layout: "radio" },
+      // Set automatically when a page is opened from the Practice Pages
+      // list — locked so a document can't be retargeted at another page.
+      readOnly: true,
       validation: (rule) => rule.required().error("Choose the practice page."),
     }),
     defineField({
