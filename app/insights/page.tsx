@@ -97,9 +97,13 @@ export default async function InsightsPage() {
                             </p>
                           ) : null}
                           <Heading level={2} visualLevel={4}>
+                            {/* Stretched link: covers the whole card
+                                (nearest positioned ancestor) while
+                                staying one clean link for screen
+                                readers and keyboards. */}
                             <Link
                               href={`/insights/${insight.slug}`}
-                              className="hover:text-meadow-deep"
+                              className="hover:text-meadow-deep after:absolute after:inset-0"
                             >
                               {insight.title}
                             </Link>
