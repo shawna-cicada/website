@@ -193,6 +193,9 @@ export const homepage = defineType({
   name: "homepage",
   title: "Homepage Content",
   type: "document",
+  // Fixed page: suppress the derived "Untitled" form heading — the pane
+  // header already carries the page name.
+  __experimental_formPreviewTitle: false,
   fields: [
     defineField({
       name: "heroHeadline",
