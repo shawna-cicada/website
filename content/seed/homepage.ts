@@ -11,8 +11,10 @@ export const homepageContent: HomepageContent = {
     eyebrow: "Leadership evolution for growing companies",
     headline: "Growth happens in stages. Leadership must evolve with it.",
     copy: "We help founders and leadership teams evolve how the company leads and operates as it grows.",
-    primaryCta: { label: "Start the Growth Stage Assessment", href: "/assessments" },
-    secondaryCta: { label: "Book a Free Discovery Call", href: "/book" },
+    // Assessment CTAs are parked until the assessments launch
+    // (founder request, 2026-07-25) — booking leads.
+    primaryCta: { label: "Book a Free Discovery Call", href: "/book" },
+    secondaryCta: { label: "Explore How We Help", href: "/how-we-help" },
   },
   recognition: {
     headline: "Do any of these sound familiar?",
@@ -24,7 +26,7 @@ export const homepageContent: HomepageContent = {
       "Accountability becomes less clear as the organization grows.",
       "Processes that once created speed now create friction.",
     ],
-    cta: { label: "See what stage you are in", href: "/assessments" },
+    cta: { label: "Let's talk about it", href: "/book" },
   },
   framework: {
     eyebrow: "The Cicada Framework",
@@ -193,7 +195,7 @@ export const homepageContent: HomepageContent = {
     headline: "What brought your company here may not take it forward.",
     copy: "Let's identify what your organization has outgrown and what must evolve next.",
     primaryCta: { label: "Book a Free Discovery Call", href: "/book" },
-    secondaryCta: { label: "Start an Assessment", href: "/assessments" },
+    secondaryCta: { label: "Explore How We Help", href: "/how-we-help" },
     bookingOptions: [
       {
         label: "Discovery Call",

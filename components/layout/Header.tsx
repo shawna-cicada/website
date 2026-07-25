@@ -18,16 +18,10 @@ const PRACTICE_LINKS = [
   { href: "/how-we-help/founder-growth", label: "Founder Evolution" },
 ] as const;
 
-/** Active assessments (content/seed/assessments.ts), anchored on the hub. */
-const ASSESSMENT_LINKS = [
-  { href: "/assessments#growth-stage", label: "Growth Stage Assessment" },
-  { href: "/assessments#founder-growth", label: "Founder Growth Assessment" },
-  { href: "/assessments#leadership-alignment", label: "Leadership Team Alignment Check" },
-  { href: "/assessments#ai-readiness", label: "AI Readiness Assessment" },
-] as const;
-
 type NavChild = { href: string; label: string };
 
+// Assessments stay out of the nav until the founder launches them
+// (2026-07-25); the /assessments page itself remains reachable.
 const NAV_ITEMS: ReadonlyArray<{
   href: string;
   label: string;
@@ -39,12 +33,6 @@ const NAV_ITEMS: ReadonlyArray<{
     label: "How We Help",
     overviewLabel: "All practices",
     children: PRACTICE_LINKS,
-  },
-  {
-    href: "/assessments",
-    label: "Assessments",
-    overviewLabel: "All assessments",
-    children: ASSESSMENT_LINKS,
   },
   { href: "/insights", label: "Articles and Insights" },
   { href: "/about", label: "About" },
@@ -145,8 +133,8 @@ function NavDropdown({
 }
 
 /**
- * Site header shell: typographic wordmark, primary nav with disclosure
- * dropdowns for How We Help and Assessments, persistent "Book a
+ * Site header shell: typographic wordmark, primary nav with a
+ * disclosure dropdown for How We Help, persistent "Book a
  * Conversation" CTA. The header stacks above page content (z-50) so
  * open dropdowns are never painted under later sections.
  */

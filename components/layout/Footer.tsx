@@ -2,9 +2,9 @@ import Link from "next/link";
 import { CicadaMark } from "@/components/brand/CicadaMark";
 import { CicadaWordmark } from "@/components/brand/CicadaWordmark";
 
+// Assessments stay out of the footer until the founder launches them.
 const FOOTER_NAV = [
   { href: "/how-we-help", label: "How We Help" },
-  { href: "/assessments", label: "Assessments" },
   { href: "/insights", label: "Articles and Insights" },
   { href: "/about", label: "About" },
   { href: "/book", label: "Book a Conversation" },

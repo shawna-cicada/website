@@ -1,11 +1,12 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("homepage", () => {
-  test("hero never dead-ends: booking leads while no assessment is live", async ({
+  test("hero leads with booking; assessments stay hidden pre-launch", async ({
     page,
   }) => {
-    // No assessment env vars in CI → the hero must lead with booking and
-    // offer the assessment hub as secondary (never a disabled dead end).
+    // Assessments are parked until launch (founder request, 2026-07-25):
+    // booking leads, How We Help is the secondary path, and nothing on
+    // the homepage links to /assessments.
     await page.goto("/");
     const hero = page.locator("section", {
       has: page.getByRole("heading", { level: 1 }),
@@ -14,8 +15,11 @@ test.describe("homepage", () => {
       hero.getByRole("link", { name: "Book a Free Discovery Call" }),
     ).toHaveAttribute("href", "/book");
     await expect(
-      hero.getByRole("link", { name: "Explore our assessments" }),
-    ).toHaveAttribute("href", "/assessments");
+      hero.getByRole("link", { name: "Explore How We Help" }),
+    ).toHaveAttribute("href", "/how-we-help");
+    expect(
+      await page.locator('a[href^="/assessments"]').count(),
+    ).toBe(0);
   });
 
   test("booking CTAs lead to /book", async ({ page, isMobile }) => {
@@ -79,19 +83,15 @@ test.describe("homepage", () => {
     ).toBeHidden();
   });
 
-  test("desktop nav: Assessments dropdown deep-links the hub", async ({
-    page,
-    isMobile,
-  }) => {
-    test.skip(isMobile, "desktop project only");
+  test("nav and footer omit Assessments until launch", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("button", { name: /show assessments pages/i }).click();
-    const link = page.getByRole("link", { name: "Growth Stage Assessment" });
-    await expect(link).toBeVisible();
-    await expect(link).toHaveAttribute("href", "/assessments#growth-stage");
-    // The dropdown must render above page content (regression: z-index).
-    await link.click();
-    await expect(page).toHaveURL(/\/assessments#growth-stage$/);
+    // Neither the header nav nor the footer links the assessments hub.
+    await expect(
+      page.getByRole("navigation").getByRole("link", { name: "Assessments" }),
+    ).toHaveCount(0);
+    await expect(
+      page.getByRole("button", { name: /show assessments pages/i }),
+    ).toHaveCount(0);
   });
 
   test("framework presents all three stages", async ({ page }) => {

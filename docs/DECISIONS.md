@@ -208,5 +208,17 @@ optional "Search result description (SEO)" field feeding the meta
 description (blank keeps the committed copy). Page titles, canonicals,
 sitemap, robots, JSON-LD, and OG images remain code-managed.
 
+## D-027 — Assessments unlisted until their launch — Accepted (2026-07-25)
+Founder request: the assessments will launch, but are not ready. All
+promotion of /assessments is parked: the nav and footer entries, the
+homepage assessments section, the hero assessment CTA (booking now
+leads, "Explore How We Help" is secondary), the recognition and
+closing CTAs, the practice-page and About "Start with an assessment"
+buttons, and the 404 link. The /assessments page itself stays live and
+honest (records without provider URLs render "available soon"), the
+seed content and Studio documents remain, and /book keeps the
+Assessment Debrief conversation type. Relaunching is a matter of
+restoring the links and the homepage section.
+
 ## D-016 — Wix content export & URL inventory — Open action item (not a design decision)
 Required before Phase 8 (migration) and before any DNS change. See `docs/MIGRATION_MAP.md` for what depends on it. Note: this remote environment's network policy currently blocks `cicadaagility.com`, so the crawl/export must run elsewhere or the policy must be widened.

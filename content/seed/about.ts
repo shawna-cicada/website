@@ -50,9 +50,10 @@ export const aboutContent: AboutContent = {
   },
   cta: {
     headline: "Let's find out what your company is ready to become.",
-    copy: "Start with an assessment, or talk with us directly about the change your organization is navigating.",
+    copy: "Talk with us directly about the change your organization is navigating.",
     primaryCta: { label: "Book a Free Discovery Call", href: "/book" },
-    secondaryCta: { label: "Start with an assessment", href: "/assessments" },
+    // Assessment CTA parked until the assessments launch.
+    secondaryCta: { label: "Explore How We Help", href: "/how-we-help" },
   },
 };
 
