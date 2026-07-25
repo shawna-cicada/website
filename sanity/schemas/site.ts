@@ -30,6 +30,9 @@ export const practice = defineType({
   title: "Practice Pages",
   type: "document",
   description: "Edits the How We Help practice pages.",
+  // Fixed pages: suppress the derived "Untitled" form heading — the
+  // pane header and list already carry the page name.
+  __experimental_formPreviewTitle: false,
   fields: [
     defineField({
       name: "key",
@@ -84,6 +87,7 @@ export const howWeHelpPage = defineType({
   name: "howWeHelpPage",
   title: "How We Help (overview)",
   type: "document",
+  __experimental_formPreviewTitle: false,
   fields: [
     defineField({
       name: "heroHeadline",
@@ -141,6 +145,7 @@ export const assessmentsPage = defineType({
   name: "assessmentsPage",
   title: "Assessments Page",
   type: "document",
+  __experimental_formPreviewTitle: false,
   fields: [
     defineField({
       name: "heroHeadline",
@@ -190,6 +195,7 @@ export const aboutPage = defineType({
   name: "aboutPage",
   title: "About Page",
   type: "document",
+  __experimental_formPreviewTitle: false,
   fields: [
     defineField({
       name: "heroHeadline",
