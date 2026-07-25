@@ -296,19 +296,13 @@ export default async function PracticePage({ params }: PageProps) {
               honestly whether, and how, we can help.
             </Text>
           </Reveal>
+          {/* Assessment CTA parked until the assessments launch. */}
           <Reveal delay={0.2} className="flex flex-wrap gap-4">
             <CTAButton
               label="Discuss Your Needs"
               href="/book"
               location={`practice-${practice.slug}-final`}
               variant="accent"
-              size="lg"
-            />
-            <CTAButton
-              label="Start with an assessment"
-              href="/assessments"
-              location={`practice-${practice.slug}-final`}
-              variant="outline"
               size="lg"
             />
           </Reveal>

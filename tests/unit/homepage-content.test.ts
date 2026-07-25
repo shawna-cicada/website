@@ -6,18 +6,27 @@ import { getHomepageContent } from "@/lib/cms";
  * These hold regardless of backing store (seed today, Sanity in Phase 2).
  */
 describe("homepage content contract", () => {
-  it("hero primary CTA is the Growth Stage Assessment", async () => {
+  it("hero leads with booking while assessments are parked", async () => {
     const content = await getHomepageContent();
-    expect(content.hero.primaryCta.label).toBe(
-      "Start the Growth Stage Assessment",
-    );
-    expect(content.hero.primaryCta.href).toBe("/assessments");
+    expect(content.hero.primaryCta.label).toBe("Book a Free Discovery Call");
+    expect(content.hero.primaryCta.href).toBe("/book");
+    expect(content.hero.secondaryCta.href).toBe("/how-we-help");
+  });
+
+  it("no homepage CTA points at /assessments pre-launch", async () => {
+    const content = await getHomepageContent();
+    const hrefs = [
+      content.hero.primaryCta.href,
+      content.hero.secondaryCta.href,
+      content.recognition.cta.href,
+      content.finalCta.primaryCta.href,
+      content.finalCta.secondaryCta.href,
+    ];
+    expect(hrefs.some((href) => href.startsWith("/assessments"))).toBe(false);
   });
 
   it("booking CTAs point at /book", async () => {
     const content = await getHomepageContent();
-    expect(content.hero.secondaryCta.label).toBe("Book a Free Discovery Call");
-    expect(content.hero.secondaryCta.href).toBe("/book");
     expect(content.finalCta.primaryCta.href).toBe("/book");
   });
 

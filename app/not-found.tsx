@@ -25,13 +25,13 @@ export default function NotFound() {
             </TextLink>
           </li>
           <li>
-            <TextLink href="/assessments" arrow>
-              Start with an assessment
+            <TextLink href="/insights" arrow>
+              Articles and videos
             </TextLink>
           </li>
           <li>
-            <TextLink href="/insights" arrow>
-              Articles and videos
+            <TextLink href="/book" arrow>
+              Book a conversation
             </TextLink>
           </li>
         </ul>
