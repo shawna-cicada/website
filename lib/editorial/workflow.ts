@@ -62,7 +62,9 @@ export function publishDoc(
     doc: {
       ...filled,
       status: "published",
-      publishedAt: (options.now ?? new Date()).toISOString(),
+      // "First published" is stamped once; republishing (and manual
+      // backdating in the Studio) never moves it.
+      publishedAt: doc.publishedAt ?? (options.now ?? new Date()).toISOString(),
       scheduledAt: undefined,
     },
     notes,
@@ -166,7 +168,9 @@ export function unpublishDoc(
   }
   return {
     ok: true,
-    doc: { ...doc, status: "draft", publishedAt: undefined, scheduledAt: undefined },
+    // The first-published date survives unpublishing, so a piece taken
+    // down for edits keeps its original date when it returns.
+    doc: { ...doc, status: "draft", scheduledAt: undefined },
     notes: ["The piece is off the website and saved as a draft. Nothing was deleted."],
   };
 }

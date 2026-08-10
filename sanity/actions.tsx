@@ -45,6 +45,7 @@ function toEditorialDoc(doc: SanityInsight | null): EditorialDoc {
     body: doc.body as EditorialDoc["body"],
     videoUrl: doc.videoUrl as string | undefined,
     slug: doc.slug?.current,
+    publishedAt: doc.publishedAt as string | undefined,
     previewedAt: doc.previewedAt as string | undefined,
     linkedInPostText: doc.linkedInPostText,
   };
@@ -73,7 +74,11 @@ export const PublishWithChecklist: DocumentActionComponent = (
         {
           set: {
             workflowStatus: "published",
-            publishedAt: new Date().toISOString(),
+            // Stamped on the FIRST publish only — republishing keeps
+            // the original date, and editors may adjust it by hand.
+            ...(doc.publishedAt
+              ? {}
+              : { publishedAt: new Date().toISOString() }),
             seoTitle: filled.seoTitle,
             seoDescription: filled.seoDescription,
             // The page address the public site requires. Without this
@@ -252,7 +257,9 @@ export const UnpublishToDraft: DocumentActionComponent = (props) => {
     tone: "caution",
     disabled: Boolean(unpublish.disabled),
     onHandle: () => {
-      patch.execute([{ set: { workflowStatus: "draft" } }, { unset: ["publishedAt"] }]);
+      // The first-published date is kept, so republishing later
+      // restores the piece with its original date.
+      patch.execute([{ set: { workflowStatus: "draft" } }]);
       unpublish.execute();
       props.onComplete();
     },
