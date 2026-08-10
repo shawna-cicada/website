@@ -126,6 +126,30 @@ describe("publish and schedule transitions", () => {
     }
   });
 
+  it("republishing never moves the first-published date", () => {
+    const result = publishDoc(
+      { ...completeDoc, publishedAt: "2026-07-01T08:00:00.000Z" },
+      "publisher",
+      { now: new Date("2026-07-23T12:00:00Z"), existingSlugs: [] },
+    );
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.doc.publishedAt).toBe("2026-07-01T08:00:00.000Z");
+    }
+  });
+
+  it("unpublishing keeps the first-published date for a later return", () => {
+    const result = unpublishDoc(
+      { ...completeDoc, status: "published", publishedAt: "2026-07-01T08:00:00.000Z" },
+      "publisher",
+    );
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.doc.status).toBe("draft");
+      expect(result.doc.publishedAt).toBe("2026-07-01T08:00:00.000Z");
+    }
+  });
+
   it("refuses to publish an incomplete doc with the checklist's reasons", () => {
     const result = publishDoc({ title: "Only a title here" }, "publisher");
     expect(result.ok).toBe(false);

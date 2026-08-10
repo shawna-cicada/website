@@ -233,9 +233,10 @@ export const insight = defineType({
     defineField({
       name: "publishedAt",
       title: "First published",
+      description:
+        "Set automatically the first time the piece is published, and never changed by republishing. Edit it to backdate a piece, for example an article migrated from the old site.",
       type: "datetime",
       group: "advanced",
-      readOnly: true,
     }),
     defineField({
       name: "previewedAt",
