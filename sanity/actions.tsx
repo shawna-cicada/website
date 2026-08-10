@@ -76,6 +76,13 @@ export const PublishWithChecklist: DocumentActionComponent = (
             publishedAt: new Date().toISOString(),
             seoTitle: filled.seoTitle,
             seoDescription: filled.seoDescription,
+            // The page address the public site requires. Without this
+            // set, a piece can be "published" yet never listed — the
+            // automatic slug must reach the document, not just the
+            // LinkedIn link below.
+            ...(doc.slug || !filled.slug
+              ? {}
+              : { slug: { _type: "slug", current: filled.slug } }),
             // The Promotion tab's "generated for you" promise: publishing
             // leaves a ready-to-edit LinkedIn suggestion with no extra
             // clicks. Never overwrites text an editor already wrote.

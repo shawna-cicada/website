@@ -179,7 +179,7 @@ export const insight = defineType({
       name: "slug",
       title: "Page address",
       description:
-        "Created automatically from the title. Only change it if you have a specific reason.",
+        "Created automatically from the title when you publish. Only change it if you have a specific reason.",
       type: "slug",
       group: "advanced",
       options: { source: "title", maxLength: 96, slugify },
