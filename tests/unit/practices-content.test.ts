@@ -26,7 +26,6 @@ describe("practice areas content contract", () => {
       expect(practice.workOn.length, practice.slug).toBeGreaterThanOrEqual(3);
       expect(practice.leaveWith.length, practice.slug).toBeGreaterThanOrEqual(3);
       expect(practice.formats.length, practice.slug).toBeGreaterThan(0);
-      expect(practice.relatedInsights.length, practice.slug).toBeGreaterThan(0);
       expect(practice.seoDescription.length, practice.slug).toBeGreaterThan(0);
     }
   });

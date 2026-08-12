@@ -12,6 +12,7 @@ import {
   getEngagementsForPractice,
   getPracticeArea,
   getPracticeAreas,
+  getPublishedInsights,
 } from "@/lib/cms";
 import { breadcrumbJsonLd, jsonLdString, serviceJsonLd } from "@/lib/seo/jsonld";
 
@@ -59,7 +60,13 @@ export default async function PracticePage({ params }: PageProps) {
   const practice = await getPracticeArea(slug);
   if (!practice) notFound();
 
-  const formats = await getEngagementsForPractice(slug);
+  const [formats, publishedInsights] = await Promise.all([
+    getEngagementsForPractice(slug),
+    getPublishedInsights(),
+  ]);
+  // Real published articles only (latest three); the section hides
+  // entirely when none exist — never placeholder headlines.
+  const readings = publishedInsights.slice(0, 3);
 
   return (
     <>
@@ -259,28 +266,31 @@ export default async function PracticePage({ params }: PageProps) {
         </Container>
       </Section>
 
-      {/* Related insights (related practices removed per founder review) */}
-      <Section aria-labelledby="related-heading">
-        <Container className="max-w-3xl">
-          <Reveal>
-            <div>
-              <Eyebrow>Related insights</Eyebrow>
-              <Heading level={2} visualLevel={4} id="related-heading" className="mt-2">
-                Reading for this kind of friction
-              </Heading>
-              <ul className="mt-5 flex flex-col gap-3">
-                {practice.relatedInsights.map((insight) => (
-                  <li key={insight.title}>
-                    <TextLink href={insight.href} arrow>
-                      {insight.title}
-                    </TextLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      {/* Related insights: the latest published articles, linked
+          directly. Hidden until at least one article is live. */}
+      {readings.length > 0 ? (
+        <Section aria-labelledby="related-heading">
+          <Container className="max-w-3xl">
+            <Reveal>
+              <div>
+                <Eyebrow>Related insights</Eyebrow>
+                <Heading level={2} visualLevel={4} id="related-heading" className="mt-2">
+                  Reading for this kind of friction
+                </Heading>
+                <ul className="mt-5 flex flex-col gap-3">
+                  {readings.map((insight) => (
+                    <li key={insight.slug}>
+                      <TextLink href={`/insights/${insight.slug}`} arrow>
+                        {insight.title}
+                      </TextLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </Container>
+        </Section>
+      ) : null}
 
       {/* CTA */}
       <Section tone="ink" aria-labelledby="practice-cta-heading">

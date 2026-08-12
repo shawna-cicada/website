@@ -23,6 +23,26 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+/** Small meadow check for the outcome bullets on practice cards. */
+function CheckIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      width="14"
+      height="14"
+      viewBox="0 0 18 18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="mt-1 shrink-0 text-meadow-deep"
+    >
+      <path d="M3 9.5 L7 13.5 L15 4.5" />
+    </svg>
+  );
+}
+
 /**
  * How We Help overview: the four practices presented as one connected
  * system, followed by the configurable engagement records.
@@ -86,6 +106,17 @@ export default async function HowWeHelpPage() {
                     <Text muted>
                       {practice.summary}
                     </Text>
+                    {/* The result, not just the service: the first two
+                        "what clients leave with" outcomes, pulled from
+                        the same (Studio-editable) practice content. */}
+                    <ul className="mt-1 flex flex-col gap-2">
+                      {practice.leaveWith.slice(0, 2).map((item) => (
+                        <li key={item} className="flex gap-2.5 text-sm text-ink/75">
+                          <CheckIcon />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                     <div className="mt-auto pt-2">
                       <TextLink href={`/how-we-help/${practice.slug}`} arrow>
                         Explore this practice

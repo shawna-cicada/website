@@ -27,7 +27,10 @@ const montserrat = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.cicadaagility.com"),
   title: {
-    default: "Cicada Agility | Growth Happens in Stages",
+    // What we do + who it's for, not the tagline — nobody searches
+    // taglines. The tagline still leads the on-page hero and OG card.
+    default:
+      "Leadership & Organizational Effectiveness Consulting for Growing Companies | Cicada Agility",
     template: "%s | Cicada Agility",
   },
   description:

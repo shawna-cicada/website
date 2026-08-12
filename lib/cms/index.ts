@@ -24,6 +24,7 @@ export {
   getPublishedInsights,
   INSIGHTS_REVALIDATE_SECONDS,
 } from "@/lib/cms/insights";
+import { getPublishedInsights } from "@/lib/cms/insights";
 import {
   getAboutOverrides,
   getAssessmentsPageOverrides,
@@ -51,14 +52,36 @@ import {
 export async function getHomepageContent(): Promise<HomepageContent> {
   // Studio's "Homepage Content" document overrides the seed (D-021);
   // blank fields and CMS outages fall through to the committed copy.
-  const [overrides, cmsFounders, practices] = await Promise.all([
-    getHomepageOverrides(),
-    getSanityFounders(),
-    getPracticeAreas(),
-  ]);
+  const [overrides, cmsFounders, practices, publishedInsights] =
+    await Promise.all([
+      getHomepageOverrides(),
+      getSanityFounders(),
+      getPracticeAreas(),
+      getPublishedInsights(),
+    ]);
   const merged = mergeHomepageContent(homepageContent, overrides);
+
+  // Featured-insight priority: the editor's explicit pick (already
+  // merged) → the latest published article → the committed sample
+  // (only reachable offline / before any article exists). The homepage
+  // never promotes a placeholder while real articles are live.
+  const latest = publishedInsights[0];
+  const insight =
+    merged.insight.featured === homepageContent.insight.featured && latest
+      ? {
+          ...merged.insight,
+          featured: {
+            category: latest.category ?? merged.insight.featured.category,
+            title: latest.title,
+            excerpt: latest.summary,
+            href: `/insights/${latest.slug}`,
+          },
+        }
+      : merged.insight;
+
   return {
     ...merged,
+    insight,
     services: {
       ...merged.services,
       // Practice cards mirror the (possibly Studio-edited) practice

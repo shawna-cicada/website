@@ -241,7 +241,18 @@ export default async function AboutPage() {
               {content.principles.headline}
             </Heading>
           </Reveal>
-          <ol className="grid gap-x-12 gap-y-6 md:grid-cols-2">
+          {/* Column flow: 1-2-3 down the left, 4-5-6 down the right —
+              the wide gutter makes the eye read down, so the numbers
+              must too. Markup order is untouched (screen readers and
+              the single-column mobile layout still read 1→6). */}
+          <ol
+            className="grid gap-x-12 gap-y-6 md:grid-flow-col md:grid-cols-2 md:[grid-template-rows:repeat(var(--principle-rows),auto)]"
+            style={
+              {
+                "--principle-rows": Math.ceil(content.principles.items.length / 2),
+              } as React.CSSProperties
+            }
+          >
             {content.principles.items.map((principle, index) => (
               <li key={principle}>
                 <Reveal delay={index * 0.06} className="flex gap-4">

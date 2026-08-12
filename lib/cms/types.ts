@@ -93,11 +93,6 @@ export type ResolvedAssessment = Assessment & {
   externalUrl: string | null;
 };
 
-export type RelatedInsight = {
-  title: string;
-  href: string;
-};
-
 /** Mirrors the contentType options in sanity/schemas/insight.ts. */
 export type InsightKind =
   | "article"
@@ -170,7 +165,6 @@ export type PracticeArea = {
   supportingCapabilities: string[];
   /** Slugs of practices this one most often combines with. */
   relatedPractices: string[];
-  relatedInsights: RelatedInsight[];
   seoDescription: string;
 };
 
