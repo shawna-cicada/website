@@ -93,6 +93,14 @@ export type ResolvedAssessment = Assessment & {
   externalUrl: string | null;
 };
 
+/** Compact homepage article card: title, category, date, link — no excerpt. */
+export type HomepageInsightCard = {
+  title: string;
+  category: string | null;
+  href: string;
+  publishedAt: string | null;
+};
+
 /** Mirrors the contentType options in sanity/schemas/insight.ts. */
 export type InsightKind =
   | "article"
@@ -295,7 +303,11 @@ export type HomepageContent = {
   insight: {
     eyebrow: string;
     headline: string;
+    /** Fallback single card, shown only while no articles are published. */
     featured: FeaturedInsight;
+    /** The latest published articles as compact cards (title, category,
+     * date, link only). Populated by the adapter; empty in the seed. */
+    items: HomepageInsightCard[];
     cta: CTA;
   };
   founders: {

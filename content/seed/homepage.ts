@@ -167,6 +167,9 @@ export const homepageContent: HomepageContent = {
       excerpt: "Every growth stage rewards different leadership behavior. The habits that created early momentum (speed, involvement, personal ownership of every decision) quietly become the constraint the organization is working around.",
       href: "/insights",
     },
+    // Filled by the adapter with the latest published articles; the
+    // featured sample above renders only while this stays empty.
+    items: [],
     cta: { label: "Explore All Insights", href: "/insights" },
   },
   founders: {

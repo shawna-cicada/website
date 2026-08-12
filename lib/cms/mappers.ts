@@ -7,7 +7,9 @@ import type {
   FounderProfile,
   FounderProfileFull,
   HomepageContent,
+  HomepageInsightCard,
   HowWeHelpContent,
+  InsightSummary,
   PracticeArea,
   ServiceCard,
 } from "@/lib/cms/types";
@@ -456,6 +458,30 @@ export function mergeAssessmentsPageContent(
       ? { aboutCopy: present(overrides.aboutCopy)! }
       : {}),
   };
+}
+
+/**
+ * The homepage's compact article cards: the latest published pieces,
+ * with the editor's featured pick (when it is a published article)
+ * moved to the front. Title, category, date, and link only.
+ */
+export function buildInsightCards(
+  published: InsightSummary[],
+  pickedSlug: string | null,
+  limit = 3,
+): HomepageInsightCard[] {
+  const picked = pickedSlug
+    ? published.find((insight) => insight.slug === pickedSlug)
+    : undefined;
+  const rest = published.filter((insight) => insight.slug !== pickedSlug);
+  return [...(picked ? [picked] : []), ...rest]
+    .slice(0, limit)
+    .map((insight) => ({
+      title: insight.title,
+      category: insight.category,
+      href: `/insights/${insight.slug}`,
+      publishedAt: insight.publishedAt,
+    }));
 }
 
 /**
