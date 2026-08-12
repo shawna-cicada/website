@@ -75,12 +75,6 @@ export const practiceAreas: PracticeArea[] = [
       "Facilitation",
     ],
     relatedPractices: ["founder-growth", "organizational-effectiveness"],
-    relatedInsights: [
-      {
-        title: "The habits that built your company may be the ones holding it back",
-        href: "/insights",
-      },
-    ],
     seoDescription:
       "Build trust, clarity, and shared accountability as your leadership team evolves. Executive alignment, decision rights, leadership intensives, and coaching from Cicada Agility.",
   },
@@ -132,12 +126,6 @@ export const practiceAreas: PracticeArea[] = [
       "Portfolio management",
     ],
     relatedPractices: ["leadership-team-effectiveness", "ai-enablement"],
-    relatedInsights: [
-      {
-        title: "The habits that built your company may be the ones holding it back",
-        href: "/insights",
-      },
-    ],
     seoDescription:
       "Operating model design, prioritization, governance, and delivery effectiveness for growing companies. Cicada Agility builds the systems strategy moves through.",
   },
@@ -181,12 +169,6 @@ export const practiceAreas: PracticeArea[] = [
       "Change management",
     ],
     relatedPractices: ["organizational-effectiveness", "leadership-team-effectiveness"],
-    relatedInsights: [
-      {
-        title: "The habits that built your company may be the ones holding it back",
-        href: "/insights",
-      },
-    ],
     seoDescription:
       "Adopt AI practically, responsibly, and consistently. Readiness assessment, working norms, guardrails, and enablement workshops from Cicada Agility.",
   },
@@ -226,12 +208,6 @@ export const practiceAreas: PracticeArea[] = [
     formats: ["Growth Stage Diagnostic", "Leadership Intensive", "Ongoing Leadership and Organizational Advisory"],
     supportingCapabilities: ["Founder and executive coaching", "Facilitation"],
     relatedPractices: ["leadership-team-effectiveness", "organizational-effectiveness"],
-    relatedInsights: [
-      {
-        title: "The habits that built your company may be the ones holding it back",
-        href: "/insights",
-      },
-    ],
     seoDescription:
       "Founder transition, delegation, co-founder alignment, and leadership team formation. Cicada Agility helps founders evolve their role as the business grows.",
   },

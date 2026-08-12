@@ -68,10 +68,13 @@ test.describe("/how-we-help", () => {
       "What we may work on",
       "What clients leave with",
       "Typical engagement formats",
-      "Related insights",
     ]) {
       await expect(page.getByText(block, { exact: true })).toBeVisible();
     }
+    // "Related insights" lists real published articles only, so in this
+    // offline test environment (no Sanity) the section must be absent —
+    // placeholder headlines never render.
+    await expect(page.getByText("Related insights", { exact: true })).toBeHidden();
 
     const ctas = page.getByRole("link", { name: "Discuss Your Needs" });
     const count = await ctas.count();

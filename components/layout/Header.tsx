@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -34,19 +35,27 @@ const NAV_ITEMS: ReadonlyArray<{
     overviewLabel: "All practices",
     children: PRACTICE_LINKS,
   },
-  { href: "/insights", label: "Articles and Insights" },
+  { href: "/insights", label: "Insights" },
   { href: "/about", label: "About" },
 ];
+
+/** Is this nav item's section the one currently being viewed? */
+function isActivePath(pathname: string, href: string): boolean {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 /** Accessible disclosure dropdown for a top-level nav item. */
 function NavDropdown({
   item,
+  pathname,
 }: {
   item: (typeof NAV_ITEMS)[number] & { children: readonly NavChild[] };
+  pathname: string;
 }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
+  const active = isActivePath(pathname, item.href);
 
   useEffect(() => {
     if (!open) return;
@@ -69,7 +78,12 @@ function NavDropdown({
       <div className="flex items-center gap-0.5">
         <Link
           href={item.href}
-          className="text-sm font-medium text-ink/80 transition-colors duration-[var(--duration-quick)] hover:text-ink"
+          aria-current={pathname === item.href ? "page" : undefined}
+          className={`text-sm font-medium transition-colors duration-[var(--duration-quick)] ${
+            active
+              ? "text-meadow-deep underline decoration-meadow decoration-2 underline-offset-8"
+              : "text-ink/80 hover:text-ink"
+          }`}
         >
           {item.label}
         </Link>
@@ -121,7 +135,12 @@ function NavDropdown({
             <Link
               href={child.href}
               onClick={() => setOpen(false)}
-              className="block rounded-sm px-3 py-2.5 text-sm font-medium text-ink/80 hover:bg-lilac hover:text-ink"
+              aria-current={pathname === child.href ? "page" : undefined}
+              className={`block rounded-sm px-3 py-2.5 text-sm font-medium hover:bg-lilac ${
+                pathname === child.href
+                  ? "text-meadow-deep"
+                  : "text-ink/80 hover:text-ink"
+              }`}
             >
               {child.label}
             </Link>
@@ -141,6 +160,7 @@ function NavDropdown({
 export function Header() {
   const [open, setOpen] = useState(false);
   const menuId = useId();
+  const pathname = usePathname() ?? "/";
 
   return (
     <header className="anim-drop sticky top-0 z-50 border-b border-ink/10 bg-paper">
@@ -157,12 +177,18 @@ export function Header() {
               <NavDropdown
                 key={item.href}
                 item={{ ...item, children: item.children }}
+                pathname={pathname}
               />
             ) : (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-ink/80 transition-colors duration-[var(--duration-quick)] hover:text-ink"
+                aria-current={pathname === item.href ? "page" : undefined}
+                className={`text-sm font-medium transition-colors duration-[var(--duration-quick)] ${
+                  isActivePath(pathname, item.href)
+                    ? "text-meadow-deep underline decoration-meadow decoration-2 underline-offset-8"
+                    : "text-ink/80 hover:text-ink"
+                }`}
               >
                 {item.label}
               </Link>
@@ -210,7 +236,10 @@ export function Header() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="block py-3 text-base font-medium text-ink"
+                aria-current={pathname === item.href ? "page" : undefined}
+                className={`block py-3 text-base font-medium ${
+                  isActivePath(pathname, item.href) ? "text-meadow-deep" : "text-ink"
+                }`}
                 onClick={() => setOpen(false)}
               >
                 {item.label}
@@ -221,7 +250,10 @@ export function Header() {
                     <li key={child.href}>
                       <Link
                         href={child.href}
-                        className="block py-2.5 text-sm font-medium text-slate"
+                        aria-current={pathname === child.href ? "page" : undefined}
+                        className={`block py-2.5 text-sm font-medium ${
+                          pathname === child.href ? "text-meadow-deep" : "text-slate"
+                        }`}
                         onClick={() => setOpen(false)}
                       >
                         {child.label}
