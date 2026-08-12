@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   adoptFounderPhotos,
+  buildInsightCards,
   FOUNDER_PLACEHOLDER_IMAGE,
   mapClientLogoRow,
   mapFounderRow,
@@ -406,6 +407,66 @@ describe("syncServiceCards (D-026)", () => {
       href: "/assessments",
     };
     expect(syncServiceCards([card], practiceAreas)[0]).toBe(card);
+  });
+});
+
+describe("buildInsightCards", () => {
+  const summary = (slug: string, title: string) => ({
+    slug,
+    title,
+    summary: "s",
+    kind: "article" as const,
+    category: "Leadership",
+    authorName: null,
+    publishedAt: "2026-07-01T00:00:00Z",
+    readingTime: null,
+    imageUrl: null,
+    imageAlt: null,
+    imageWidth: null,
+    imageHeight: null,
+  });
+  const published = [
+    summary("newest", "Newest"),
+    summary("middle", "Middle"),
+    summary("older", "Older"),
+    summary("oldest", "Oldest"),
+  ];
+
+  it("returns the latest three as title/category/date/link cards", () => {
+    const cards = buildInsightCards(published, null);
+    expect(cards.map((card) => card.href)).toEqual([
+      "/insights/newest",
+      "/insights/middle",
+      "/insights/older",
+    ]);
+    expect(cards[0]).toEqual({
+      title: "Newest",
+      category: "Leadership",
+      href: "/insights/newest",
+      publishedAt: "2026-07-01T00:00:00Z",
+    });
+  });
+
+  it("moves the editor's featured pick to the front, without duplicates", () => {
+    const cards = buildInsightCards(published, "older");
+    expect(cards.map((card) => card.href)).toEqual([
+      "/insights/older",
+      "/insights/newest",
+      "/insights/middle",
+    ]);
+  });
+
+  it("ignores a pick that is not among the published articles", () => {
+    const cards = buildInsightCards(published, "unpublished-piece");
+    expect(cards.map((card) => card.href)).toEqual([
+      "/insights/newest",
+      "/insights/middle",
+      "/insights/older",
+    ]);
+  });
+
+  it("returns an empty list when nothing is published (sample card renders)", () => {
+    expect(buildInsightCards([], null)).toEqual([]);
   });
 });
 

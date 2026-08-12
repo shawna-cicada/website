@@ -36,6 +36,7 @@ import {
 } from "@/lib/cms/site";
 import {
   adoptFounderPhotos,
+  buildInsightCards,
   mergeAboutContent,
   mergeAssessmentsPageContent,
   mergeHomepageContent,
@@ -61,23 +62,31 @@ export async function getHomepageContent(): Promise<HomepageContent> {
     ]);
   const merged = mergeHomepageContent(homepageContent, overrides);
 
-  // Featured-insight priority: the editor's explicit pick (already
-  // merged) → the latest published article → the committed sample
-  // (only reachable offline / before any article exists). The homepage
-  // never promotes a placeholder while real articles are live.
+  // The insight section shows the latest published articles as compact
+  // cards, with the editor's featured pick (Homepage Content document)
+  // first. While no articles exist — offline builds, or a fresh site —
+  // `items` stays empty and the single sample card renders instead, so
+  // the homepage never promotes a placeholder beside real articles.
+  const editorPicked =
+    merged.insight.featured !== homepageContent.insight.featured;
+  const pickedSlug = editorPicked
+    ? merged.insight.featured.href.replace("/insights/", "")
+    : null;
   const latest = publishedInsights[0];
-  const insight =
-    merged.insight.featured === homepageContent.insight.featured && latest
+  const featured =
+    !editorPicked && latest
       ? {
-          ...merged.insight,
-          featured: {
-            category: latest.category ?? merged.insight.featured.category,
-            title: latest.title,
-            excerpt: latest.summary,
-            href: `/insights/${latest.slug}`,
-          },
+          category: latest.category ?? merged.insight.featured.category,
+          title: latest.title,
+          excerpt: latest.summary,
+          href: `/insights/${latest.slug}`,
         }
-      : merged.insight;
+      : merged.insight.featured;
+  const insight = {
+    ...merged.insight,
+    featured,
+    items: buildInsightCards(publishedInsights, pickedSlug),
+  };
 
   return {
     ...merged,
