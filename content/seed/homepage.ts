@@ -159,7 +159,7 @@ export const homepageContent: HomepageContent = {
     ],
   },
   insight: {
-    eyebrow: "Featured insight",
+    eyebrow: "Featured Insights",
     headline: "Articles and Insights",
     featured: {
       category: "Leadership",
